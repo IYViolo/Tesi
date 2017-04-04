@@ -1,0 +1,147 @@
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{amsfonts}
+\usepackage{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ amsmath }
+\usepackage{ amssymb }
+\usepackage{enumerate}
+\usepackage{cite}
+\usepackage{bbm}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\DeclareMathOperator\supp{supp}
+\DeclareMathOperator\Lip{Lip}
+\DeclareMathOperator\rr{\mathbb{R}}
+\DeclareMathOperator\nn{\mathbb{N}}
+\DeclareMathOperator\wt{\widetilde}
+\DeclareMathOperator\im{Im}
+
+
+\begin{document}
+\begin{definition}
+Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
+\[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{Q_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{Q_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
+where $Q_r(x)$ is the open cube centered in $x$ of side $2r$.
+\end{definition}
+\begin{lemma}
+Let $1\le p\le \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. Then then cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ is equivalent to the classical Morrey norm $\|.\|_{M_{p}^\phi(\Omega)}$. In particular 
+\[ \| .\|_{M_{p}^\phi(\Omega)} \le \| .\|_{M_{p,Q}^\phi(\Omega)}\le 2^{n^2}\| .\|_{M_{p}^\phi(\Omega)}.\]
+\end{lemma}
+\begin{proof}
+We start by proving some geometrical facts. Let $Q$ be a cube in $\rr^n$ of side $2r$. We claim that if $S$ is a set of points in $\rr^n$ satisfying
+\begin{enumerate}[i)]
+\item  	$S \subset Q$,
+\item $\|z_1-z_2 \|\ge r$ for every $z_1,z_2 \in Q$ with $z_1 \neq z_2$,
+\end{enumerate}
+then $|S|\le2^{n^2}.$ To see this let's cover $Q$ with $(2^n)^n$ small closed cubes of side $2r/2^n$. The diagonal of a small cube measures $2r/2^n \cdot \sqrt{n}<r$.
+Thus each of these cubes can contain at most one point of $S$, so $|S|\le2^{n^2}.$ 
+
+Now let $x \in \Omega$, $r>0$ and $Q$ be the cube centered in $x$ of side $2r$. Consider $Q \cap \Omega,$ we'll prove that we can cover this set with a collection of balls $B_1,...,B_k$ centered in $\Omega$ of radius $r$ and such that $k\le 2^{n^2}.$ Let's start by taking $B_1=B_r(x)$, the ball centered in $x$ of radius $r$ and calling $x_1=x$. If $(Q\cap \Omega )\subset B_1$ we are done, if not there exists $x_2 \in (Q \cap \Omega)\setminus B_1$ and we take $B_2=B_r(x_2).$ Again, if $(Q\cap \Omega )\subset (B_1\cup B_2)$ we stop, else we can pick $x_3 \in (Q \cap \Omega)\setminus (B_1 \cup B_2)$ and take $B_3=B_r(x_3).$ We iterate this procedure : given $B_1,...,B_h$ balls, if $(Q\cap \Omega )\subset (B_1\cup...\cup B_h)$ we stop, else we can choose $x_{h+1} \in (Q\cap \Omega )\setminus (B_1\cup...\cup B_h)$ and take $B_{h+1}=B_r(x_{h+1}).$ We claim that this procedure stops with $h\le 2^{n^2}.$ Suppose it doesn't, then we can find $B_1,...,B_{2^{n^2}+1}$ balls centered respectively at $x_1,...,x_{2^{n^2}+1}$. Setting $S= \{x_1,...,x_{2^{n^2}+1} \}$, it's immediate to see that $S$ satisfies i) and ii), but $|S|=2^{n^2}+1$.
+
+We are now ready to prove the second inequality of the statement. Let $x \in \Omega$, $r>0$, $Q_r(x)$ be the cube centered in $x$ of side $2r$ and $f \in L^p_{loc}(\Omega)$. By the previous part 
+\[ 	\int_{Q_r(x)\cap\Omega} |f(y)|^p dy \le \sum_{i=1}^k \int_{B_i\cap\Omega} |f(y)|^p dy\]
+where $k\le 2^{n^2}$ and $B_1,...,B_k$ are balls centered in $\Omega$ of radius $r$. Hence
+\[ \| f\|_{M_{p,Q}^\phi(\Omega)}=\sup_{Q_r(x) ,x \in \Omega,r>0} \left( \frac{1}{\phi(r)}\int_{Q_r(x)\cap\Omega} |f(y)|^p dy \right)^{\frac{1}{p}} \le 2^{n^2} \| f\|_{M_p^\phi(\Omega)}.\]
+To prove the first inequality we observe that for every $x \in \Omega$ and $r>0$, $(B_r(x)\cap\Omega)\subset (Q_r(x)\cap\Omega)$, where $Q_r(x)$ is the cube centered in $x$ with side $2r$ and $B_r(x)$ is the ball of radius $r$ centered in $x$. Therefore for every $f \in L^p_{loc}(\Omega)$
+\[ \int_{B_r(x)\cap\Omega} |f(y)|^p dy \le \int_{Q_r(x)\cap\Omega} |f(y)|^p dy\]
+and this concludes the proof.
+
+\end{proof}
+Notations :
+\[ \psi(t)=\frac{1}{\pi t}e^{1-\frac{\sqrt[4]{t-1}}{\sqrt{2}}}\sin{\frac{\sqrt[4]{t-1}}{\sqrt 2}}\]
+for $t\ge 1$, so
+\[ |\psi(t)|\le e^{-\frac{\sqrt[4]{t-1}}{\sqrt2}} \frac{e}{\pi t}\le \frac{A}{t^3} \]
+for every $t\ge 1$ and some constant $A$ (for example $A=10^5$).
+\[\rr^n_+=\{x \in \rr^n \ | \ x_n>0\}\]
+\[\rr^n_-=\{x \in \rr^n \ | \ x_n<0\}\]
+Let $f\in L^p_{loc}(\rr^n_+)$, we define 
+\[ 	
+Tf(\overline x,y)=\begin{cases} 
+\int_1^\infty f(\overline x, y+\lambda \delta^*(\overline x,y))\psi(\lambda)d\lambda, & \text{if } y<0, \\
+f(\overline x,y), & \text{if } y>0,
+\end{cases}
+\]
+where $\overline x \in \rr^{n-1}$. We only need to know for now that $\delta^*$ is some function defined in $\rr^n_-$ such that $c|y|\ge\delta^*(\overline x,y)\ge 2|y|$ for some constant $c$.
+\begin{lemma}
+Let $1\le p<\infty,n\ge2$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Then $T$ defines a bounded extension operator from $M_p^\phi(\rr^n_+)$ to  $M_p^\phi(\rr^n)$.
+\end{lemma}
+\begin{proof}
+We will prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
+\begin{equation}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C \| f\|_{M_{p,Q}^\phi(\rr^n_+)}
+\end{equation}
+for a constant $C$ independent of $f$, then the main statement follows from Lemma 1. There are three cases: 1. $Q \subset \rr^n_+$ 2. $Q \subset \rr^n_-$ 3. $Q\cap \{x_n=0\} \neq \emptyset.$ 
+
+1. Since $Tf=f$ in $\rr^n_+$
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\rr^n_+)}\]
+and we are done.
+
+2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (-a-r,-a) \}$ where $a>0$ and $F$ is an open cube of $\rr^{n-1}$ of side $r$. Fix now $(\overline x, y) \in Q$, from the definition of $Tf$ we have
+\[ |Tf(\overline x,y)|\le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\psi(\lambda)|d\lambda \le A \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda\]
+Let's apply the change of variable $s=y+\lambda \delta^*(\overline x,y)$
+\[ |Tf(\overline x,y)|\le\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le c^2 \int_{|y|}^\infty |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds\]
+because $c|y|\ge\delta^*\ge 2|y|.$ Let's now decompose the last integral as follows
+\[ |Tf(\overline x,y)|\le \sum_{k=0}^\infty c^2\int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds.\]
+Now by applying Minkowski's inequality for an infinite sum we get
+\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le  c^2\sum_{k=0}^\infty \left( \int_{-a-r}^{-a}\left ( \int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s) |\frac{|y|^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}}.\]
+Next we plan to estimate each summand. First we apply to it the change of variable $'y=-y'$ 
+\[ \left( \int_{a}^{a+r}\left (\int_{y+kr}^{y+(k+1)r} |f(\overline x, s)|\frac{y^2}{(s+y)^3}ds\right)^pdy \right)^{\frac{1}{p}}\]
+then we apply the change of variable $t=s/y$
+\[ \left( \int_{a}^{a+r}\left (\int_{1+kr/y}^{1+(k+1)r/y} |f(\overline x, ty)|\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
+that can be rewritten as
+ \[  \left( \int_{a}^{a+r}\left (\int_{1+kr/(a+r)}^{1+(k+1)r/a} |f(\overline x, ty)|\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
+ By Minkowsi's integral inequality
+ \[  \left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} \le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a}^{a+r}|f(\overline x, ty)|^p\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^{3p}} dy \right) ^{\frac{1}{p}}dt.  \]
+ We notice that for every $t,y \in \rr$ with $a \le y \le a+r$
+ \[ \mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t) \le \mathbbm{1}_{(a+kr, a+(k+2)r)}(ty)   \]
+ hence using the change of variable $z=ty$
+ \begin{align*}
+\left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} &\le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p \frac{1}{t(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt\\
+&=\int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{t^{\frac{1}{p}}(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
+&\le \int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right)\\
+&= \frac{1}{2}\left[\frac{1}{(1+(k+1)r/a)^2}-\frac{1}{1+kr/(a+r)^2}\right] \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
+&=\frac{s_k(a,r)}{2} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.
+\end{align*}
+Plugging in this estimate in the infinite sum we get
+\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.\]
+Integrating on $F$ and applying again Minkowski inequality 
+\begin{align*}
+\left(\int_F\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left (\int_F \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} \\
+&\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left[\left( \int_{Q_k}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} +\left (\int_{Q_{k+1}}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\right] 
+\end{align*}
+where $Q_i$ is the open cube $F \times (a+ir,a+(i+1)r)$. Dividing both sides by $\phi(r/2)^{\frac{1}{p}}$ we obtain
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le c^2\sum_{k=0}^\infty s_k(a,r) \| f\|_{M_{p,Q}(\rr^n_+)} \]
+We want now to estimate the series $\sum_{k=0}^\infty s_k(a,r)$, to do this we define $x=r/a$ that allows us to rewrite it as
+\[\sum_{k=0}^\infty s_k(a,r)= \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}.\]
+To bound this series we distinguish two cases, when $x\le 1$ and when $x>1$. In the first case we can bound the series using a Riemann Sum
+\[ \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2} \le 3\sum_{k=1}^\infty \frac{x}{(kx+1)^2}\le 3 \int_0^\infty \frac{1}{(t+1)^2}dt=3. \]
+In the second case
+\[  \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}  \le \sum_{k=1}^\infty \frac{x(x+2)}{k^2x^2}=\sum_{k=1}^\infty \frac{1+\frac{2}{x}}{k^2} \le 3 \frac{\pi^2}{6}<5.\]
+Hence we get 
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le 5c^2 \| f\|_{M_{p,Q}(\rr^n_+)} \]
+that shows (1). 
+
+3. It's sufficient to notice that, up to a set of measure 0,  we can cover $Q$ with two open cubes $Q_+,Q_-$ of side $r$ with $Q_+\subset \rr^n_+$ and $Q_-\subset \rr^n_-.$ Hence
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}\le\left(\frac{1}{\phi(r/2)}\int_{Q_+} |f(x)|^pdx \right)^{\frac{1}{p}}+\left(\frac{1}{\phi(r/2)}\int_{Q_-} |Tf(x)|^pdx \right)^{\frac{1}{p}} \]
+and we can conclude by part 1. and 2.
+\end{proof} 
+
+
+\[
+
+\]
+
+
+
+\end{document}

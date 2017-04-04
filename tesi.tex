@@ -1,0 +1,492 @@
+
+\documentclass[12pt]{article}
+\usepackage[english]{babel}
+\usepackage{amsfonts}
+\usepackage{extsizes}
+\usepackage[utf8]{inputenc}
+\usepackage{amsthm}
+\usepackage{ mathrsfs }
+\usepackage{ amsmath }
+\usepackage{ amssymb }
+\usepackage{enumerate}
+\usepackage{cite}
+
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+
+\newtheorem{remark}{Remark}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+
+\DeclareMathOperator\supp{supp}
+\DeclareMathOperator\Lip{Lip}
+\DeclareMathOperator\rr{\mathbb{R}}
+\DeclareMathOperator\nn{\mathbb{N}}
+\DeclareMathOperator\wt{\widetilde}
+
+
+\begin{document}
+\section{Hestenes Operator}
+
+\iffalse
+First we consider the single variable case.
+
+\begin{remark}
+Let $\Omega \subset \mathbb{R}$. Saying $f\in W^{l,p}(\Omega)$ is equivalent to say that $f=\widetilde{f}$ a.e. for a function $\widetilde{f}$ such that its derivatives $\widetilde{f}^{(s)}$ are continuous for $s=1,..,l-1$ and $\widetilde{f}^{(l-1)}$ is locally absolutely continuous. Moreover if $\Omega=(a,b)$ then the limits $\widetilde{f}^{(s)}(a+)$, $\widetilde{f}^{(s)}(b-)$ exists for every $s=0,...,l-1$.
+\end{remark}
+
+\begin{lemma}
+Let $-\infty<a<b<c<\infty$. If a function $f$ defined on $[a,c]$  is absolutely continuous on $[a,b]$ and absolutely continuous on $[b,c]$, then it is also absolutely continuous on $[a,c]$.
+\end{lemma}
+
+\begin{lemma}
+Let $l\in  \mathbb{N}, 1\le p \le \infty, -\infty\le a <b <c \le \infty$. Given $f \in W^{l,p}(a,b)$ and $g \in W^{l,p}(b,c)$ such that
+\[ f^{(s)}(a-)=g^{(s)}(b+),  \ \ \  s=0,...,l-1 \]
+then the function
+
+\[   h(x)=\begin{cases}
+		f(x) & x\in(a,b) \\
+		g(x) & x \in (b,c) 
+	    \end{cases}
+\]
+belongs to $W^{l,p}(a,c)$.
+\end{lemma}
+
+
+
+\begin{lemma}
+Let $l \in \mathbb{N}$, $1\le p\le \infty.$ There exists a bounded extension operator 
+\[ T : W^{l,p}(-\infty,0) \rightarrow W^{l,p}(\mathbb{R}). \]
+\end{lemma}
+\begin{proof}
+Let's define 
+\[   Tf(x) = \begin{cases}
+				f(x) &  x<0 \\
+				\sum_{k=1}^l \alpha_kf(-\beta_k x)  &   x>0 \\
+	        \end{cases}
+\]
+where $\alpha_k,\beta_k$ are real numbers that satisfy $\beta_k>0$ and
+\begin{equation}\label{alfabeta}
+ \sum_{k=1}^l \alpha_k (-\beta_k)^s=1  
+\end{equation}
+for every $s=0,...,l-1$.  Notice that given $\beta_1,...,\beta_l>0$  pairwise distinct, we can always find $\alpha_1,...,\alpha_l$ that satisfy the condition by solving a Vandermonde square system of linear equations. Clearly $Tf\in W^{l,p}(0,\infty)$, moreover equation \eqref{alfabeta} assures that
+\[ Tf^{(s)}(0+)=f^{(s)}(0-)\]
+hence by Lemma 2  $Tf \in W^{l,p}(\mathbb{R})$. We can compute
+\begin{align*}
+ \|Tf\|_{W^{l,p}(0,\infty)} &\le \sum_{k=1}^l |\alpha_k|  \left( \int_0^\infty  |f(-\beta_k x)|^p dx\right ) ^\frac{1}{p} + \sum_{k=1}^l |\alpha_k| \beta_k^{l} \left( \int_0^\infty  |f^{(l)}_w(-\beta_k x)|^p dx\right ) ^\frac{1}{p} \\
+  &=\sum_{k=1}^l |\alpha_k| \beta_k^{-\frac{1}{p}} \left( \int_0^\infty  |f(-y)|^p dx\right ) ^\frac{1}{p} +\sum_{k=1}^l |\alpha_k| \beta_k^{l-\frac{1}{p}} \left( \int_0^\infty  |f^{(l)}_w(-y)|^p dx\right ) ^\frac{1}{p} \\
+  &\le C\|f\|_{W^{l,p}(-\infty,0)} 
+\end{align*}
+where $C$ is a constant depending on $\beta_k,\alpha_k,l$. Now the required statement follows observing that $\|Tf\|_{W^{l,p}(\mathbb{R})}=\|Tf\|_{W^{l,p}(0,\infty)}+\|f\|_{W^{l,p}(-\infty,0)} $.
+\end{proof}
+
+\fi 
+
+\subsection{Construction}
+We construct the Hestenes operator for domains  $\Omega \subset \mathbb{R}^n$ with $C^m$ boundary mainly following paragraphs 6.2,6.3 of \cite{burenkov}. First we consider a simple case where $\Omega$ is a $C^m$ half strip.
+\begin{lemma}\label{hestenes1}
+Let $l,n,m \in \mathbb{N}, m\ge l, 1\le p \le \infty$ and $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$. Moreover define
+\[ S=W \times \mathbb{R} \]
+\[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\phi(\overline x)  \} \]
+where $\phi \in C^m(\overline W)$,$m\ge l$, and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then there exists a bounded extension operator $T$ from $W^{l,p}(\Omega)$ to $W^{l,p}(S).$
+\end{lemma}
+\begin{remark}\label{hestenesr}
+In the notation of Lemma $\ref{hestenes1}$, let $a,b \in \rr$ such that $a<\phi(\overline x) <b$ for every $\overline x \in W$. We define $S^{a,b}=W\times (a,b)$, $\Omega_a=\Omega \cap (W \times (a,\infty))$ and $\widehat W^{l,p}(\Omega_a)=\{f \in W^{l,p}(\Omega_a) | \supp f \subset S\}$ . Then exists a bounded extension operator
+\[ T: \widehat W^{l,p}(\Omega_a)\rightarrow W^{l,p}(S^{a,b}).\]
+To see this we can just extend $f\in \widehat W^{l,p}(\Omega_a)$ naturally by 0 to  $f_0\in W^{l,p}(\Omega)$ and then define
+\[ Tf=(\widetilde T f_0)\big|_{S^{a,b}}\]
+where $\widetilde T$ is the operator of the previous Lemmma .
+
+
+\end{remark}
+
+To prove Lemma $\ref{hestenes1}$ we prove first the case $\phi \equiv 0$ in the following result, that is a generalization of Lemma 9.2 in \cite{brezis}.
+
+\begin{lemma}\label{hestenes2}
+Let $l,n \in \mathbb{N}, 1\le p \le \infty$ and $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$. There exists a bounded extension operator
+\[ T: W^{l,p}(S^-) \rightarrow W^{l,p}(S)\]
+where 
+\[ S=W \times \mathbb{R} \]
+\[ S^-=W \times \mathbb{R}^-.\]
+\end{lemma}
+\begin{proof}
+Let $f \in W^{l,p}(S^-)$. We define
+\[ Tf(\overline x,x_n) = \begin{cases}
+		f(x), & \text {if }x_n<0, \\
+		\sum_{k=1}^l \alpha_k f(\overline x,-\beta_k x_n),  &\text {if } x_n>0, 
+		\end{cases}
+\]
+where $\alpha_k,\beta_k$ are real numbers that satisfy $\beta_k>0$ and
+\begin{equation}\label{alfabeta}
+ \sum_{k=1}^l \alpha_k (-\beta_k)^s=1  
+\end{equation}
+for every $s=0,...,l-1$.  Notice that given $\beta_1,...,\beta_l>0$  pairwise distinct, we can always find $\alpha_1,...,\alpha_l$ that satisfy the condition by solving a Vandermonde square system of linear equations. First we prove that $Tf \in W^{l,p}(S)$. We take any $\phi \in C^\infty_c(S)$ and consider the integral 
+\[ \int_S Tf(x)D^\alpha\phi(x)dx= \int_{S^+} Tf(x)D^\alpha\phi(x)dx+ \int_{S^-} Tf(x)D^\alpha\phi(x)dx\]
+where $S^+=\{(\overline x,x_n) \ | \  \overline x \in W, x_n>0 \}$ and $\alpha \in \mathbb{N}^n_0, 1\le|\alpha|\le l$. Let's write $\alpha=(\overline \alpha,\alpha_n)$, with $\overline \alpha \in \mathbb{N}^{n-1}_0$ and $\alpha_n \in  \mathbb{N}_0$.  By changing variables in the integrals we get 
+\begin{align*}
+ \int_S Tf(x)D^\alpha\phi(x)dx &= \int_{S^+}\sum_{k=1}^l \alpha_k f(\overline x,-\beta_k x_n)  D^\alpha\phi(x)dx+ \int_{S^-} f(x)D^\alpha\phi(x) dx\\
+				   &= \int_{S^-} f(\overline y,y_n) D^\alpha \psi(\overline y, y_n) dy \tag{*}
+\end{align*}
+where $\psi(\overline x,x_n)= \sum_{k=1}^l -\alpha_k (-\beta_k)^{\alpha_n-1}\phi \left( \overline x,-x_n/\beta_k\right)+\phi(\overline x,x_n) $.Note that $\psi$ belongs to $\in C^\infty(S^-)$ but does not have compact support in $S^-$. To bypass this problem we use an auxiliary function $\nu \in C^\infty(\mathbb{R})$ that satisfies 
+\[ \begin{cases}
+	\nu(x)=0, & \text{if } x>-1/2, \\
+	\nu(x)=1, & \text{if }x<-1,
+\end{cases} 
+\]
+and we define the functions $\nu_k(t)=\nu(kt)$ for $k \in \mathbb{N}$. It's clear that $\psi(x) \nu_k(x_n) \in C^\infty_c(S^-)$, hence we can integrate by parts
+\begin{equation}\label{parts}
+\int_{S^-}  f(x)D^{\alpha}(\psi(x) \nu_k(x_n)) dx = (-1)^{|\alpha|}\int_{S^-} D^\alpha_w f(x)\psi(x) \nu_k(x_n) dx  
+\end{equation}
+By the Leibniz rule 
+\begin{align*}
+D^{\alpha}(\psi(x) \nu_k(x_n)) &=\frac{\partial^{\alpha_n}}{\partial x_n^{\alpha_n}} D^{\overline \alpha}(\psi(x) \nu_k(x_n)) \\
+				        &= \nu(kx_n)D^{\alpha}\psi(x)+\sum_{i=1}^{\alpha_n}  {{\alpha_n}  \choose {i} }  k^i \nu^{(i)}(kx_n)\frac{\partial^{\alpha_n-i}}{\partial x_n^{\alpha_n-i}} D^{\overline \alpha}\psi(x).
+\end{align*}
+By the Dominated Convergence Theorem
+\[ \int_{S^-} f(x) \nu(kx_n)D^{\alpha}\psi(x)dx  \rightarrow \int_{S^-} f(x) D^{\alpha}\psi(x)dx \text{    as } k\rightarrow \infty,\]
+because $f \in L^1(S^- \cap \supp \psi)$ since $\supp \psi$ is bounded.
+Next, we claim that for every $i=1,..,\alpha_n$
+\begin{equation}\label{lim}
+\int_{S^-}  f(x) k^i \nu^{(i)}(kx_n)\frac{\partial^{\alpha_n-i}}{\partial x_n^{\alpha_n-i}} D^{\overline \alpha}\psi(x)dx  \rightarrow 0 
+\end{equation}
+as $k \rightarrow \infty$. To prove this first we notice that since  $\alpha_k,\beta_k$ satisfies $\eqref{alfabeta}$ we have that 
+\[   \frac{\partial^j}{\partial x_n^j} D^{\overline \alpha}\psi(\overline x, 0)=0 \text{  ;  }j=0,...,\alpha_n-1,\]
+hence by Taylor formula 
+\[  \left| \frac{\partial^{\alpha_n - i}}{\partial x_n^{\alpha_n - i}} D^{\overline \alpha}\psi(\overline x, x_n) \right|  \le \frac{C|x_n|^i}{i!},\]
+for all $i=1,...,\alpha_n$, where $C= \sup_{x \in   S^-} |D^{\alpha} \psi(x)|$. Therefore we get the following estimate
+\begin{align*}
+   	\int_{S^-}  \left|  f(x) k^i \nu^{(i)}(kx_n)\frac{\partial^{\alpha_n-i}}{\partial x_n^{\alpha_n-i}} D^{\overline \alpha}\psi(x)     \right |  dx  &\le 
+	 \frac{\widetilde CC}{i!} \int_{ \{ x \in S^-\cap \supp f \ , \ -1/k< x_n<0 \} }   |f(x)| k^i |x_n|^i  dx  \\
+	& \le \frac{\widetilde CC}{i!}   \int_{ \{ x \in S^-\cap \supp f \ ,\  -1< x_n<0 \} }   |f(x)| dx 
+\end{align*}
+where $\widetilde C = \sup_\mathbb{R} |\nu^{(i)}|$. The second inequality comes from the fact that $\nu^{(i)}(x)=0$ for $x<-1$ and $i\ge 1$. Hence we get $\eqref{lim}$ by Dominated Convergence Theorem. Passing to the limit in $\eqref{parts}$ we obtain
+\[ \int_{S^-}  f(x)D^{\alpha}\psi(x) dx = (-1)^{|\alpha|}\int_{S^-} D^\alpha_wf(x)\psi(x)  dx.  \]
+which, combined with (*), implies
+\[ \int_S Tf(x)D^{\alpha}\phi(x)dx=  \int_{S^-}  f(x)D^{\alpha}\psi(x) dx = (-1)^{|\alpha|}\int_{S^-} D^\alpha_wf(x)\psi(x)  dx. \]
+Finally going back to the original coordinates and using the definition of $\psi$ we get
+\begin{align*}
+& \int_S Tf(x)D^{\alpha}\phi(x)dx = (-1)^{|\alpha|} \int_{S^-}D^\alpha_w f(x) \left[\sum_{k=1}^l -\alpha_k (-\beta_k)^{\alpha_n-1}\phi \left( \overline x,-\frac{x_n}{\beta_k} \right)+\phi(\overline x,x_n)\right] dx=\\
+					&= (-1)^{|\alpha|} \int_{S^+} \sum_{k=1}^l \alpha_k (-\beta_k)^{\alpha_n} D^\alpha_w f(\overline y,-\beta_k y_n)\phi(y)dy +(-1)^{|\alpha|} \int_{S^-} D^\alpha_w f(y)\phi(y) dy
+\end{align*}
+that implies that $D^\alpha_wTf$ exists and 
+\[ D^\alpha_wTf(x)= \begin{cases}
+			 D^\alpha_w f(x),	& \text{if } x \in S^-, \\
+			\sum_{k=1}^l \alpha_k (-\beta_k)^{\alpha_n} D^\alpha_w f(\overline x,-\beta_k x_n)\phi(x), & \text{if }x \in S^+.
+		\end{cases}
+ \]
+It remains to prove the boundedness of  T. It's immediate to verify that
+\[ \| Tf \|_{L^p(S^+)}\le \sum_{i=1}^l |\alpha_k|\beta_k^{-1/p} \| f\|_{L^p(S^-)} \] 
+and that we have similar bounds for the norm of the weak derivatives of $Tf$. Hence there exists a constant $C$ depending only on $\beta_k,\alpha_k,l$ such that $\| Tf\|_{W^{l,p}(S^+)}\le C \| f\|_{W^{l,p}(S^-)} $. Observing that $\| Tf\|^p_{W^{l,p}(S)}=\| Tf\|^p_{W^{l,p}(S^+)}+\|f\|^p_{W^{l,p}(S^-)}$ the proof is concluded.
+\end{proof}
+
+
+\begin{lemma}\label{composition}
+Let $l \in \nn$ and $\Omega$ be a domain in $\rr^n$. Suppose that $f \in L^1_{loc}(\Omega)$ admits all the weak derivatives up to order $l$ and that $g:\Omega'\rightarrow \Omega$ is a diffeomorphism of class $C^l$ with bounded derivatives $|D^\alpha g_k|\le M$ for all $1 \le |\alpha| \le l$. Then $f\circ g$ admits weak derivative up to order $l$. Moreover for every $1\le |\alpha|\le l$ we have to following bounds
+\[ |D^\alpha (f\circ g)(x)|\le C \sum_{1\le|\beta|\le |\alpha|} |D^\beta f(g(x))|\]
+where $C$ depends only on $M$ and $l$.
+\end{lemma}
+\begin{proof}
+We prove the statement by induction on $l$. For $l=1$ we know that exists a sequence of functions $\{f_k\}_k  \in C^\infty(\Omega)$ such that
+\[ f_k \rightarrow f \qquad \text{in } L^1_{loc}(\Omega) \]
+\[ \frac{\partial f_k }{\partial x_i}\rightarrow \frac{\partial f }{\partial x_i} \qquad \text{in } L^1_{loc}(\Omega).\]
+Take $\phi \in C^\infty_c(\Omega')$ and integrate by parts
+\[\int_{\Omega'} f_k(g(x))\frac{\partial \phi }{\partial x_i}(x)dx = - \int_{\Omega'} \left(\sum_{j=1}^n \frac{\partial f_k }{\partial x_j}(g(x))\frac{\partial g_j }{\partial x_i}(x)\right)\phi(x)dx.\]
+Since $\phi(g^{-1}) \in C^l_c(\Omega)$ and the derivatives of $g$ and $g^{-1}$ are bounded, we can pass to the limit in the above equation
+\[\int_{\Omega'} f(g(x))\frac{\partial \phi }{\partial x_i}(x)dx = - \int_{\Omega'} \left(\sum_{j=1}^n \frac{\partial f }{\partial x_j}(g(x))\frac{\partial g_j }{\partial x_i}(x)\right)\phi(x)dx.\]
+Hence the case $l=1$ is proved. Now suppose that the statement is true for $l$. We prove the case $l+1$, so we suppose that $f$ admits weak derivatives up to order $l+1$ and that $g$ is of class $C^{l+1}$. From the case $l=1$ we know that $\frac{\partial (f \circ g) }{\partial x_i}$ exists and that
+\[ \frac{\partial (f \circ g) }{\partial x_i}= \sum_{j=1}^n (\frac{\partial f }{\partial x_j} \circ g)\frac{\partial g_j }{\partial x_i}\] 
+Since $\frac{\partial f }{\partial x_j}$ admits weak derivatives up to order $l$, by induction hypothesis the functions $\frac{\partial f }{\partial x_j} \circ g$ admit weak derivatives up to order $l$. Moreover $\frac{\partial g_j }{\partial x_i}$ is of class $C^l$, thus by the Leibniz rule the functions $(\frac{\partial f }{\partial x_j} \circ g)\frac{\partial g_j }{\partial x_i}$ admits weak derivatives of order $l$. In conclusion $\frac{\partial (f \circ g) }{\partial x_i}$ admits derivatives up to order $l$ and this conclude the proof of the case $l+1$. 
+
+To prove the bounds we notice that the weak derivatives $D^\alpha (f \circ g)$ can be computed using the chain rule for usual derivatives. Such formula can be found in \cite[formula B] {fraenkel}:
+\[ D^{\alpha}_w(f(g))(x) = \sum_{1\le |\beta|\le|\alpha| }D^{\beta}_w(f(g(x)) Q_{\alpha,\beta}(g,x)\]
+In this formula $Q_{\alpha,\beta}(g,x)$ are homogeneous polynomials of degree $|\beta|\le l$ in the derivatives of order less than $l$ of the components of $g$. Moreover the coefficients of these polynomials depend only on $\alpha,l,n$. Hence there exists a constant $C$ depending only on $l,n,M$ such that $|Q_{\alpha,\beta}(g,x)|\ \le C$ uniformly on $x$. This concludes the proof.
+\end{proof}
+
+\begin{proof}[Proof of Lemma $\ref{hestenes1}$ ]
+Let $f \in W^{l,p}(\Omega).$  Consider the function $g$ from $S^-$ onto $\Omega$ defined by
+\[  g(\overline x, x_n)= (\overline x , x_n+ \phi(\overline x))\]
+for all $(\overline x, x_n) \in S^-$
+and its inverse  $g^{-1}$
+\[  g^{-1}(\overline x, x_n)= (\overline x , x_n- \phi(\overline x))\]
+where $S^-=W \times \rr^-$. For all $f \in W^{l,p}(\Omega)$ we set
+\begin{align*}
+ Gf=f \circ g
+\end{align*}
+Since $g$ is a diffeomorphism between $S^-$ and $\Omega$ of class $C^m$, Lemma \ref{composition} guarantees that $Gf$ admits weak derivatives up to order $l$. We claim that $G$ defines a bounded operator from $W^{l,p}(\Omega)$ to $W^{l,p}(S^-)$, with bounded inverse. To prove this, first we compute the Jacobian matrix of $g^{-1}$
+
+\[ Jg^{-1}(x)= \begin{bmatrix}
+		1             &             0  &            \dots &            &0 \\
+		0             & 1              &   \dots           &            & 0\\
+		\vdots    &                 &  \ddots           &  & \vdots\\
+		\vdots    &                 &           &\ddots    &\\
+		-\frac{\partial \phi(\overline x)}{\partial x_1} &-\frac{\partial \phi(\overline x)}{\partial x_2}& \dots & \dots & 1 
+	\end{bmatrix}
+\]
+from which $|\det(Jg^{-1}(x))| \equiv 1 $. Moreover, again by Lemma $\ref{composition}$, we have
+\[ |D^{\alpha}_w(f(g))| \le C(l,M) \sum_{1\le |\beta|\le|\alpha| }|D^{\beta}_wf(g)|\]
+where $C(l,M)$ depends only on $l$ and $M$, with $M= \sup_{1\le|\alpha|\le l} \| D^\alpha \phi \|$.
+Next by the change of variable formula and Minkowski's inequality we get
+\begin{align*}
+ \left( \int_{S^-} |D^{\alpha}_w(f(g))(x)|^p dx \right)^{\frac{1}{p}} & \le \sum_{1\le |\beta|\le|\alpha| } C(l,M) \left( \int_{S^-} |D^{\beta}_wf(g(x))|^p  dx\right)^{\frac{1}{p}}  \\
+										      &=  \sum_{1\le |\beta|\le|\alpha| } C(l,M)\left(  \int_\Omega |D^{\beta}_wf(y)|^p |\det Jg^{-1}\big|_{g(y)}|  dy\right)^{\frac{1}{p}}  \\
+  											&=  \sum_{1\le |\beta|\le|\alpha| } C(l,M) \|D^{\beta}_wf \|_{L^p(\Omega)}					
+\end{align*}
+Thus, using the estimates for the intermediate derivatives, that
+\[ \| Gf\|_{W^{l,p}(S^-)} =\| f(g)\|_{W^{l,p}(S^-)} \le C \| f\|_{W^{l,p}(\Omega)}\]
+for a constant $C$ independent of $f$. In a similar way we can also prove that 
+\[ \| G^{-1}f\|_{W^{l,p}(\Omega)}=\| f(g^{-1})\|_{W^{l,p}(\Omega)} \le D \| f\|_{W^{l,p}(S)}.\]
+Now we can just define the operator $T$ as
+\[  T=G^{-1} \circ \overline T \circ G\]
+where $\overline T$ is the extension operator from $W^{l,p}(S^-)$ to $W^{l,p}(S)$ defined in Lemma $\ref{hestenes2}$. Therefore $T$ is bounded as composition of bounded operators. An explicit for for $T$ is
+
+\[ Tf(x) = \begin{cases}
+		f(x), & \text{if } x \in \Omega,\\
+		\sum_{i=1}^l \alpha_k f(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\overline x))), & \text{if } x \in S \setminus \overline \Omega.
+\end{cases} 
+\]
+\end{proof}
+
+We are now ready to define the Hestenes operator for a general domain $\Omega$ with $C^m$ boundary. First we write the precise definition for this kind of domains.
+
+\begin{definition}
+Let $0<d\le D <\infty, M>0, \varkappa>0$ We say that an open set $\Omega$ in $\mathbb{R}^n$ has a resolved boundary with parameters $d,D, \varkappa$ if there exists a family of open cuboids $V_i , i=1,...,s$ (where $s \in \mathbb{N}$ if $\Omega$ is bounded and $s=\infty$ otherwise) such that
+\begin{enumerate}
+\item $(V_i)_d \cap \Omega \neq \emptyset$
+\item $\Omega \subset \bigcup\limits_{j=1}^s (V_i)_d$
+\item The multiplicity of the cover $\{ V_i\}_{i=1}^s$ is less than $ \varkappa$.
+\item There exist isometries $\lambda_i$ of $\mathbb{R}^n$ such that
+\[   \lambda_j(V_j)= \prod_{i=1}^n ]a_{ij},b_{ij}[\]
+and, if $\partial V_j \cap \Omega \neq \emptyset$,
+\[ \lambda_j(V_j\cap \Omega)= \{ (\overline x, x_n) \in \mathbb{R}^n  |  \overline x \in W_j , a_{nj}+d<x_n<\phi_j(\overline x)\} \]
+where $W_j=\prod\limits_{i=1}^{n-1} ]a_{ij},b_{ij}[$ and $\phi_j : W_j \rightarrow \mathbb{R}$.
+
+Moreover
+\begin{itemize}
+\item if $\phi_j \in C^m(\overline W_i)$ with  $\| D^{\alpha}\phi \|\le M <\infty $, for every $1\le|\alpha|\le m$, we say that $\Omega$  has a resolved $C^m$ boundary with parameters $d,D, \varkappa,M$.
+\item if $\phi_j \in \Lip(\overline W_i)$ with  $\Lip(\phi)= M$,  we say that $\Omega$  has a resolved Lipschitz boundary with parameters $d,D, \varkappa,M$.
+\end{itemize}
+Finally we will say that a domain $\Omega$ has a resolved $C^m$ (or Lipschitz) boundary if there exist parameters $d,D,\varkappa,M$ for which $\Omega$ has a $C^m$ (or Lipschitz) boundary.
+\end{enumerate}
+
+\end{definition}
+
+\begin{theorem}\label{teorh}
+Let $m,l \in \mathbb{N}, l\le m$ and $1\le p\le\infty$. If $\Omega$ is a domain in $\mathbb{R}^n$ has a $C^m$ resolved boundary then there exists a bounded extension operator
+\[ T: W^{l,p}(\Omega) \rightarrow W^{l,p}(\mathbb{R}^n).\]
+\end{theorem}
+\begin{proof}[Proof Sketch]
+Let $f \in W^{l,p}(\Omega)$. Let $\{V_i\}_{i=1}^s$ be the covering of cuboids for $\Omega$ as in Definition 1. It's possible to construct functions $\{ \psi_i \}_{i=1}^s \subset C^\infty_c(\mathbb{R}^n)$ such that the functions $\{ \psi^2_i \}_{i=1}^s$ form a partition of the unity corresponding to the covering $\{V_i\}_{i=1}^s$ and satisfying $\|D^\alpha \psi_i \|_{L^\infty}\le M_1$ with $M_1$ depending only on $n,l,d$.  If $\partial \Omega \cap V_i \neq \emptyset$ by Remark $\ref{hestenesr}$ there exist bounded operators
+\[ T_i : \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))\rightarrow W^{l,p}(\lambda_i(V_i))\]
+where $\widehat W^{l,p}(\lambda_i(V_i\cap \Omega)=\{f \in W^{l,p}(V_i\cap \Omega) | \supp f \subset \lambda_i(V_i\cap \overline \Omega)  \}.$ If $V_i \subset \Omega$ the operator $T_i$ is defined to be just the identity. We set
+\[ Tf = \sum_{i=1}^s \psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i).\]
+assuming ($\psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i))=0$ outside $V_i$. The functions $\psi_if \in W^{l,p}(V_i\cap \Omega)$ are such that $\supp \psi_if \subset \overline \Omega \cap V_i$, hence $\psi_i f(\lambda_i) \in \widehat W^{l,p}(\lambda_i(V_i\cap \Omega))$ and so $T$ is well defined. To see that $T$ is an extension operator, take $x \in \Omega$: if $x \in \supp \psi_i$ then $\psi_i(x)T_i(\psi_if(\lambda_i^{-1}))(\lambda_i(x))=\psi_i(x)^2 f(x)$ ; if $x \notin \supp \psi_i$ then $0=\psi_i(x)T_i(\psi_if(\lambda_i^{-1}))(\lambda_i(x))=\psi_i(x)^2 f(x)$. So $Tf(x)=\sum\limits_{i=1}^s \psi_i^2(x) f(x)=f(x)$. 
+
+We omit the proof of the boundedness of $T$, the details of which can be found in the proofs of Lemma 13-14 in \cite{burenkov}.
+\end{proof}
+
+\subsection{Hestenes operator on Morrey spaces}
+
+\begin{definition}
+Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the Morrey space as
+\[ M_p^\phi(\Omega)=\{f \in  L^p_{loc}(\Omega) \ |\  \|f\|_{M_p^\phi(\Omega)}<\infty\}\]
+where
+\[ \|f\|_{M_p^\phi(\Omega)}:=\sup_{B_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{B_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}.\]
+
+\end{definition}
+\begin{lemma}
+Let $k\ge 1$ and $\Omega$ be set in $\rr^n$ with diameter $D>0$. Then there exists an integer $C_{n,k}$ depending only on $k$ and $n$ such that $\Omega$ can be covered by a collection of open balls $B_1,...,B_h$ centered in $\Omega$ with radius $D/k$ and $h \le C_{k,n}.$
+\end{lemma}
+\begin{proof}
+We start by claiming that if $S$ is a set of points in $\rr^n$ satisfying
+\begin{enumerate}[i)]
+\item  	$S \subset \Omega$,
+\item $\|z_1-z_2 \|\ge D/k$ for every $z_1,z_2 \in \Omega$ with $z_1 \neq z_2$,
+\end{enumerate}
+then $|S|\le C_{n,k}$ where $C_{k,n}$ is an integer depending only on $k$ and $n$. To see this, first note that $\Omega$ is contained in some closed cube $Q$ of side $2D$. Then we choose $m \in \nn$ such that $2^{m-1}>\sqrt n k$. Next we cover $Q$ with $(2^m)^n$ small closed cubes of side $2D/2^m$. The diagonal of a small cube measures $2D/2^m \cdot \sqrt n < D/k$. Thus each of these cubes can contain at most one point of $S$,so $|S|\le (2^m)^n.$ Therefore it's enough to choose $C_{n,k}=2^{mn}.$ Set $r:=D/k$, we'll prove that we can cover $\Omega$ with a collection of balls $B_1,...,B_h$ centered in $\Omega$ of radius $r$ and such that $k\le C_{n,k}.$ Choose $x_1 \in \Omega$ and take $B_1=B_r(x_1)$, the ball centered in $x_1$ of radius $r$. If $\Omega \subset B_1$ we are done, if not there exists $x_2 \in \Omega\setminus B_1$ and we take $B_2=B_r(x_2).$ Again, if $\Omega \subset (B_1\cup B_2)$ we stop, else we can pick $x_3 \in  \Omega\setminus (B_1 \cup B_2)$ and take $B_3=B_r(x_3).$ We iterate this procedure : given $B_1,...,B_i$ balls, if $ \Omega \subset (B_1\cup...\cup B_i)$ we stop, else we can choose $x_{i+1} \in  \Omega \setminus (B_1\cup...\cup B_i)$ and take $B_{i+1}=B_r(x_{i+1}).$ We claim that this procedure stops with $i\le C_{n,k}.$ Suppose it doesn't, then we can find $B_1,...,B_{C_{n,k}+1}$ balls centered respectively at $x_1,...,x_{C_{n,k}+1}$. Setting $S= \{x_1,...,x_{C_{n,k}+1} \}$, it's immediate to see that $S$ satisfies i) and ii), but $|S|=C_{n,k}+1$, that is a contradiction.
+\end{proof}
+
+\begin{lemma}
+Let $W \subset \mathbb{R}^{n-1}$ be open connected and define
+\[\Omega =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n\le \phi(\overline x)  \} \]
+\[\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \phi(\overline x)  \} \]
+where $\phi \in \Lip(\overline W)$. Let $\beta>0$ and consider the function $A_\beta$ from $W \times \rr$ to $\Omega$ defined by
+\[ A_\beta(\overline x, x_n) =\begin{cases}
+							(\overline x , \phi(\overline x)-\beta(x_n-\phi(\overline x))), & \text{if } (\overline x, x_n) \in \Omega^+ ,\\
+							(\overline x, x_n), & \text{if } (\overline x, x_n) \in \Omega .\\
+\end{cases}
+\]
+ Then for every $x_0 \in W \times \mathbb{R}$ and $r>0$
+\[ A(B_r(x_0)\cap \Omega^+)\subset B_{cr}(A(x_0))\cap \Omega\]
+where $c\ge 1$ is a constant depending only on $\Lip \phi$ and $\beta$.
+\end{lemma}
+
+\begin{proof}
+Notice that it is sufficient to prove that for every $x,y \in W \times \mathbb{R}$ we have
+\begin{equation}\label{circle}
+ \|A(x)-A(y)\| \le c\|x-y \|.
+\end{equation}
+Set $M= \Lip \phi$. We distinguish three cases: 1. $x,y \in \Omega$ : in this case $A(x)=x$ and $A(y)=y$, so $\|x-y \| = \|A(x)-A(y)\|$ and there is nothing to prove.
+
+2. $x,y \in \Omega^+$ : we have 
+\begin{align*}
+|A(x)_n-A(y)_n|&=|\phi(\overline x)-\beta(x_n-\phi(\overline x))-\phi(\overline y)+\beta(y_n-\phi(\overline y))| \\
+				& \le (1+\beta)|\phi(\overline x)-\phi(\overline y)| + \beta|x_n-y_n|\\
+				& \le M(1+\beta)\|\overline x -\overline y\| + \beta|x_n-y_n|
+\end{align*}
+Hence
+\begin{align*}
+\|A(x)-A(y)\|^2 &=\|\overline {A(x)} -\overline {A(y)}\|^2+|A(x)_n-A(y)_n|^2\\
+& \le \|\overline x -\overline y\|^2+[M(1+\beta)\|\overline x -\overline y\| + \beta|x_n-y_n|]^2 \\
+& \le (1+2M^2(1+\beta)^2)\|\overline x -\overline y\|^2+2\beta^2|x_n-y_n|^2 \\
+& \le c_1^2(M,\beta)\|x-y\|^2
+\end{align*}
+for some constant $c_1(M,\beta)$.
+
+3. $x \in \Omega^+, y \in \Omega$ : first notice that, since $\phi(\overline x) < x_n$, then $x_n-y_n>\phi(\overline x)-y_n$. Moreover $\phi(\overline y) > y_n$, hence $M\|\overline x -\overline y\| \ge \phi(\overline y)-\phi(\overline x)> y_n-\phi(\overline x).$ This implies
+\[ |\phi(\overline x)-y_n |< |x_n-y_n|+M\|\overline x -\overline y\|.\]
+Now
+\begin{align*}
+|A(x)_n-A(y)_n|&=|\phi(\overline x)-\beta(x_n-\phi(\overline x))-y_n| \\
+				&=|(1+\beta)(\phi(\overline x)-y_n)+\beta(y_n-x_n)|\\
+				&\le M(1+\beta)\|\overline x -\overline y\|+(1+2\beta)|x_n-y_n|
+\end{align*}
+and
+\begin{align*}
+\|A(x)-A(y)\|^2 &=\|\overline {A(x)} -\overline {A(y)}\|^2+|A(x)_n-A(y)_n|^2\\
+& \le \|\overline x -\overline y\|^2+[M(1+\beta)\|\overline x -\overline y\|+(1+2\beta)|x_n-y_n|]^2 \\
+& \le (1+2M^2(1+\beta)^2)\|\overline x -\overline y\|^2+2(1+2\beta)^2|x_n-y_n|^2 \\
+& \le c_2^2(M,\beta)\|x-y\|^2.
+\end{align*}
+for some constant $c_2(M,\beta)$. Then $\eqref{circle}$ by taking $c=max(\sqrt c_1,\sqrt c_2,1)$.
+
+\end{proof}
+
+
+
+\begin{lemma}\label{hmorrey1}
+Let $l,n \in \mathbb{N}, 1\le p \le \infty$ and $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$. Moreover define
+\[ S=W \times \mathbb{R} \]
+\[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\phi(\overline x)  \} \]
+where $\phi \in C^m(\overline W)$,$m\ge l$, and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for $0\le \gamma \le n$ and $f \in W^{l,p}(\Omega)$ 
+\begin{enumerate}[i)]
+\item  $\| Tf\|_{M_p^\gamma(S)} \le    C\| f\|_{M_p^\gamma(\Omega)}$
+\item $\| D^\alpha_w Tf\|_{M_p^\gamma(S)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}$,  $1\le |\alpha|\le l$
+\end{enumerate}
+where $T: W^{l,p}(\Omega) \rightarrow W^{l,p}(S)$ is the Hestenes operator defined in Lemma $\ref{hestenes1}$ and $C$ is a constant independent of $f$.
+\end{lemma}
+
+\begin{proof}
+Define $\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \phi(\overline x)  \}$ . We recall the definition of $T$
+\[ Tf(x) = \begin{cases}
+		f(x) & x \in \Omega \\
+		\sum_{i=1}^l \alpha_k f(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\overline x))) & x \in \Omega^+
+\end{cases} 
+\]
+and observe that we can rewrite it as
+\[ Tf(x) = \begin{cases}
+		f(x), & \text{if }x \in \Omega, \\
+		\sum_{i=1}^l \alpha_k f(G_k(x)), & \text{if } x \in \Omega^+,
+\end{cases} 
+\]
+where $G_k(\overline x, x_n)=(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\overline x)))$. Note that $G_k: \Omega^+\rightarrow \Omega$ defines a diffeomorphism from $\Omega^+$ to $\Omega$ of class $C^m$ and satisfying $|\det JG_k^{-1}|\equiv 1/\beta_k.$ First we prove ii). Let's fix $x_0 \in S$ and a radius $r>0$. We want to estimate the quantity 
+\[ I=\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}\]
+for $1\le|\alpha| \le l$. To do this we estimate the integral as follows
+
+\[ I \le \underbrace{\left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap \Omega^+} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_1$}+\underbrace{\left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap \Omega} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_2$}.\]
+Since $Tf(x)=f(x)$ when $ x\in\Omega$, we have immediately  
+\[ I_2 \le \|D^\alpha_w f \|_{M_p^\gamma(\Omega)} . \]
+It remains to estimate $I_1$. We start by observing that from Lemma \ref{composition} there exists a constant $C_k$ depending only on $G_k$ and $l$ such that
+\[ |D^{\alpha}_w (f \circ  G_k)| \le C_k \sum_{1\le |\beta|\le|\alpha| }| D^{\beta}_wf(G_k)|.\]
+By the previous inequality and Lemma \ref{circle} we are able to produce the following bound
+\begin{align*}
+ \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}} &\le C_k \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{G_k(B_r(x_0)\cap \Omega^+)} |D^\alpha_wf(y)|^p|\det JG_k^{-1}\big|_{G_k(y)}|dy\right)^{\frac{1}{p}}\\
+ 		&\le C_k \beta_k^{-\frac{1}{p}} \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega} |D^\alpha_wf(y)|^pdy\right)^{\frac{1}{p}} 		\\		
+\end{align*}
+where $c_k$ depends only on $\beta_k$ and $M$ and $A_{\alpha_k}$ is defined as in Lemma \ref{circle}. Next we estimate $I_1$:
+
+\begin{align*}
+I_1 = r^{-\frac{\gamma}{p}}\|D^\alpha_w Tf \|_{L^p(B_r(x_0)\cap \Omega^+)}&\le r^{-\frac{\gamma}{p}} \sum_{k=1}^l \alpha_k \|D^\alpha_w f(G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)} \\
+																		&\le \sum_{k=1}^l \alpha_kC_k\beta_kc_k^{\frac{\gamma}{p}} \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)} \right).																	
+\end{align*}
+Finally putting the estimates of $I_1,I_2$ together 
+\begin{align*}
+\| D^\alpha_w Tf\|_{M_p^\gamma(S)}&=\sup_{x_0 \in S, r>0} \left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}} \\
+									&\le \|D^\alpha_w f \|_{M_p^\gamma(\Omega)}+\sum_{k=1}^l \alpha_kC_k\beta_kc_k^{\frac{\gamma}{p}} \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)} \right) \\
+									& \le \widetilde C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}
+\end{align*}
+where $\widetilde C$ depends only on $\{b_k\}_k,\{\alpha_k\}_k,l,M,\gamma,p$. This proves ii). The proof of i) is exactly analogous to the proof of ii).
+\end{proof}
+		
+
+\begin{theorem}
+Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$ and $\Omega$ a domain in $\mathbb{R}^n$ with a $C^m$ resolved boundary (with parameters $d,D,M, \varkappa$). Then for $0\le \gamma \le n$ and $f \in W^{l,p}(\Omega)$ 
+\begin{enumerate}[i)]
+\item  $\| Tf\|_{M_p^\gamma(\rr^n)} \le    C\| f\|_{M_p^\gamma(\Omega)}$
+\item $\| D^\alpha_w Tf\|_{M_p^\gamma(\rr^n)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}$,  $1\le |\alpha|\le l$
+\end{enumerate}
+where $ T: W^{l,p}(\Omega) \rightarrow W^{l,p}(\mathbb{R}^n)$ is the Hestenes operator define in Theorem \ref{teorh} and $C$ doesn't depend on $f$.
+\end{theorem}
+\begin{proof}
+Let $f \in W^{l,p}(\Omega)$ and  $\{V_i\}_{i=1}^s$ be the covering of cuboids for $\Omega$ as in the definition of set with resolved boundary. We recall the definition of $T:$
+\[ Tf = \sum_{i=1}^s \psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i)\]
+where $\{ \psi^2_i \}_{i=1}^s$ form a partition of the unity corresponding to the covering $\{V_i\}_{i=1}^s$ and satisfying $\|D^\alpha \psi_i \|_{L^\infty}\le M_1$, with $|\alpha|\le l$ and $M_1$ depending only on $n,l,d$. To make the notation simpler we will rewrite $T$ as
+\[ Tf = \sum_{i=1}^s \psi_i\widetilde T_i(\psi_if)\]
+where the operator $\widetilde T_i: \widehat W^{l,p}(V_i\cap \Omega) \rightarrow W^{l,p}(V_i)$ as $\widetilde T_i f = T_i(f(\lambda_i^{-1}))(\lambda_i)$. 
+Before starting the proof we remark some facts that will be justified at the end of the proof:
+\begin{enumerate}[a)]
+
+\item Let $C_i$ the constant relative to $T_i$ such that
+\[ \| T_ig\|_{M_p^\gamma(\lambda_i(V_i))}\le C_i \|g\|_{M_p^\gamma(\lambda_i(\Omega \cap V_i))}\]
+\[\| D^\alpha_w T_ig\|_{M_p^\gamma(\lambda_i(V_i)))} \le   C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\gamma(\lambda_i(\Omega \cap V_i)))}\]  
+
+for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))$. Then $\sup_{i=1,...,s} C_i \le M_3$, where $M_2$ doesn't depend on $i$.
+\item We have
+\[ \| \widetilde T_ig\|_{M_p^\gamma(V_i)}\le C_i \|g\|_{M_p^\gamma(\Omega \cap V_i)}\]
+\[\| D^\alpha_w \widetilde T_ig\|_{M_p^\gamma(V_i)} \le   M_3C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\gamma(\Omega \cap V_i)}\]  
+for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\Omega \cap V_i)$ and where $M_3$ doesn't depend on $i$. 
+\item If $X= \bigcup_k X_k$ is a countable union of measurable sets $X_k$ and the multiplicity of the covering is less than $\delta$, then for every function measurable on $X$
+\[ \left ( \sum_k \| f\|^p_{M^\gamma_p(X_k)} \right )^{\frac{1}{p}} \le \delta^{\frac{1}{p}}\| f\|_{M^\gamma_p(X)}. \] 
+\item $D^\alpha_wTf = \sum_{i=1}^s D^\alpha_w (\psi_i\widetilde T_i(\psi_if))$ on $\rr^n$, also in the case $s=\infty.$
+\item If $a_n(t)$, $n\in \nn$, is a sequence of positive real numbers depending on $t$ belonging to a set $T$, then
+\[ \sup_{t \in T} \sum_{n=1}^\infty a_n(t) \le \sum_{n=1}^\infty \sup_{t \in T} a_n(t)\]
+where the series could diverge to $\infty.$
+\end{enumerate}
+We start by proving i). Since the multiplicity of the covering $V_i$ is less than $ \varkappa$, by Hölder's inequality for finite sum
+\[ |Tf|^p \le  \varkappa^{p-1} \sum_{i=1}^s |\psi_i\widetilde T_i(\psi_if)|^p\]
+thus, integrating on both sides and bringing the sum outside the integral,
+\[\| Tf \|_{L^p(B_r(x_0))}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{L^p(B_r(x_0))}^p \right)^{\frac{1}{p}}\]
+where $x_0$ is any point in $\rr^n$ and $ B_r(x_0)$ is the ball centered in $ x_0$ of radius $r>0$. Then if we divide both sides by $r^{\frac{\gamma}{p}}$ and apply the supremum, we obtain
+\begin{align*}
+\|Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{M^\gamma_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
+							&\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\widetilde T_i(\psi_if)\|_{M^\gamma_p(V_i)}^p \right)^{\frac{1}{p}} && \text{because } \supp \psi_i \subset V_i,|\psi_i|\le1\\
+							&\overset{a)-b)}\le \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|\psi_if\|_{M^\gamma_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}&& \\
+							&\le  \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|f\|_{M^\gamma_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}\\
+							&\overset{c)}\le  \varkappa M_2\|f\|_{M^\gamma_p(\Omega)}.
+\end{align*}
+This proves i). To prove ii) we argue in the same way as we did for i). We start from d) and we apply Hölder's inequality for finite sums
+\[ |D^\alpha_wTf|^p \le \varkappa^{p-1} \sum_{i=1}^s |D^\alpha_w (\psi_i\widetilde T_i(\psi_if))|^p \]
+that, using the product rule for derivatives, becomes
+\[ |D^\alpha_wTf|^p \le \varkappa^{p-1}C_\alpha^pM_1^p  \sum_{\beta\le \alpha}\sum_{i=1}^s|D^\beta_w (\widetilde T_i(\psi_if))|^p \]
+assuming $D^\alpha_w \widetilde T_i(\psi_if))=0$ outside $V_i.$
+Then we integrate on both sides on a general ball $B_r(x_0)$
+\[ \| D^\alpha_wTf\|_{L^p(B_r(x_0))} \le \varkappa^{\frac{p-1}{p}}C_\alpha M_1 \left( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\alpha_w (\widetilde T_i(\psi_if))\|^p_{L^p(B_r(x_0))} \right)^{\frac{1}{p}}.\]
+As in the proof of i) we divide both sides by $r^{\frac{\gamma}{p}}$ and apply the supremum
+\begin{align*}
+\|D^\alpha_w Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)} \le  \varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\gamma_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
+										&=\varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\gamma_p(V_i)}^p \right)^{\frac{1}{p}}\\
+										&\overset{a)-b)} \le \varkappa^{\frac{p-1}{p}} C_\alpha M_1M_2M_3\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \sum_{|\gamma|\le |\beta|}\|D^\gamma_w (\psi_if)\|_{M^\gamma_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
+										&\le \varkappa^{\frac{p-1}{p}} \widetilde C_\alpha M_1M_2M_3\left ( \sum_{|\beta|\le |\alpha|}\sum_{i=1}^s\|D^\beta_w (\psi_if)\|_{M^\gamma_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
+										&\overset{c)}\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|} \|D^\beta_w (\psi_if)\|_{M^\gamma_p(\Omega)} \\
+										&\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}C_\beta \sum_{\gamma\le \beta} \|D^\beta_w f\|_{M^\gamma_p(\Omega)} && \text{by product rule} \\
+										&\le \varkappa \widetilde C'_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}\|D^\beta_w f\|_{M^\gamma_p(\Omega)}.
+\end{align*}
+This conclude the proof of ii).
+\end{proof}
+	
+\bibliographystyle{plain}
+\bibliography{biblio}
+
+
+
+\end{document}
