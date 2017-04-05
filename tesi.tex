@@ -10,7 +10,7 @@
 \usepackage{ amssymb }
 \usepackage{enumerate}
 \usepackage{cite}
-
+\usepackage{bbm}
 
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
@@ -91,15 +91,10 @@ Let $l,n,m \in \mathbb{N}, m\ge l, 1\le p \le \infty$ and $W = \prod\limits_{i=1
 \[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\phi(\overline x)  \} \]
 where $\phi \in C^m(\overline W)$,$m\ge l$, and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then there exists a bounded extension operator $T$ from $W^{l,p}(\Omega)$ to $W^{l,p}(S).$
 \end{lemma}
-\begin{remark}\label{hestenesr}
-In the notation of Lemma $\ref{hestenes1}$, let $a,b \in \rr$ such that $a<\phi(\overline x) <b$ for every $\overline x \in W$. We define $S^{a,b}=W\times (a,b)$, $\Omega_a=\Omega \cap (W \times (a,\infty))$ and $\widehat W^{l,p}(\Omega_a)=\{f \in W^{l,p}(\Omega_a) | \supp f \subset S\}$ . Then exists a bounded extension operator
-\[ T: \widehat W^{l,p}(\Omega_a)\rightarrow W^{l,p}(S^{a,b}).\]
-To see this we can just extend $f\in \widehat W^{l,p}(\Omega_a)$ naturally by 0 to  $f_0\in W^{l,p}(\Omega)$ and then define
-\[ Tf=(\widetilde T f_0)\big|_{S^{a,b}}\]
-where $\widetilde T$ is the operator of the previous Lemmma .
 
 
-\end{remark}
+
+
 
 To prove Lemma $\ref{hestenes1}$ we prove first the case $\phi \equiv 0$ in the following result, that is a generalization of Lemma 9.2 in \cite{brezis}.
 
@@ -263,7 +258,7 @@ where $W_j=\prod\limits_{i=1}^{n-1} ]a_{ij},b_{ij}[$ and $\phi_j : W_j \rightarr
 
 Moreover
 \begin{itemize}
-\item if $\phi_j \in C^m(\overline W_i)$ with  $\| D^{\alpha}\phi \|\le M <\infty $, for every $1\le|\alpha|\le m$, we say that $\Omega$  has a resolved $C^m$ boundary with parameters $d,D, \varkappa,M$.
+\item if $\phi_j \in C^m(\overline W_i)$ with  $\| D^{\alpha}\phi_j \|\le M <\infty $, for every $1\le|\alpha|\le m$, we say that $\Omega$  has a resolved $C^m$ boundary with parameters $d,D, \varkappa,M$.
 \item if $\phi_j \in \Lip(\overline W_i)$ with  $\Lip(\phi)= M$,  we say that $\Omega$  has a resolved Lipschitz boundary with parameters $d,D, \varkappa,M$.
 \end{itemize}
 Finally we will say that a domain $\Omega$ has a resolved $C^m$ (or Lipschitz) boundary if there exist parameters $d,D,\varkappa,M$ for which $\Omega$ has a $C^m$ (or Lipschitz) boundary.
@@ -271,14 +266,23 @@ Finally we will say that a domain $\Omega$ has a resolved $C^m$ (or Lipschitz) b
 
 \end{definition}
 
+\begin{remark}\label{hestenesr}
+In the notation of Lemma $\ref{hestenes1}$, let $a,b \in \rr$ such that $a<\phi(\overline x) <b$ for every $\overline x \in W$. We define $S^{a,b}=W\times (a,b)$, $\Omega_a=\Omega \cap (W \times (a,\infty))$ and $\widehat W^{l,p}(\Omega_a)=\{f \in W^{l,p}(\Omega_a) | \supp f \subset S\}$ . Then exists a bounded extension operator
+\[ T: \widehat W^{l,p}(\Omega_a)\rightarrow W^{l,p}(S^{a,b}).\]
+To see this we can just extend $f\in \widehat W^{l,p}(\Omega_a)$ naturally by 0 to  $f_0\in W^{l,p}(\Omega)$ and then define
+\[ Tf=(\widetilde T f_0)\big|_{S^{a,b}}\]
+where $\widetilde T$ is the operator of the previous Lemmma .
+\end{remark}
+
+
 \begin{theorem}\label{teorh}
 Let $m,l \in \mathbb{N}, l\le m$ and $1\le p\le\infty$. If $\Omega$ is a domain in $\mathbb{R}^n$ has a $C^m$ resolved boundary then there exists a bounded extension operator
 \[ T: W^{l,p}(\Omega) \rightarrow W^{l,p}(\mathbb{R}^n).\]
 \end{theorem}
 \begin{proof}[Proof Sketch]
-Let $f \in W^{l,p}(\Omega)$. Let $\{V_i\}_{i=1}^s$ be the covering of cuboids for $\Omega$ as in Definition 1. It's possible to construct functions $\{ \psi_i \}_{i=1}^s \subset C^\infty_c(\mathbb{R}^n)$ such that the functions $\{ \psi^2_i \}_{i=1}^s$ form a partition of the unity corresponding to the covering $\{V_i\}_{i=1}^s$ and satisfying $\|D^\alpha \psi_i \|_{L^\infty}\le M_1$ with $M_1$ depending only on $n,l,d$.  If $\partial \Omega \cap V_i \neq \emptyset$ by Remark $\ref{hestenesr}$ there exist bounded operators
+Let $f \in W^{l,p}(\Omega)$. Let $\{V_i\}_{i=1}^s$ be the covering of cuboids for $\Omega$ as in Definition 1. It's possible to construct functions $\{ \psi_i \}_{i=1}^s \subset C^\infty_c(\mathbb{R}^n)$ such that the functions $\{ \psi^2_i \}_{i=1}^s$ form a partition of the unity corresponding to the covering $\{V_i\}_{i=1}^s$ and satisfying $\|D^\alpha \psi_i \|_{L^\infty}\le M_1$ with $M_1$ depending only on $n,l,d$.  If $\partial \Omega \cap V_i \neq \emptyset$ by Remark $\ref{hestenesr}$ there exists a bounded operator
 \[ T_i : \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))\rightarrow W^{l,p}(\lambda_i(V_i))\]
-where $\widehat W^{l,p}(\lambda_i(V_i\cap \Omega)=\{f \in W^{l,p}(V_i\cap \Omega) | \supp f \subset \lambda_i(V_i\cap \overline \Omega)  \}.$ If $V_i \subset \Omega$ the operator $T_i$ is defined to be just the identity. We set
+where $\widehat W^{l,p}(\lambda_i(V_i\cap \Omega)=\{f \in W^{l,p}(V_i\cap \Omega) | \supp f \subset \lambda_i(V_i)  \}.$ If $V_i \subset \Omega$ the operator $T_i$ is defined to be just the identity. We set
 \[ Tf = \sum_{i=1}^s \psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i).\]
 assuming ($\psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i))=0$ outside $V_i$. The functions $\psi_if \in W^{l,p}(V_i\cap \Omega)$ are such that $\supp \psi_if \subset \overline \Omega \cap V_i$, hence $\psi_i f(\lambda_i) \in \widehat W^{l,p}(\lambda_i(V_i\cap \Omega))$ and so $T$ is well defined. To see that $T$ is an extension operator, take $x \in \Omega$: if $x \in \supp \psi_i$ then $\psi_i(x)T_i(\psi_if(\lambda_i^{-1}))(\lambda_i(x))=\psi_i(x)^2 f(x)$ ; if $x \notin \supp \psi_i$ then $0=\psi_i(x)T_i(\psi_if(\lambda_i^{-1}))(\lambda_i(x))=\psi_i(x)^2 f(x)$. So $Tf(x)=\sum\limits_{i=1}^s \psi_i^2(x) f(x)=f(x)$. 
 
@@ -294,7 +298,7 @@ where
 \[ \|f\|_{M_p^\phi(\Omega)}:=\sup_{B_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{B_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}.\]
 
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{covering}
 Let $k\ge 1$ and $\Omega$ be set in $\rr^n$ with diameter $D>0$. Then there exists an integer $C_{n,k}$ depending only on $k$ and $n$ such that $\Omega$ can be covered by a collection of open balls $B_1,...,B_h$ centered in $\Omega$ with radius $D/k$ and $h \le C_{k,n}.$
 \end{lemma}
 \begin{proof}
@@ -306,7 +310,7 @@ We start by claiming that if $S$ is a set of points in $\rr^n$ satisfying
 then $|S|\le C_{n,k}$ where $C_{k,n}$ is an integer depending only on $k$ and $n$. To see this, first note that $\Omega$ is contained in some closed cube $Q$ of side $2D$. Then we choose $m \in \nn$ such that $2^{m-1}>\sqrt n k$. Next we cover $Q$ with $(2^m)^n$ small closed cubes of side $2D/2^m$. The diagonal of a small cube measures $2D/2^m \cdot \sqrt n < D/k$. Thus each of these cubes can contain at most one point of $S$,so $|S|\le (2^m)^n.$ Therefore it's enough to choose $C_{n,k}=2^{mn}.$ Set $r:=D/k$, we'll prove that we can cover $\Omega$ with a collection of balls $B_1,...,B_h$ centered in $\Omega$ of radius $r$ and such that $k\le C_{n,k}.$ Choose $x_1 \in \Omega$ and take $B_1=B_r(x_1)$, the ball centered in $x_1$ of radius $r$. If $\Omega \subset B_1$ we are done, if not there exists $x_2 \in \Omega\setminus B_1$ and we take $B_2=B_r(x_2).$ Again, if $\Omega \subset (B_1\cup B_2)$ we stop, else we can pick $x_3 \in  \Omega\setminus (B_1 \cup B_2)$ and take $B_3=B_r(x_3).$ We iterate this procedure : given $B_1,...,B_i$ balls, if $ \Omega \subset (B_1\cup...\cup B_i)$ we stop, else we can choose $x_{i+1} \in  \Omega \setminus (B_1\cup...\cup B_i)$ and take $B_{i+1}=B_r(x_{i+1}).$ We claim that this procedure stops with $i\le C_{n,k}.$ Suppose it doesn't, then we can find $B_1,...,B_{C_{n,k}+1}$ balls centered respectively at $x_1,...,x_{C_{n,k}+1}$. Setting $S= \{x_1,...,x_{C_{n,k}+1} \}$, it's immediate to see that $S$ satisfies i) and ii), but $|S|=C_{n,k}+1$, that is a contradiction.
 \end{proof}
 
-\begin{lemma}
+\begin{lemma}\label{lcircle}
 Let $W \subset \mathbb{R}^{n-1}$ be open connected and define
 \[\Omega =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n\le \phi(\overline x)  \} \]
 \[\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \phi(\overline x)  \} \]
@@ -365,15 +369,15 @@ for some constant $c_2(M,\beta)$. Then $\eqref{circle}$ by taking $c=max(\sqrt c
 
 
 \begin{lemma}\label{hmorrey1}
-Let $l,n \in \mathbb{N}, 1\le p \le \infty$ and $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$. Moreover define
+Let $l,n,m \in \mathbb{N},m\ge l, 1\le p \le \infty$, $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Moreover define
 \[ S=W \times \mathbb{R} \]
 \[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\phi(\overline x)  \} \]
-where $\phi \in C^m(\overline W)$,$m\ge l$, and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for $0\le \gamma \le n$ and $f \in W^{l,p}(\Omega)$ 
+where $\phi \in C^m(\overline W)$ and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for every $f \in W^{l,p}(\Omega)$ 
 \begin{enumerate}[i)]
-\item  $\| Tf\|_{M_p^\gamma(S)} \le    C\| f\|_{M_p^\gamma(\Omega)}$
-\item $\| D^\alpha_w Tf\|_{M_p^\gamma(S)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}$,  $1\le |\alpha|\le l$
+\item  $\| Tf\|_{M_p^\phi(S)} \le    C\| f\|_{M_p^\phi(\Omega)}$
+\item $\| D^\alpha_w Tf\|_{M_p^\phi(S)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}$,  $1\le |\alpha|\le l$
 \end{enumerate}
-where $T: W^{l,p}(\Omega) \rightarrow W^{l,p}(S)$ is the Hestenes operator defined in Lemma $\ref{hestenes1}$ and $C$ is a constant independent of $f$.
+where $T$ is the Hestenes operator defined in Lemma $\ref{hestenes1}$ and $C$ is a constant independent of $f$.
 \end{lemma}
 
 \begin{proof}
@@ -393,60 +397,61 @@ where $G_k(\overline x, x_n)=(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\
 \[ I=\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}\]
 for $1\le|\alpha| \le l$. To do this we estimate the integral as follows
 
-\[ I \le \underbrace{\left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap \Omega^+} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_1$}+\underbrace{\left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap \Omega} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_2$}.\]
+\[ I \le \underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega^+} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_1$}+\underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_2$}.\]
 Since $Tf(x)=f(x)$ when $ x\in\Omega$, we have immediately  
-\[ I_2 \le \|D^\alpha_w f \|_{M_p^\gamma(\Omega)} . \]
+\[ I_2 \le \|D^\alpha_w f \|_{M_p^\phi(\Omega)} . \]
 It remains to estimate $I_1$. We start by observing that from Lemma \ref{composition} there exists a constant $C_k$ depending only on $G_k$ and $l$ such that
 \[ |D^{\alpha}_w (f \circ  G_k)| \le C_k \sum_{1\le |\beta|\le|\alpha| }| D^{\beta}_wf(G_k)|.\]
-By the previous inequality and Lemma \ref{circle} we are able to produce the following bound
+By the previous inequality and Lemma \ref{lcircle} we are able to produce the following bound
 \begin{align*}
- \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}} &\le C_k \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{G_k(B_r(x_0)\cap \Omega^+)} |D^\alpha_wf(y)|^p|\det JG_k^{-1}\big|_{G_k(y)}|dy\right)^{\frac{1}{p}}\\
- 		&\le C_k \beta_k^{-\frac{1}{p}} \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega} |D^\alpha_wf(y)|^pdy\right)^{\frac{1}{p}} 		\\		
+ \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}} &\le C_k \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{G_k(B_r(x_0)\cap \Omega^+)} |D^\beta_wf(y)|^p|\det JG_k^{-1}\big|_{G_k(y)}|dy\right)^{\frac{1}{p}}\\
+ 		&\le C_k \beta_k^{-\frac{1}{p}} \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega} |D^\beta_wf(y)|^pdy\right)^{\frac{1}{p}} 		\\		
 \end{align*}
-where $c_k$ depends only on $\beta_k$ and $M$ and $A_{\alpha_k}$ is defined as in Lemma \ref{circle}. Next we estimate $I_1$:
-
+where $A_{\alpha_k}$ is defined as in Lemma \ref{lcircle} and $c_k$ depends only on $\beta_k$ and $M$. By Lemma \ref{covering} the set $B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega$ can be covered with a collection of open balls $B_1,...,B_h$ centered in $\Omega$ with radius $r$ and $h\le m_k$, where $m_k$ depends only on $c_k$. Hence we get
+\[ \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}}\le C_k \beta_k^{-\frac{1}{p}} m_k \sum_{1\le |\beta|\le|\alpha| } \|D^\beta f\|_{M_p^\phi(\Omega)}\]
+ Next we estimate $I_1$:
 \begin{align*}
-I_1 = r^{-\frac{\gamma}{p}}\|D^\alpha_w Tf \|_{L^p(B_r(x_0)\cap \Omega^+)}&\le r^{-\frac{\gamma}{p}} \sum_{k=1}^l \alpha_k \|D^\alpha_w f(G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)} \\
-																		&\le \sum_{k=1}^l \alpha_kC_k\beta_kc_k^{\frac{\gamma}{p}} \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)} \right).																	
+I_1 = \phi(r)^{-\frac{1}{p}}|D^\alpha_w Tf \|_{L^p(B_r(x_0)\cap \Omega^+)}&\le \phi(r)^{-\frac{1}{p}} \sum_{k=1}^l \alpha_k \|D^\alpha_w f(G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)} \\
+&\le \sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)} \right).																	
 \end{align*}
 Finally putting the estimates of $I_1,I_2$ together 
 \begin{align*}
-\| D^\alpha_w Tf\|_{M_p^\gamma(S)}&=\sup_{x_0 \in S, r>0} \left ( \frac{1}{r^\gamma} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}} \\
-									&\le \|D^\alpha_w f \|_{M_p^\gamma(\Omega)}+\sum_{k=1}^l \alpha_kC_k\beta_kc_k^{\frac{\gamma}{p}} \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)} \right) \\
-									& \le \widetilde C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}
+\| D^\alpha_w Tf\|_{M_p^\phi(S)}&=\sup_{x_0 \in S, r>0} \left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}} \\
+									&\le \|D^\alpha_w f \|_{M_p^\phi(\Omega)}+\sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\phi(\Omega)} \right) \\
+									& \le \widetilde C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\phi(\Omega)}
 \end{align*}
-where $\widetilde C$ depends only on $\{b_k\}_k,\{\alpha_k\}_k,l,M,\gamma,p$. This proves ii). The proof of i) is exactly analogous to the proof of ii).
+where $\widetilde C$ depends only on $\{b_k\}_k,\{\alpha_k\}_k,l,M,p$. This proves ii). The proof of i) is exactly analogous to the proof of ii).
 \end{proof}
 		
 
 \begin{theorem}
-Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$ and $\Omega$ a domain in $\mathbb{R}^n$ with a $C^m$ resolved boundary (with parameters $d,D,M, \varkappa$). Then for $0\le \gamma \le n$ and $f \in W^{l,p}(\Omega)$ 
+Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a domain in $\mathbb{R}^n$ with $C^m$ resolved boundary. Then for every $f \in W^{l,p}(\Omega)$ 
 \begin{enumerate}[i)]
-\item  $\| Tf\|_{M_p^\gamma(\rr^n)} \le    C\| f\|_{M_p^\gamma(\Omega)}$
-\item $\| D^\alpha_w Tf\|_{M_p^\gamma(\rr^n)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\gamma(\Omega)}$,  $1\le |\alpha|\le l$
+\item  $\| Tf\|_{M_p^\phi(\rr^n)} \le    C\| f\|_{M_p^\phi(\Omega)}$
+\item $\| D^\alpha_w Tf\|_{M_p^\phi(\rr^n)} \le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}$,  $1\le |\alpha|\le l$
 \end{enumerate}
-where $ T: W^{l,p}(\Omega) \rightarrow W^{l,p}(\mathbb{R}^n)$ is the Hestenes operator define in Theorem \ref{teorh} and $C$ doesn't depend on $f$.
+where $ T$ is the Hestenes operator defined in Theorem \ref{teorh} and $C$ doesn't depend on $f$.
 \end{theorem}
 \begin{proof}
 Let $f \in W^{l,p}(\Omega)$ and  $\{V_i\}_{i=1}^s$ be the covering of cuboids for $\Omega$ as in the definition of set with resolved boundary. We recall the definition of $T:$
 \[ Tf = \sum_{i=1}^s \psi_iT_i(\psi_if(\lambda_i^{-1}))(\lambda_i)\]
 where $\{ \psi^2_i \}_{i=1}^s$ form a partition of the unity corresponding to the covering $\{V_i\}_{i=1}^s$ and satisfying $\|D^\alpha \psi_i \|_{L^\infty}\le M_1$, with $|\alpha|\le l$ and $M_1$ depending only on $n,l,d$. To make the notation simpler we will rewrite $T$ as
 \[ Tf = \sum_{i=1}^s \psi_i\widetilde T_i(\psi_if)\]
-where the operator $\widetilde T_i: \widehat W^{l,p}(V_i\cap \Omega) \rightarrow W^{l,p}(V_i)$ as $\widetilde T_i f = T_i(f(\lambda_i^{-1}))(\lambda_i)$. 
+where the operator $\widetilde T_i$ is defined as $\widetilde T_i f = T_i(f(\lambda_i^{-1}))(\lambda_i)$. 
 Before starting the proof we remark some facts that will be justified at the end of the proof:
 \begin{enumerate}[a)]
 
-\item Let $C_i$ the constant relative to $T_i$ such that
-\[ \| T_ig\|_{M_p^\gamma(\lambda_i(V_i))}\le C_i \|g\|_{M_p^\gamma(\lambda_i(\Omega \cap V_i))}\]
-\[\| D^\alpha_w T_ig\|_{M_p^\gamma(\lambda_i(V_i)))} \le   C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\gamma(\lambda_i(\Omega \cap V_i)))}\]  
+\item Let $C_i$ the constant such that
+\[ \| T_ig\|_{M_p^\phi(\lambda_i(V_i))}\le C_i \|g\|_{M_p^\phi(\lambda_i(\Omega \cap V_i))}\]
+\[\| D^\alpha_w T_ig\|_{M_p^\phi(\lambda_i(V_i)))} \le   C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\phi(\lambda_i(\Omega \cap V_i)))}\]  
 
-for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))$. Then $\sup_{i=1,...,s} C_i \le M_3$, where $M_2$ doesn't depend on $i$.
+for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))$. Then $\sup_{i=1,...,s} C_i \le M_2$, where $M_2$ depends only on $\Omega,l,n$.
 \item We have
-\[ \| \widetilde T_ig\|_{M_p^\gamma(V_i)}\le C_i \|g\|_{M_p^\gamma(\Omega \cap V_i)}\]
-\[\| D^\alpha_w \widetilde T_ig\|_{M_p^\gamma(V_i)} \le   M_3C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\gamma(\Omega \cap V_i)}\]  
+\[ \| \widetilde T_ig\|_{M_p^\phi(V_i)}\le C_i \|g\|_{M_p^\phi(\Omega \cap V_i)}\]
+\[\| D^\alpha_w \widetilde T_ig\|_{M_p^\phi(V_i)} \le   M_3C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\phi(\Omega \cap V_i)}\]  
 for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\Omega \cap V_i)$ and where $M_3$ doesn't depend on $i$. 
-\item If $X= \bigcup_k X_k$ is a countable union of measurable sets $X_k$ and the multiplicity of the covering is less than $\delta$, then for every function measurable on $X$
-\[ \left ( \sum_k \| f\|^p_{M^\gamma_p(X_k)} \right )^{\frac{1}{p}} \le \delta^{\frac{1}{p}}\| f\|_{M^\gamma_p(X)}. \] 
+\item If $X= \bigcup_k X_k$ is a countable union of measurable sets $X_k$ and the multiplicity of the covering is less than $\delta$, then for every measurable function on $X$
+\[ \left ( \sum_k \| f\|^p_{M^\phi_p(X_k)} \right )^{\frac{1}{p}} \le \delta^{\frac{1}{p}}\| f\|_{M^\phi_p(X)}. \] 
 \item $D^\alpha_wTf = \sum_{i=1}^s D^\alpha_w (\psi_i\widetilde T_i(\psi_if))$ on $\rr^n$, also in the case $s=\infty.$
 \item If $a_n(t)$, $n\in \nn$, is a sequence of positive real numbers depending on $t$ belonging to a set $T$, then
 \[ \sup_{t \in T} \sum_{n=1}^\infty a_n(t) \le \sum_{n=1}^\infty \sup_{t \in T} a_n(t)\]
@@ -458,11 +463,11 @@ thus, integrating on both sides and bringing the sum outside the integral,
 \[\| Tf \|_{L^p(B_r(x_0))}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{L^p(B_r(x_0))}^p \right)^{\frac{1}{p}}\]
 where $x_0$ is any point in $\rr^n$ and $ B_r(x_0)$ is the ball centered in $ x_0$ of radius $r>0$. Then if we divide both sides by $r^{\frac{\gamma}{p}}$ and apply the supremum, we obtain
 \begin{align*}
-\|Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{M^\gamma_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
-							&\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\widetilde T_i(\psi_if)\|_{M^\gamma_p(V_i)}^p \right)^{\frac{1}{p}} && \text{because } \supp \psi_i \subset V_i,|\psi_i|\le1\\
-							&\overset{a)-b)}\le \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|\psi_if\|_{M^\gamma_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}&& \\
-							&\le  \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|f\|_{M^\gamma_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}\\
-							&\overset{c)}\le  \varkappa M_2\|f\|_{M^\gamma_p(\Omega)}.
+\|Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{M^\phi_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
+							&\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\widetilde T_i(\psi_if)\|_{M^\phi_p(V_i)}^p \right)^{\frac{1}{p}} && \text{because } \supp \psi_i \subset V_i,|\psi_i|\le1\\
+							&\overset{a)-b)}\le \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|\psi_if\|_{M^\phi_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}&& \\
+							&\le  \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|f\|_{M^\phi_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}\\
+							&\overset{c)}\le  \varkappa M_2\|f\|_{M^\phi_p(\Omega)}.
 \end{align*}
 This proves i). To prove ii) we argue in the same way as we did for i). We start from d) and we apply Hölder's inequality for finite sums
 \[ |D^\alpha_wTf|^p \le \varkappa^{p-1} \sum_{i=1}^s |D^\alpha_w (\psi_i\widetilde T_i(\psi_if))|^p \]
@@ -471,17 +476,28 @@ that, using the product rule for derivatives, becomes
 assuming $D^\alpha_w \widetilde T_i(\psi_if))=0$ outside $V_i.$
 Then we integrate on both sides on a general ball $B_r(x_0)$
 \[ \| D^\alpha_wTf\|_{L^p(B_r(x_0))} \le \varkappa^{\frac{p-1}{p}}C_\alpha M_1 \left( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\alpha_w (\widetilde T_i(\psi_if))\|^p_{L^p(B_r(x_0))} \right)^{\frac{1}{p}}.\]
-As in the proof of i) we divide both sides by $r^{\frac{\gamma}{p}}$ and apply the supremum
+As in the proof of i) we divide both sides by $\phi(r)^{\frac{1}{p}}$ and apply the supremum
 \begin{align*}
-\|D^\alpha_w Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)} \le  \varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\gamma_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
-										&=\varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\gamma_p(V_i)}^p \right)^{\frac{1}{p}}\\
-										&\overset{a)-b)} \le \varkappa^{\frac{p-1}{p}} C_\alpha M_1M_2M_3\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \sum_{|\gamma|\le |\beta|}\|D^\gamma_w (\psi_if)\|_{M^\gamma_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
-										&\le \varkappa^{\frac{p-1}{p}} \widetilde C_\alpha M_1M_2M_3\left ( \sum_{|\beta|\le |\alpha|}\sum_{i=1}^s\|D^\beta_w (\psi_if)\|_{M^\gamma_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
-										&\overset{c)}\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|} \|D^\beta_w (\psi_if)\|_{M^\gamma_p(\Omega)} \\
-										&\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}C_\beta \sum_{\gamma\le \beta} \|D^\beta_w f\|_{M^\gamma_p(\Omega)} && \text{by product rule} \\
-										&\le \varkappa \widetilde C'_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}\|D^\beta_w f\|_{M^\gamma_p(\Omega)}.
+\|D^\alpha_w Tf \|_{M_p^\phi(\rr^n)} &\overset{e)} \le  \varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\phi_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
+										&=\varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\phi_p(V_i)}^p \right)^{\frac{1}{p}}\\
+										&\overset{a)-b)} \le \varkappa^{\frac{p-1}{p}} C_\alpha M_1M_2M_3\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \sum_{|\gamma|\le |\beta|}\|D^\gamma_w (\psi_if)\|_{M^\phi_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
+										&\le \varkappa^{\frac{p-1}{p}} \widetilde C_\alpha M_1M_2M_3\left ( \sum_{|\beta|\le |\alpha|}\sum_{i=1}^s\|D^\beta_w (\psi_if)\|_{M^\phi_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
+										&\overset{c)}\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|} \|D^\beta_w (\psi_if)\|_{M^\phi_p(\Omega)} \\
+										&\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}C_\beta \sum_{\gamma\le \beta} \|D^\beta_w f\|_{M^\phi_p(\Omega)} && \text{by Leibniz rule} \\
+										&\le \varkappa \widetilde C'_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}\|D^\beta_w f\|_{M^\phi_p(\Omega)}.
 \end{align*}
-This conclude the proof of ii).
+This conclude the proof of ii). Let's now prove a),b),c),d),e).
+
+a)$\Omega$ has a resolved $C^m$ boundary with parameters $\varkappa,d,D,M$. Hence, if $\phi_i$ are the $C^m$ functions of Definition 1, we have $\| D^{\alpha}\phi_i \|\le M$ for every $i$ and for every $1\le|\alpha|\le l$. Therefore by the proof of Lemma \ref{hmorrey1} we deduce that $C_i$ depends only on $l,n,M$ and on the choice of the constants $\alpha_k,\beta_k$, which can be chosen to be the same for every $T_i$.
+b) We notice that since $\lambda_i$ are isometries, they are smooth and their derivatives are uniformly bounded with a bound depending only on $n$. Then the result follows from a straightforward computation using a change of variable and the Leibniz rule for derivatives.
+c) We have that 
+\[ \sum_k |f|^p \mathbbm{1}_{X_k} \le \delta |f|^p. \]
+Then it's enough to integrate on $X$ and raise to the power $1/p.$ d) A proof can be found in \cite[Lemma 13]{burenkov}. e) For every $N \in \nn$ and every $t \in T$ we have
+\[ \sum_{n=1}^N a_n(t) \le \sum_{n=1}^N \sup_{t \in T} a_n(t),\]
+which letting $N \rightarrow \infty$ gives
+\[ \sum_{n=1}^\infty a_n(t) \le \sum_{n=1}^\infty \sup_{t \in T} a_n(t). \]
+Applying the sup on the left-hand side we obtain the result.
+
 \end{proof}
 	
 \bibliographystyle{plain}
