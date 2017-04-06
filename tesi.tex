@@ -450,43 +450,18 @@ for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))
 \[ \| \widetilde T_ig\|_{M_p^\phi(V_i)}\le C_i \|g\|_{M_p^\phi(\Omega \cap V_i)}\]
 \[\| D^\alpha_w \widetilde T_ig\|_{M_p^\phi(V_i)} \le   M_3C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\phi(\Omega \cap V_i)}\]  
 for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\Omega \cap V_i)$ and where $M_3$ doesn't depend on $i$. 
-\item If $X= \bigcup_k X_k$ is a countable union of measurable sets $X_k$ and the multiplicity of the covering is less than $\delta$, then for every measurable function on $X$
-\[ \left ( \sum_k \| f\|^p_{M^\phi_p(X_k)} \right )^{\frac{1}{p}} \le \delta^{\frac{1}{p}}\| f\|_{M^\phi_p(X)}. \] 
-\item $D^\alpha_wTf = \sum_{i=1}^s D^\alpha_w (\psi_i\widetilde T_i(\psi_if))$ on $\rr^n$, also in the case $s=\infty.$
-\item If $a_n(t)$, $n\in \nn$, is a sequence of positive real numbers depending on $t$ belonging to a set $T$, then
-\[ \sup_{t \in T} \sum_{n=1}^\infty a_n(t) \le \sum_{n=1}^\infty \sup_{t \in T} a_n(t)\]
-where the series could diverge to $\infty.$
 \end{enumerate}
-We start by proving i). Since the multiplicity of the covering $V_i$ is less than $ \varkappa$, by Hölder's inequality for finite sum
-\[ |Tf|^p \le  \varkappa^{p-1} \sum_{i=1}^s |\psi_i\widetilde T_i(\psi_if)|^p\]
-thus, integrating on both sides and bringing the sum outside the integral,
-\[\| Tf \|_{L^p(B_r(x_0))}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{L^p(B_r(x_0))}^p \right)^{\frac{1}{p}}\]
-where $x_0$ is any point in $\rr^n$ and $ B_r(x_0)$ is the ball centered in $ x_0$ of radius $r>0$. Then if we divide both sides by $r^{\frac{\gamma}{p}}$ and apply the supremum, we obtain
+
+
+
+
 \begin{align*}
-\|Tf \|_{M_p^\gamma(\rr^n)} &\overset{e)}\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\psi_i\widetilde T_i(\psi_if)\|_{M^\phi_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
-							&\le  \varkappa^{\frac{p-1}{p}} \left ( \sum_{i=1}^s \|\widetilde T_i(\psi_if)\|_{M^\phi_p(V_i)}^p \right)^{\frac{1}{p}} && \text{because } \supp \psi_i \subset V_i,|\psi_i|\le1\\
-							&\overset{a)-b)}\le \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|\psi_if\|_{M^\phi_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}&& \\
-							&\le  \varkappa^{\frac{p-1}{p}} M_2\left ( \sum_{i=1}^s \|f\|_{M^\phi_p(V_i\cap\Omega)}^p \right)^{\frac{1}{p}}\\
-							&\overset{c)}\le  \varkappa M_2\|f\|_{M^\phi_p(\Omega)}.
+\left( \frac{1}{\phi(r)}  |Tf(x)|^pdx  \right)^{\frac{1}{p}} &\le  \left( \frac{1}{\phi(r)} \int_B |\sum_{i=1}^s \psi_i \widetilde T_i(f(\psi_i))(x) |^pdx \right)^{\frac{1}{p}}\\
+&\le \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{B \cap V_i} | \widetilde T_i(f(\psi_i))(x)|^p |dx \right)^{\frac{1}{p}}\\
 \end{align*}
-This proves i). To prove ii) we argue in the same way as we did for i). We start from d) and we apply Hölder's inequality for finite sums
-\[ |D^\alpha_wTf|^p \le \varkappa^{p-1} \sum_{i=1}^s |D^\alpha_w (\psi_i\widetilde T_i(\psi_if))|^p \]
-that, using the product rule for derivatives, becomes
-\[ |D^\alpha_wTf|^p \le \varkappa^{p-1}C_\alpha^pM_1^p  \sum_{\beta\le \alpha}\sum_{i=1}^s|D^\beta_w (\widetilde T_i(\psi_if))|^p \]
-assuming $D^\alpha_w \widetilde T_i(\psi_if))=0$ outside $V_i.$
-Then we integrate on both sides on a general ball $B_r(x_0)$
-\[ \| D^\alpha_wTf\|_{L^p(B_r(x_0))} \le \varkappa^{\frac{p-1}{p}}C_\alpha M_1 \left( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\alpha_w (\widetilde T_i(\psi_if))\|^p_{L^p(B_r(x_0))} \right)^{\frac{1}{p}}.\]
-As in the proof of i) we divide both sides by $\phi(r)^{\frac{1}{p}}$ and apply the supremum
-\begin{align*}
-\|D^\alpha_w Tf \|_{M_p^\phi(\rr^n)} &\overset{e)} \le  \varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\phi_p(\rr^n)}^p \right)^{\frac{1}{p}} \\
-										&=\varkappa^{\frac{p-1}{p}} C_\alpha M_1\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \|D^\beta_w (\widetilde T_i(\psi_if))\|_{M^\phi_p(V_i)}^p \right)^{\frac{1}{p}}\\
-										&\overset{a)-b)} \le \varkappa^{\frac{p-1}{p}} C_\alpha M_1M_2M_3\left ( \sum_{\beta\le \alpha}\sum_{i=1}^s \sum_{|\gamma|\le |\beta|}\|D^\gamma_w (\psi_if)\|_{M^\phi_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
-										&\le \varkappa^{\frac{p-1}{p}} \widetilde C_\alpha M_1M_2M_3\left ( \sum_{|\beta|\le |\alpha|}\sum_{i=1}^s\|D^\beta_w (\psi_if)\|_{M^\phi_p(V_i\cap \Omega)}^p \right)^{\frac{1}{p}}\\
-										&\overset{c)}\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|} \|D^\beta_w (\psi_if)\|_{M^\phi_p(\Omega)} \\
-										&\le \varkappa \widetilde C_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}C_\beta \sum_{\gamma\le \beta} \|D^\beta_w f\|_{M^\phi_p(\Omega)} && \text{by Leibniz rule} \\
-										&\le \varkappa \widetilde C'_\alpha M_1M_2M_3 \sum_{|\beta|\le |\alpha|}\|D^\beta_w f\|_{M^\phi_p(\Omega)}.
-\end{align*}
-This conclude the proof of ii). Let's now prove a),b),c),d),e).
+
+
+ Let's now prove a),b),c),d),e).
 
 a)$\Omega$ has a resolved $C^m$ boundary with parameters $\varkappa,d,D,M$. Hence, if $\phi_i$ are the $C^m$ functions of Definition 1, we have $\| D^{\alpha}\phi_i \|\le M$ for every $i$ and for every $1\le|\alpha|\le l$. Therefore by the proof of Lemma \ref{hmorrey1} we deduce that $C_i$ depends only on $l,n,M$ and on the choice of the constants $\alpha_k,\beta_k$, which can be chosen to be the same for every $T_i$.
 b) We notice that since $\lambda_i$ are isometries, they are smooth and their derivatives are uniformly bounded with a bound depending only on $n$. Then the result follows from a straightforward computation using a change of variable and the Leibniz rule for derivatives.
