@@ -475,6 +475,80 @@ Applying the sup on the left-hand side we obtain the result.
 
 \end{proof}
 	
+\subsection{Hestenes operator on Morrey spaces}
+\begin{definition}
+Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
+\[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{Q_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{Q_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
+where $Q_r(x)$ is the open cube centered in $x$ of side $2r$.
+\end{definition}
+\begin{lemma}
+Let $1\le p\le \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. Then then cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ is equivalent to the classical Morrey norm $\|.\|_{M_{p}^\phi(\Omega)}$. In particular 
+\[ \| .\|_{M_{p}^\phi(\Omega)} \le \| .\|_{M_{p,Q}^\phi(\Omega)}\le 2^{n^2}\| .\|_{M_{p}^\phi(\Omega)}.\]
+\end{lemma}
+
+\begin{lemma}
+Let $1\le p<\infty,n\ge2$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Then $T$ defines a bounded extension operator from $M_p^\phi(\rr^n_+)$ to  $M_p^\phi(\rr^n)$.
+\end{lemma}
+\begin{proof}
+We will prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
+\begin{equation}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C \| f\|_{M_{p,Q}^\phi(\rr^n_+)}
+\end{equation}
+for a constant $C$ independent of $f$, then the main statement follows from Lemma 1. There are three cases: 1. $Q \subset \rr^n_+$ 2. $Q \subset \rr^n_-$ 3. $Q\cap \{x_n=0\} \neq \emptyset.$ 
+
+1. Since $Tf=f$ in $\rr^n_+$
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\rr^n_+)}\]
+and we are done.
+
+2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (-a-r,-a) \}$ where $a>0$ and $F$ is an open cube of $\rr^{n-1}$ of side $r$. Fix now $(\overline x, y) \in Q$, from the definition of $Tf$ we have
+\[ |Tf(\overline x,y)|\le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\psi(\lambda)|d\lambda \le A \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda\]
+Let's apply the change of variable $s=y+\lambda \delta^*(\overline x,y)$
+\[ |Tf(\overline x,y)|\le\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le c^2 \int_{|y|}^\infty |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds\]
+because $c|y|\ge\delta^*\ge 2|y|.$ Let's now decompose the last integral as follows
+\[ |Tf(\overline x,y)|\le \sum_{k=0}^\infty c^2\int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds.\]
+Now by applying Minkowski's inequality for an infinite sum we get
+\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le  c^2\sum_{k=0}^\infty \left( \int_{-a-r}^{-a}\left ( \int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s) |\frac{|y|^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}}.\]
+Next we plan to estimate each summand. First we apply to it the change of variable $'y=-y'$ 
+\[ \left( \int_{a}^{a+r}\left (\int_{y+kr}^{y+(k+1)r} |f(\overline x, s)|\frac{y^2}{(s+y)^3}ds\right)^pdy \right)^{\frac{1}{p}}\]
+then we apply the change of variable $t=s/y$
+\[ \left( \int_{a}^{a+r}\left (\int_{1+kr/y}^{1+(k+1)r/y} |f(\overline x, ty)|\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
+that can be rewritten as
+ \[  \left( \int_{a}^{a+r}\left (\int_{1+kr/(a+r)}^{1+(k+1)r/a} |f(\overline x, ty)|\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
+ By Minkowsi's integral inequality
+ \[  \left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} \le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a}^{a+r}|f(\overline x, ty)|^p\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^{3p}} dy \right) ^{\frac{1}{p}}dt.  \]
+ We notice that for every $t,y \in \rr$ with $a \le y \le a+r$
+ \[ \mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t) \le \mathbbm{1}_{(a+kr, a+(k+2)r)}(ty)   \]
+ hence using the change of variable $z=ty$
+ \begin{align*}
+\left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} &\le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p \frac{1}{t(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt\\
+&=\int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{t^{\frac{1}{p}}(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
+&\le \int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right)\\
+&= \frac{1}{2}\left[\frac{1}{(1+(k+1)r/a)^2}-\frac{1}{1+kr/(a+r)^2}\right] \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
+&=\frac{s_k(a,r)}{2} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.
+\end{align*}
+Plugging in this estimate in the infinite sum we get
+\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.\]
+Integrating on $F$ and applying again Minkowski inequality 
+\begin{align*}
+\left(\int_F\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left (\int_F \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} \\
+&\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left[\left( \int_{Q_k}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} +\left (\int_{Q_{k+1}}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\right] 
+\end{align*}
+where $Q_i$ is the open cube $F \times (a+ir,a+(i+1)r)$. Dividing both sides by $\phi(r/2)^{\frac{1}{p}}$ we obtain
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le c^2\sum_{k=0}^\infty s_k(a,r) \| f\|_{M_{p,Q}(\rr^n_+)} \]
+We want now to estimate the series $\sum_{k=0}^\infty s_k(a,r)$, to do this we define $x=r/a$ that allows us to rewrite it as
+\[\sum_{k=0}^\infty s_k(a,r)= \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}.\]
+To bound this series we distinguish two cases, when $x\le 1$ and when $x>1$. In the first case we can bound the series using a Riemann Sum
+\[ \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2} \le 3\sum_{k=1}^\infty \frac{x}{(kx+1)^2}\le 3 \int_0^\infty \frac{1}{(t+1)^2}dt=3. \]
+In the second case
+\[  \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}  \le \sum_{k=1}^\infty \frac{x(x+2)}{k^2x^2}=\sum_{k=1}^\infty \frac{1+\frac{2}{x}}{k^2} \le 3 \frac{\pi^2}{6}<5.\]
+Hence we get 
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le 5c^2 \| f\|_{M_{p,Q}(\rr^n_+)} \]
+that shows (1). 
+
+3. It's sufficient to notice that, up to a set of measure 0,  we can cover $Q$ with two open cubes $Q_+,Q_-$ of side $r$ with $Q_+\subset \rr^n_+$ and $Q_-\subset \rr^n_-.$ Hence
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}\le\left(\frac{1}{\phi(r/2)}\int_{Q_+} |f(x)|^pdx \right)^{\frac{1}{p}}+\left(\frac{1}{\phi(r/2)}\int_{Q_-} |Tf(x)|^pdx \right)^{\frac{1}{p}} \]
+and we can conclude by part 1. and 2.
+\end{proof} 
 \bibliographystyle{plain}
 \bibliography{biblio}
 
