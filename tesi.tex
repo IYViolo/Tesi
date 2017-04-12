@@ -487,67 +487,91 @@ Let $1\le p\le \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ 
 \end{lemma}
 
 \begin{lemma}
-Let $1\le p<\infty,n\ge2$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Then $T$ defines a bounded extension operator from $M_p^\phi(\rr^n_+)$ to  $M_p^\phi(\rr^n)$.
+Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\phi$ a Lipschitz function from $\rr^{n-1}$ to $\rr$. Define 
+\[\Omega = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y>\psi(\overline x) \} .\] 
+Then $T$ defines a bounded extension operator from $M_p^\phi(\rr^n_+)$ to  $M_p^\phi(\rr^n)$.
 \end{lemma}
 \begin{proof}
 We will prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
 \begin{equation}
-\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C \| f\|_{M_{p,Q}^\phi(\rr^n_+)}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C \| f\|_{M_{p,Q}^\phi(\Omega)}
 \end{equation}
-for a constant $C$ independent of $f$, then the main statement follows from Lemma 1. There are three cases: 1. $Q \subset \rr^n_+$ 2. $Q \subset \rr^n_-$ 3. $Q\cap \{x_n=0\} \neq \emptyset.$ 
+for a constant $C$ independent of $f$, then the main statement follows from Lemma 1. Let's define  $\Omega^- = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y<\psi(\overline x) \}$. There are three cases: 1. $Q \subset \Omega$ 2. $Q \subset \Omega^-$ 3. $Q\cap \{y=\psi(\overline x)\} \neq \emptyset.$ 
 
-1. Since $Tf=f$ in $\rr^n_+$
-\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\rr^n_+)}\]
+1. Since $Tf=f$ in $\Omega$
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\Omega)}\]
 and we are done.
 
-2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (-a-r,-a) \}$ where $a>0$ and $F$ is an open cube of $\rr^{n-1}$ of side $r$. Fix now $(\overline x, y) \in Q$, from the definition of $Tf$ we have
-\[ |Tf(\overline x,y)|\le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\psi(\lambda)|d\lambda \le A \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda\]
+2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (a-r,a) \}$ where $F$ is an open cube of $\rr^{n-1}$ of side $r$ and $a<\phi(\overline x)$ for every $\overline x \in F$. Fix now $(\overline x, y) \in Q$, from the definition of $Tf$ we have
+\[ |Tf(\overline x,y)|\le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\tau(\lambda)|d\lambda \le A \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda\]
 Let's apply the change of variable $s=y+\lambda \delta^*(\overline x,y)$
-\[ |Tf(\overline x,y)|\le\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le c^2 \int_{|y|}^\infty |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds\]
-because $c|y|\ge\delta^*\ge 2|y|.$ Let's now decompose the last integral as follows
-\[ |Tf(\overline x,y)|\le \sum_{k=0}^\infty c^2\int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s)|\frac{|y|^2}{(s-y)^3}ds.\]
+\[ |Tf(\overline x,y)|\le\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le c^2 \int_{2\psi(\overline x)-y}^\infty |f(\overline x, s)|\frac{(\psi(x)-y)^2}{(s-y)^3}ds\]
+because $c(\psi(x)-y)\ge\delta^*\ge 2(\psi(x)-y).$ Let's now decompose the last integral as follows
+\[ |Tf(\overline x,y)|\le \sum_{k=0}^\infty c^2\int_{2\psi(\overline x)-y+kr}^{2\psi(\overline x)-y+(k+1)r} |f(\overline x, s)|\frac{(\psi(\overline x)-y)^2}{(s-y)^3}ds.\]
 Now by applying Minkowski's inequality for an infinite sum we get
-\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le  c^2\sum_{k=0}^\infty \left( \int_{-a-r}^{-a}\left ( \int_{|y|+kr}^{|y|+(k+1)r} |f(\overline x, s) |\frac{|y|^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}}.\]
-Next we plan to estimate each summand. First we apply to it the change of variable $'y=-y'$ 
-\[ \left( \int_{a}^{a+r}\left (\int_{y+kr}^{y+(k+1)r} |f(\overline x, s)|\frac{y^2}{(s+y)^3}ds\right)^pdy \right)^{\frac{1}{p}}\]
-then we apply the change of variable $t=s/y$
-\[ \left( \int_{a}^{a+r}\left (\int_{1+kr/y}^{1+(k+1)r/y} |f(\overline x, ty)|\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
+\[ \left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le  c^2\sum_{k=0}^\infty \left( \int_{a-r}^{a}\left ( \int_{2\psi(\overline x)-y+kr}^{2\psi(\overline x)-y+(k+1)r} \frac{|f(\overline x, s)|(\psi(x)-y)^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}} (*)\]
+Next we plan to estimate each summand. In the right-hand side of (*) we apply the change of variable $y=\psi(\overline x)-z$ 
+\[ \left( \int_{\psi(x)-a}^{\psi(x)-a+r}\left (\int_{\psi(x)+z+kr}^{\psi(x)+z+(k+1)r} |f(\overline x, s)|\frac{z^2}{(s-\psi(x)+z)^3}ds\right)^pdz \right)^{\frac{1}{p}}\]
+and the change of variable $u=s-\psi(x)$
+\[ \left( \int_{\psi(x)-a}^{\psi(x)-a+r}\left (\int_{z+kr}^{z+(k+1)r} |f(\overline x, u+\psi(x))|\frac{z^2}{(u+z)^3}du\right)^pdz \right)^{\frac{1}{p}}.\]
+Then we apply the change of variable $t=u/z$
+\[ \left( \int_{\psi(\overline x) - a}^{\psi(\overline x) -a+r}\left (\int_{1+kr/z}^{1+(k+1)r/z} |f(\overline x, tz+\psi(x))|\frac{1}{(t+1)^3}dt\right)^pdz \right)^{\frac{1}{p}}.\]
 that can be rewritten as
- \[  \left( \int_{a}^{a+r}\left (\int_{1+kr/(a+r)}^{1+(k+1)r/a} |f(\overline x, ty)|\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^3}dt\right)^pdy \right)^{\frac{1}{p}}.\]
- By Minkowsi's integral inequality
- \[  \left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} \le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a}^{a+r}|f(\overline x, ty)|^p\mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t)\frac{1}{(t+1)^{3p}} dy \right) ^{\frac{1}{p}}dt.  \]
- We notice that for every $t,y \in \rr$ with $a \le y \le a+r$
- \[ \mathbbm{1}_{(1+kr/y,  1+(k+1)r/y ) }(t) \le \mathbbm{1}_{(a+kr, a+(k+2)r)}(ty)   \]
- hence using the change of variable $z=ty$
+ \[  \left( \int_{\psi(\overline x) -a}^{\psi(\overline x) -a+r}\left (\int_{1+kr/(\psi(\overline x) -a+r)}^{1+(k+1)r/(\psi(\overline x)-a)} |f(\overline x, tz+\psi(x))|\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^3}dt\right)^pdz \right)^{\frac{1}{p}}.\]
+ By Minkowsi's integral inequality and setting $\alpha=r/(\psi(\overline x)-a)$
  \begin{align*}
-\left( \int_{a}^{a+r} ...\right)^{\frac{1}{p}} &\le \int_{1+kr/(a+r)}^{1+(k+1)r/a} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p \frac{1}{t(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt\\
-&=\int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{t^{\frac{1}{p}}(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
-&\le \int_{1+kr/(a+r)}^{1+(k+1)r/a}\frac{1}{(t+1)^{3}}dt \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right)\\
-&= \frac{1}{2}\left[\frac{1}{(1+(k+1)r/a)^2}-\frac{1}{1+kr/(a+r)^2}\right] \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\\
-&=\frac{s_k(a,r)}{2} \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.
+  & \left( \int_{a\psi(\overline x) -a}^{\psi(\overline x) -a+r}\left (\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} |f(\overline x, tz+\psi(x))|\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^3}dt\right)^pdz \right)^{\frac{1}{p}}. \\
+  &\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x) -a}^{\psi(\overline x) -a+r}|f(\overline x, tz+\psi(x))|^p\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt.  
+ \end{align*}
+ We notice that for every $t,z \in \rr$ with $\psi(\overline x) -a \le z \le \psi(\overline x)-a+r$
+ \[ \mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t) \le \mathbbm{1}_{(\psi(\overline x)-a+kr, \psi(\overline x) - a+(k+2)r)}(tz)   \]
+ hence using the change of variable $w=tz$
+ \begin{align*}
+ &\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, tz+\psi(x))|^p\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt \\
+&\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p \frac{1}{t(t+1)^{3p}} dw \right) ^{\frac{1}{p}}dt\\
+&=\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha}\frac{1}{t^{\frac{1}{p}}(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}\\
+&\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha}\frac{1}{(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right)\\
+&= \frac{1}{2}\left[\frac{1}{(1+(k+1)\alpha)^2}-\frac{1}{(1+k\alpha/(\alpha+1))^2}\right] \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}\\
+&=\frac{s_k(\alpha)}{2} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}.
 \end{align*}
-Plugging in this estimate in the infinite sum we get
-\[ \left(\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left ( \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}.\]
-Integrating on $F$ and applying again Minkowski inequality 
+Plugging in this estimate in (*) we get
 \begin{align*}
-\left(\int_F\int_{-a-r}^{-a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left (\int_F \int_{a+kr}^{a+(k+2)r}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} \\
-&\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(a,r) \left[\left( \int_{Q_k}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}} +\left (\int_{Q_{k+1}}|f(\overline x, z)|^p  dz \right) ^{\frac{1}{p}}\right] 
+ \left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{\psi(\overline x) -a+kr}^{\psi(\overline x) -a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}} \\
+&=\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{2\psi(\overline x) -a+kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy \right) ^{\frac{1}{p}}.
 \end{align*}
-where $Q_i$ is the open cube $F \times (a+ir,a+(i+1)r)$. Dividing both sides by $\phi(r/2)^{\frac{1}{p}}$ we obtain
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le c^2\sum_{k=0}^\infty s_k(a,r) \| f\|_{M_{p,Q}(\rr^n_+)} \]
-We want now to estimate the series $\sum_{k=0}^\infty s_k(a,r)$, to do this we define $x=r/a$ that allows us to rewrite it as
-\[\sum_{k=0}^\infty s_k(a,r)= \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}.\]
-To bound this series we distinguish two cases, when $x\le 1$ and when $x>1$. In the first case we can bound the series using a Riemann Sum
-\[ \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2} \le 3\sum_{k=1}^\infty \frac{x}{(kx+1)^2}\le 3 \int_0^\infty \frac{1}{(t+1)^2}dt=3. \]
+Taking the $L^p$ norm on $F$ on both sides and applying again Minkowski inequality we obtain
+\begin{align*}
+\left(\int_F\int_{a-r}^{a}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left (\int_F \int_{2\psi(\overline x) -a+kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy d\overline x\right) ^{\frac{1}{p}}\\
+&= \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S_k)}. \tag{**}\\
+\end{align*}
+where $S_k=\{ (\overline x, y) \in \rr^n \ | \ \overline x \in F ,\  2\psi(\overline x) -a+kr < y < 2\psi(\overline x) -a+(k+2)r \}$. Clearly the set $S_k$ has diameter less than $cr$, where c is a constant depending only on $n$ and on the Lipschitz constant of $\psi$. Hence by Lemma \ref{covering} there exists a collection of open cubes $Q_1,...,Q_m$ centered in $S_k$ of side $r$ that covers $S_k$, with $m \in \nn$ depending only on $\Lip \psi$ and $n$. Moreover for every $(\overline x, y ) \in S_k$ we have $y>2\psi(\overline x)-a>\psi(\overline x)$, so $S_k \subset \Omega$. This implies that
+\[ S_k \subset \bigcup_{i=1}^m (Q_i\cap \Omega) \]
+and that every cube $Q_i$ is centered in $\Omega.$ Therefore by (**) 
+\[ \| Tf\|_{L^P(Q)} \le \frac{c^2}{2}\sum_{k=0}^\infty s_k(\alpha) (\|f\|_{L^p(Q_1\cap \Omega)}+...+\|f\|_{L^p(Q_m\cap \Omega)}),\]
+ then dividing in both sides by $\psi(r/2)^{\frac{1}{p}}$ we obtain
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{c^2m}{2} \sum_{k=0}^\infty s_k(a,r) \| f\|_{M_{p,Q}(\Omega)} \]
+We want now to estimate the series $\sum_{k=0}^\infty s_k(\alpha)$. First we notice that can be rewritten as as
+\[\sum_{k=0}^\infty s_k(\alpha)= \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2}.\]
+To bound this series we distinguish two cases, when $\alpha\le 1$ and when $\alpha>1$. In the first case we can bound the series using a Riemann Sum
+\[ \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2} \le 3\sum_{k=1}^\infty \frac{\alpha}{(k\alpha+1)^2}=3\le 3\sum_{k=1}^\infty \int_{\rr} \mathbbm{1}_{(\alpha (k-1), \alpha)}(t) \frac{1}{(\alpha k+1)^2}dt \le 3\int_{\rr}\frac{1}{(t+1)^2}dt=3. \]
 In the second case
-\[  \sum_{k=1}^\infty \frac{x(x+2)}{(kx+1)^2}  \le \sum_{k=1}^\infty \frac{x(x+2)}{k^2x^2}=\sum_{k=1}^\infty \frac{1+\frac{2}{x}}{k^2} \le 3 \frac{\pi^2}{6}<5.\]
+\[  \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2}  \le \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{k^2\alpha^2}=\sum_{k=1}^\infty \frac{1+\frac{2}{\alpha}}{k^2} \le 3 \frac{\pi^2}{6}<5.\]
 Hence we get 
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le 5c^2 \| f\|_{M_{p,Q}(\rr^n_+)} \]
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le 5c^2 \| f\|_{M_{p,Q}^\phi(\Omega)} \]
 that shows (1). 
 
-3. It's sufficient to notice that, up to a set of measure 0,  we can cover $Q$ with two open cubes $Q_+,Q_-$ of side $r$ with $Q_+\subset \rr^n_+$ and $Q_-\subset \rr^n_-.$ Hence
-\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}\le\left(\frac{1}{\phi(r/2)}\int_{Q_+} |f(x)|^pdx \right)^{\frac{1}{p}}+\left(\frac{1}{\phi(r/2)}\int_{Q_-} |Tf(x)|^pdx \right)^{\frac{1}{p}} \]
-and we can conclude by part 1. and 2.
+3. We write $Q$ as $F \times (a-r,a)$ and and we define $Q^+=Q\cap\Omega$ and $Q^-=Q\cap\Omega^-.$ Then 
+\[\|Tf\|_{L^p(Q)}\le\|f\|_{L^p(Q^+)}+\|Tf\|_{L^p(Q^-)}.\]
+Moreover $Q^+$ can be written as $\{ (\overline x, y) \ | \ \overline x \in S, a-r<y<\min(\psi(\overline x),a)\}$ for some set $S \subset F.$ Hence
+\[ \int_{Q^-} |Tf(x)|^pdx = \int_S \int_{a-r}^{\min(\psi(\overline x),a)} |Tf(\overline x,y)|^pdy d\overline x. \]
+We can then proceed as in 2. to obtain
+\begin{align*}
+ \left(\int_S\int_{a-r}^{a}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}} &\le \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left (\int_S \int_{2\psi(\overline x) -\min(a,\psi(\overline x)) +kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy d\overline x\right) ^{\frac{1}{p}}\\
+ &=\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S'_k)}.
+ \end{align*}
+One can observe that the sets $S'_k$ have the same property as the sets $S_k$ in 2. Therefore
+\[ \frac{1}{\psi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-)} \le c \| f\|_{M_p^\phi(\Omega)} \]
+for some constant $c$ depending only on $n$ and $\Lip \psi$. Finally it's immediate to verify that $\| f\|_{L^p(Q^+)} \le \phi(r/2)^{\frac{1}{p}} \| f\|_{M_p^\phi(\Omega)}.$ This concludes the proof of case 3.
 \end{proof} 
 \bibliographystyle{plain}
 \bibliography{biblio}
