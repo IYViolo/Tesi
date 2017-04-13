@@ -509,14 +509,14 @@ There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
 \end{lemma}
 
 
-\begin{definition}Let $\Omega$ be a Lipschitz subgraph of $\rr^n$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $c$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\Omega$, continuous and bounded in $\overline \Omega$ together with all its partial derivatives, we define
+\begin{theorem}Let $\Omega$ be a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $c$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\overline \Omega$ and bounded in $\overline \Omega$ together with all its partial derivatives, define
 \[ Tf(\overline x, y)= \begin{cases}
 						f(\overline x, y), & \text{ if } y\ge\psi(\overline x) \\
 						\int_1^\infty f(\overline x, y+ \lambda \delta^*(\overline x,y))\tau(\lambda)d\lambda, & \text{ if } y<\psi(\overline x),		
 \end{cases}
 \]
-where $\delta^*(\overline x,y)=c\Delta(\overline x, y).$
-\end{definition}
+where $\delta^*(\overline x,y)=c\Delta(\overline x, y).$ Then $Tf \in C^\infty(\rr^n)$ and $\| Tf\|_{W^{l,p}(\rr^n)}\le C_{n,l}(M) \| f\|_{W^{l,p}(\Omega)} .$
+\end{theorem}
 
 \begin{definition}Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ Then for every $f \in W^{l,p}(\Omega)$ we define
 \[ Sf = \lim_{\varepsilon \to 0} Tf_\varepsilon \]
@@ -630,6 +630,21 @@ One can observe that the sets $S'_k$ have the same property as the sets $S_k$ in
 \[ \frac{1}{\psi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-)} \le c \| f\|_{M_p^\phi(\Omega)} \]
 for some constant $c$ depending only on $n$ and $\Lip \psi$. Finally it's immediate to verify that $\| f\|_{L^p(Q^+)} \le \phi(r/2)^{\frac{1}{p}} \| f\|_{M_p^\phi(\Omega)}.$ This concludes the proof of case 3.
 \end{proof} 
+
+\begin{lemma}
+Let $\Omega$ be an open set in $\rr^n$ and let $f,h \in C^\infty(\rr^n)$. Define the function $g\in C^\infty(\rr^n)$ as $g(x)=f(\overline x, x_n+\lambda h(x))$ where $\overline x=x_1,...,x_{n-1}$ and $0\neq\lambda \in \rr.$ Then for every $\alpha \in \nn_0^n$ and $x \in \rr^n$ the number $D^\alpha g(x)$ is a finite sum of terms of the following form
+
+\[
+c\lambda^s D^{\beta} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}
+\]
+for some constant $c$, with $\beta,\gamma_i \in \nn_0^n $ and $k,s,n_i \in \nn_0$. Moreover $\beta\neq 0,\gamma_i\neq0$, $k,s,n_i\ge 0$ and
+\begin{enumerate}[a)]
+\item $n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\alpha|-|\beta|$ if $k\ge1$,
+\item  $s=0$ if and only if $\beta=\alpha$.
+\end{enumerate}
+
+\end{lemma}
+
 \bibliographystyle{plain}
 \bibliography{biblio}
 
