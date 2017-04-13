@@ -475,7 +475,64 @@ Applying the sup on the left-hand side we obtain the result.
 
 \end{proof}
 	
-\subsection{Hestenes operator on Morrey spaces}
+\section{Hestenes operator}
+
+\subsection{Construction}
+In this section we will define the Stein extension operator for Lipschitz domains in $\rr^n$. The details of the construction and the proofs of all the following results can be found in \cite[Section 2-3, Ch. VI]{stein}. We start by introducing the notion of regularized distance with the following theorem.
+
+\begin{theorem}\label{regdist}
+Let $F$ be a closed set in $\rr^n$ and denote $d(x,F)$ the distance of $x$ from $F$. Then there exists a function $\Delta(x)=\Delta(x,F)$ defined in $F^c$ such that
+\begin{enumerate}[a)]
+\item $c_1 d(x,F)\le \Delta(x)\le c_2d (x,F),$  
+\item $\Delta(x)$ is $C^\infty$ in $F^c$ and
+\[ \left | D^\alpha \Delta(x) \right | \le B_\alpha d(x,F)^{1-|\alpha|},\]
+\end{enumerate}
+where $B_\alpha$, $c_1$,$c_2$ are constants independent of $F$ and $d(x,F)$ is the distance of $x$ from $F.$
+\end{theorem}
+Next we give the definition of a Lipschitz subgraph 
+\begin{definition}
+An subset $\Omega$ of $\rr^n$ it's said to be a Lipschitz subgraph if exists a Lipschitz function $\psi$ defined from $\rr^{n-1}$ to $\rr$ such that
+\[ \Omega=\{(\overline x, y) \in \rr^n \ | \ \psi(\overline x)<y \}.\]
+Moreover the constant $\Lip \psi$ is said to be the Lipschitz bound of $\Omega.$ 
+\end{definition}
+It's convenient to define first the Stein extension operator in the case of a Lipschitz subgraph, to do this we need the following two lemmas.
+\begin{lemma}\label{lemma1}
+Let $\Omega$ be a Lipschitz subgraph of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant c, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $c\Delta(\overline x,y)\ge \psi(\overline x)- y.$
+\end{lemma}
+
+\begin{lemma}\label{lemma2}
+There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
+\begin{enumerate}[i)]
+	\item $\tau(\lambda)=O(\lambda^N)$, as $\lambda \rightarrow \infty$ for every $N,$
+	\item $\int_1^\infty \tau(\lambda)d\lambda=1$, $\int_1^\infty \lambda^k\tau(\lambda)d\lambda=0$, for every $k=1,2,...$
+\end{enumerate}
+\end{lemma}
+
+
+\begin{definition}Let $\Omega$ be a Lipschitz subgraph of $\rr^n$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $c$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\Omega$, continuous and bounded in $\overline \Omega$ together with all its partial derivatives, we define
+\[ Tf(\overline x, y)= \begin{cases}
+						f(\overline x, y), & \text{ if } y\ge\psi(\overline x) \\
+						\int_1^\infty f(\overline x, y+ \lambda \delta^*(\overline x,y))\tau(\lambda)d\lambda, & \text{ if } y<\psi(\overline x),		
+\end{cases}
+\]
+where $\delta^*(\overline x,y)=c\Delta(\overline x, y).$
+\end{definition}
+
+\begin{definition}Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ Then for every $f \in W^{l,p}(\Omega)$ we define
+\[ Sf = \lim_{\varepsilon \to 0} Tf_\varepsilon \]
+where $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy$ and the convergence of $Tf_\varepsilon$ is the convergence in the norm  $\|. \|_{W^{l,p}(\rr^n)}$.
+\end{definition}
+
+
+\begin{theorem}
+Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a Lipschitz subgraph of $\rr^n$. Then the function $Sf$ is well defined for every $f \in W^{l,p}(\Omega)$ and defines a bounded extension operator from $W^{l,p}(\Omega)$ to $W^{l,p}(\rr^n).$
+\end{theorem}
+
+
+
+
+\subsection{Stein operator in Sobolev-Morrey spaces}
+
 \begin{definition}
 Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
 \[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{Q_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{Q_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
