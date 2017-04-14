@@ -509,7 +509,7 @@ There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
 \end{lemma}
 
 
-\begin{theorem}Let $\Omega$ be a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $c$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\overline \Omega$ and bounded in $\overline \Omega$ together with all its partial derivatives, define
+\begin{theorem}\label{defT}Let $\Omega$ be a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $c$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\overline \Omega$ and bounded in $\overline \Omega$ together with all its partial derivatives, define
 \[ Tf(\overline x, y)= \begin{cases}
 						f(\overline x, y), & \text{ if } y\ge\psi(\overline x) \\
 						\int_1^\infty f(\overline x, y+ \lambda \delta^*(\overline x,y))\tau(\lambda)d\lambda, & \text{ if } y<\psi(\overline x),		
@@ -538,22 +538,68 @@ Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be
 \[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{Q_r(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{Q_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
 where $Q_r(x)$ is the open cube centered in $x$ of side $2r$.
 \end{definition}
-\begin{lemma}
+\begin{lemma}\label{cubicmorrey}
 Let $1\le p\le \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. Then then cubic-Morrey norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ is equivalent to the classical Morrey norm $\|.\|_{M_{p}^\phi(\Omega)}$. In particular 
 \[ \| .\|_{M_{p}^\phi(\Omega)} \le \| .\|_{M_{p,Q}^\phi(\Omega)}\le 2^{n^2}\| .\|_{M_{p}^\phi(\Omega)}.\]
 \end{lemma}
+\begin{lemma}\label{derivatives}
+Let $\Omega$ be an open set in $\rr^n$ and let $f,h \in C^\infty(\rr^n)$. Define the function $g\in C^\infty(\rr^n)$ as $g(x)=f(\overline x, x_n+\lambda h(x))$ where $\overline x=x_1,...,x_{n-1}$ and $0\neq\lambda \in \rr.$ Then for every $\alpha \in \nn_0^n$ and $x \in \rr^n$ the number $D^\alpha g(x)$ is a finite sum of terms of the following form
 
+\[
+c\lambda^s D^{\beta} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}
+\]
+for some constant $c$, with $\beta,\gamma_i \in \nn_0^n $, $k,s,n_i \in \nn_0$ and $\beta,\gamma_i\neq0$, $k,s\ge 0$, $n_i>0$. Moreover every term satisfies the following conditions
+\begin{enumerate}[a)]
+\item $n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\alpha|-|\beta|$,
+\item  $s=0$ if and only if $k=0$.
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+We will prove the result by induction on $l=|\alpha|.$ Let's prove the case $l=1$. For every $i=1,...,n$ we have
+\[ \frac{\partial g}{\partial x_i}(x)=\frac{\partial f}{\partial x_i}(\overline x, x_n+\lambda h(x))+\lambda\frac{\partial f}{\partial x_n}(\overline x, x_n+\lambda h(x))\frac{\partial h}{\partial x_i}(x) \]
+that clearly satisfies the statement. We assume now that the result is true for $l$, and suppose $|\alpha|=l+1$. We write $D^\alpha g(x)=\frac{\partial D^\beta g}{\partial x_i}(x)$ for some $|\beta|=l$. Hence by induction hypothesis and linearity of the derivative we have that $D^\alpha g(x)$ is a finite sum of terms of the form
+\[ \frac{\partial}{\partial x_i} [c\lambda^s D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}].\]
+Suppose first that $k\ge 1,$ so by induction we know that
+\begin{equation}\label{indder}
+ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\beta|-|\gamma| 
+ \end{equation}
+ and that $s\ge 1.$
+ Now expanding the derivation using the chain rule we get
+\begin{align*}
+&\frac{\partial}{\partial x_i} [c\lambda^s D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}]=\\
+&=c\lambda^s \frac{\partial D^{\gamma} f}{\partial x_i}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}+\\
+&+ c\lambda^{s+1} \frac{\partial D^{\gamma} f}{\partial x_n}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}\frac{\partial h}{\partial x_i} (x)+\\
+&+ \sum_{j=1}^k c\lambda^sn_j D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k} \frac{\frac{\partial D^{\gamma_j}h}{\partial x_i} (x)}{D^{\gamma_j}h(x)}.
+\end{align*}
+Let's see that every term satisfies a). By \eqref{indder} we have
+\[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\beta|-|\gamma|=|\alpha|-|\gamma + e_i|\]
+where $e_i=(0,...,\underset{i}1,...,0),$ hence that first summand satisfies a). Again by \eqref{indder}
+\[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)+(|e_i|-1)=|\alpha|-|\gamma + e_n|\]
+and this proves a) for the second term. Now we consider the final sum, we will prove a) just for $j=1$, the other terms are dealt in the same way. We need to prove that
+\[ n_1(|\gamma_1|-1)+...+(n_j-1)(|\gamma_j|-1)+...+n_k(|\gamma_k|-1)+(|\gamma_j+e_i|-1)=|\alpha|-|\gamma|. \]
+Expanding the left-hand side we get
+\[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)+1\]
+and since $|\beta|=|\alpha|-1$ we conclude using \eqref{indder}. We observe that, since $k,s\ge1$, all the terms also satisfies b). Suppose know that $k=0$, hence we need to consider
+\[ \frac{\partial}{\partial x_i} [c D^{\gamma} f(\overline x, x_n+\lambda h(x)) ]\]
+that becomes
+
+\[ c \frac{\partial D^{\gamma} f}{\partial x_i} (\overline x, x_n+\lambda h(x)) + c\lambda \frac{\partial D^{\gamma} f}{\partial x_n} (\overline x, x_n+\lambda h(x)) \frac{\partial h}{\partial x_i}(x). \]
+By induction and by a) we know that $|\gamma|=|\beta|,$ therefore it's immediate that both the above terms satisfies a) and b).
+
+
+\end{proof}
 \begin{lemma}
-Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\phi$ a Lipschitz function from $\rr^{n-1}$ to $\rr$. Define 
-\[\Omega = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y>\psi(\overline x) \} .\] 
-Then $T$ defines a bounded extension operator from $M_p^\phi(\rr^n_+)$ to  $M_p^\phi(\rr^n)$.
+Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a Lipschitz subgraph of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$
+\[ \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\|D^\alpha f \|_{M_p^\phi(\Omega)}\]
+where $l=|\alpha|$ and $C_{l,n}(M)$ is a constant depending only on $M,l,n.$
 \end{lemma}
 \begin{proof}
-We will prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
+Let's start by proving the case $l=0$. By Lemma \ref{cubicmorrey} it's enough to prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
 \begin{equation}
-\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C \| f\|_{M_{p,Q}^\phi(\Omega)}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C(M) \| f\|_{M_{p,Q}^\phi(\Omega)}
 \end{equation}
-for a constant $C$ independent of $f$, then the main statement follows from Lemma 1. Let's define  $\Omega^- = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y<\psi(\overline x) \}$. There are three cases: 1. $Q \subset \Omega$ 2. $Q \subset \Omega^-$ 3. $Q\cap \{y=\psi(\overline x)\} \neq \emptyset.$ 
+for a constant $C(M)$ depending only on $n,M$. Let's define  $\Omega^- = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y<\psi(\overline x) \}$. There are three cases: 1. $Q \subset \Omega$ 2. $Q \subset \Omega^-$ 3. $Q\cap \{y=\psi(\overline x)\} \neq \emptyset.$ 
 
 1. Since $Tf=f$ in $\Omega$
 \[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\Omega)}\]
@@ -631,32 +677,6 @@ One can observe that the sets $S'_k$ have the same property as the sets $S_k$ in
 for some constant $c$ depending only on $n$ and $\Lip \psi$. Finally it's immediate to verify that $\| f\|_{L^p(Q^+)} \le \phi(r/2)^{\frac{1}{p}} \| f\|_{M_p^\phi(\Omega)}.$ This concludes the proof of case 3.
 \end{proof} 
 
-\begin{lemma}
-Let $\Omega$ be an open set in $\rr^n$ and let $f,h \in C^\infty(\rr^n)$. Define the function $g\in C^\infty(\rr^n)$ as $g(x)=f(\overline x, x_n+\lambda h(x))$ where $\overline x=x_1,...,x_{n-1}$ and $0\neq\lambda \in \rr.$ Then for every $\alpha \in \nn_0^n$ and $x \in \rr^n$ the number $D^\alpha g(x)$ is a finite sum of terms of the following form
-
-\[
-c\lambda^s D^{\beta} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}
-\]
-for some constant $c$, with $\beta,\gamma_i \in \nn_0^n $, $k,s,n_i \in \nn_0$, $\beta,\gamma_i\neq0$, $k,s\ge 0$, $n_i>0$. Moreover 
-\begin{enumerate}[a)]
-\item $n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\alpha|-|\beta|$ if $k\ge1$,
-\item  $s=0$ if and only if $k=0$.
-\end{enumerate}
-\end{lemma}
-
-\begin{proof}
-We will prove the result by induction on $l=|\alpha|.$ Let's prove the case $l=1$. For every $i=1,...,n$ we have
-\[ \frac{\partial g}{\partial x_i}(x)=\frac{\partial f}{\partial x_i}(\overline x, x_n+\lambda h(x))+\lambda\frac{\partial f}{\partial x_n}(\overline x, x_n+\lambda h(x))\frac{\partial h}{\partial x_i}(x) \]
-that clearly satisfies the statement. We assume now that the result is true for $l$, and suppose $|\alpha|=l+1$. We write $D^\alpha g(x)=\frac{\partial D^\beta g}{\partial x_i}(x)$ for some $|\beta|=l$. Hence by induction hypothesis and linearity of the derivative we have that $D^\alpha g(x)$ is a finite sum of terms of the form
-\[ \frac{\partial}{\partial x_i} [c\lambda^s D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}].\]
-Expanding the derivation using the chain rule we get
-\begin{align*}
-&\frac{\partial}{\partial x_i} [c\lambda^s D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}]=\\
-&=c\lambda^s \frac{\partial D^{\gamma} f}{\partial x_i}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}+\\
-&+ c\lambda^{s+1} \frac{\partial D^{\gamma} f}{\partial x_n}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}\frac{\partial h}{\partial x_i} (x)+\\
-&+ \sum_{j=1}^k c\lambda^sn_j D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k} \frac{\frac{\partial D^{\gamma_j}h}{\partial x_i} (x)}{D^{\gamma_j}h(x)}.
-\end{align*}
-\end{proof}
 
 \bibliographystyle{plain}
 \bibliography{biblio}
