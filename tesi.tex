@@ -307,7 +307,7 @@ We start by claiming that if $S$ is a set of points in $\rr^n$ satisfying
 \item  	$S \subset \Omega$,
 \item $\|z_1-z_2 \|\ge D/k$ for every $z_1,z_2 \in \Omega$ with $z_1 \neq z_2$,
 \end{enumerate}
-then $|S|\le C_{n,k}$ where $C_{k,n}$ is an integer depending only on $k$ and $n$. To see this, first note that $\Omega$ is contained in some closed cube $Q$ of side $2D$. Then we choose $m \in \nn$ such that $2^{m-1}>\sqrt n k$. Next we cover $Q$ with $(2^m)^n$ small closed cubes of side $2D/2^m$. The diagonal of a small cube measures $2D/2^m \cdot \sqrt n < D/k$. Thus each of these cubes can contain at most one point of $S$,so $|S|\le (2^m)^n.$ Therefore it's enough to choose $C_{n,k}=2^{mn}.$ Set $r:=D/k$, we'll prove that we can cover $\Omega$ with a collection of balls $B_1,...,B_h$ centered in $\Omega$ of radius $r$ and such that $k\le C_{n,k}.$ Choose $x_1 \in \Omega$ and take $B_1=B_r(x_1)$, the ball centered in $x_1$ of radius $r$. If $\Omega \subset B_1$ we are done, if not there exists $x_2 \in \Omega\setminus B_1$ and we take $B_2=B_r(x_2).$ Again, if $\Omega \subset (B_1\cup B_2)$ we stop, else we can pick $x_3 \in  \Omega\setminus (B_1 \cup B_2)$ and take $B_3=B_r(x_3).$ We iterate this procedure : given $B_1,...,B_i$ balls, if $ \Omega \subset (B_1\cup...\cup B_i)$ we stop, else we can choose $x_{i+1} \in  \Omega \setminus (B_1\cup...\cup B_i)$ and take $B_{i+1}=B_r(x_{i+1}).$ We claim that this procedure stops with $i\le C_{n,k}.$ Suppose it doesn't, then we can find $B_1,...,B_{C_{n,k}+1}$ balls centered respectively at $x_1,...,x_{C_{n,k}+1}$. Setting $S= \{x_1,...,x_{C_{n,k}+1} \}$, it's immediate to see that $S$ satisfies i) and ii), but $|S|=C_{n,k}+1$, that is a contradiction.
+then $\#S\le C_{n,k}$ where $C_{k,n}$ is an integer depending only on $k$ and $n$. To see this, first note that $\Omega$ is contained in some closed cube $Q$ of side $2D$. Then we choose $m \in \nn$ such that $2^{m-1}>\sqrt n k$. Next we cover $Q$ with $(2^m)^n$ smaller closed cubes of side $2D/2^m$. The diagonal of a smaller cube measures $2D/2^m \cdot \sqrt n < D/k$. Thus each of these cubes can contain at most one point of $S$ ,so $\#S\le (2^m)^n.$ Therefore it's enough to choose $C_{n,k}=2^{mn}.$ Set $r:=D/k$, we'll prove that we can cover $\Omega$ with a collection of balls $B_1,...,B_h$ centered in $\Omega$ of radius $r$ and such that $k\le C_{n,k}.$ Choose $x_1 \in \Omega$ and take $B_1=B_r(x_1)$, the ball centered in $x_1$ of radius $r$. If $\Omega \subset B_1$ we are done, if not there exists $x_2 \in \Omega\setminus B_1$ and we take $B_2=B_r(x_2).$ Again, if $\Omega \subset (B_1\cup B_2)$ we stop, otherwise we can pick $x_3 \in  \Omega\setminus (B_1 \cup B_2)$ and take $B_3=B_r(x_3).$ We iterate this procedure : given $B_1,...,B_i$ balls, if $ \Omega \subset (B_1\cup...\cup B_i)$ we stop, otherwise we can choose $x_{i+1} \in  \Omega \setminus (B_1\cup...\cup B_i)$ and take $B_{i+1}=B_r(x_{i+1}).$ We claim that this procedure stops with $i\le C_{n,k}.$ Suppose it doesn't, then we can find $B_1,...,B_{C_{n,k}+1}$ balls centered respectively at $x_1,...,x_{C_{n,k}+1}$. Setting $S= \{x_1,...,x_{C_{n,k}+1} \}$, it's immediate to see that $S$ satisfies i) and ii), but $\#S=C_{n,k}+1$, that is a contradiction.
 \end{proof}
 
 \begin{lemma}\label{lcircle}
@@ -525,18 +525,18 @@ There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
 						\int_1^\infty f(\overline x, y+ \lambda \delta^*(\overline x,y))\tau(\lambda)d\lambda, & \text{ if } y<\psi(\overline x),		
 \end{cases}
 \]
-where $\delta^*(\overline x,y)=2a\Delta(\overline x, y).$ Then $Tf \in C^\infty(\rr^n)$ and $\| Tf\|_{W^{l,p}(\rr^n)}\le C_{n,l}(M) \| f\|_{W^{l,p}(\Omega)} .$
+where $\delta^*(\overline x,y)=2a\Delta(\overline x, y).$ Then $Tf \in C^\infty(\rr^n)$ and 
+\[\| Tf\|_{W^{l,p}(\rr^n)}\le C_{n,l}(M) \| f\|_{W^{l,p}(\Omega)} ,\]
+where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
-\begin{definition}Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ Then for every $f \in W^{l,p}(\Omega)$ we define
-\[ Sf = \lim_{\varepsilon \to 0} Tf_\varepsilon \]
-where $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy$ and the convergence of $Tf_\varepsilon$ is the convergence in the norm  $\|. \|_{W^{l,p}(\rr^n)}$.
-\end{definition}
-
-
-\begin{theorem}
-Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a Lipschitz subgraph of $\rr^n$. Then the function $Sf$ is well defined for every $f \in W^{l,p}(\Omega)$ and defines a bounded extension operator from $W^{l,p}(\Omega)$ to $W^{l,p}(\rr^n).$
+\begin{theorem}Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ define $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f_0(x-y) \eta(y/\varepsilon)dy$, $f_0$ being the extension by 0 of $f$. Then $Tf_\varepsilon $ is well defined and the sequence $\{Tf_\varepsilon \}_{\varepsilon>0}$ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
+\[ Sf=\lim_{\varepsilon \to 0} Tf_\varepsilon\]
+we have that $Sf$ extend $f$ to $\rr^n$ and 
+\[ \| Sf\|_{W^{l,p}(\rr^n)} \le C_{l,n}(M) \| f\|_{W^{l,p}(\Omega) } ,\] 
+where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
+
 
 
 
