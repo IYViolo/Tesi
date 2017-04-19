@@ -530,7 +530,8 @@ where $\delta^*(\overline x,y)=2a\Delta(\overline x, y).$ Then $Tf \in C^\infty(
 where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
-\begin{theorem}Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ define $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f_0(x-y) \eta(y/\varepsilon)dy$, $f_0$ being the extension by 0 of $f$. Then $Tf_\varepsilon $ is well defined and the sequence $\{Tf_\varepsilon \}_{\varepsilon>0}$ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
+\begin{theorem}\label{Sdef}
+Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ and every $x \in \overline \Omega$ define $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy$. Then $Tf_\varepsilon $ is well defined and the sequence $\{Tf_\varepsilon \}_{\varepsilon>0}$ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
 \[ Sf=\lim_{\varepsilon \to 0} Tf_\varepsilon\]
 we have that $Sf$ extend $f$ to $\rr^n$ and 
 \[ \| Sf\|_{W^{l,p}(\rr^n)} \le C_{l,n}(M) \| f\|_{W^{l,p}(\Omega) } ,\] 
@@ -626,7 +627,9 @@ where $c$ is some constant depending only on $n.$ The second inequality follows 
 \end{proof}
 \begin{lemma}
 Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$
-\[ \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)}\]
+\begin{equation}
+ \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound}
+ \end{equation}
 where $l=|\alpha|$ and $C_{l,n}(M)$ is a constant depending only on $l,n$ and $M.$
 \end{lemma}
 \begin{proof}
@@ -761,6 +764,32 @@ for every $Q$ in case 2  and
 \[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 3, where $c_6,c_7$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
 \end{proof} 
+
+\begin{theorem}
+Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $S$ be the Stein extension operator. Then for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ we have
+\begin{equation}
+ \| D^\alpha Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound}
+ \end{equation}
+ where $C_{l,n}(\Omega)$ depends only on $n,l$ and $M.$
+
+ \begin{proof}
+We recall definition of the operator $S.$ Set  $\Gamma$ to be the cone $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$ and let $\eta \in C^\infty_c(\rr^n)$ be a function with total integral 1 and which support is contained in $\Gamma.$ Then, given $f \in W^{l,p}(\Omega)$, $Sf$ is defined to be the limit in $W^{l,p}(\rr^n)$ of $Tf_\varepsilon$ as $\varepsilon \to 0,$ where $f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} f(x-y)\eta(y/\varepsilon)$ for every $x$ in an appropriate neighborhood of $	\overline \Omega$. Next we claim that for every $f \in W^{l,p}(\Omega)$ and $|\alpha|\le l$
+\begin{equation}
+\| D^\alpha_w f_\varepsilon\|_{M^\phi_p(\Omega)} \le \| D^\alpha_w f\|_{M^\phi_p(\Omega)} \label{epsbound}.
+\end{equation}
+To see this first we notice that $D^\alpha_w f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} D^\alpha_w f(x-y)\eta(y/\varepsilon)dy$ for every $x \in \Omega.$ Let now $B_{x_0}(r)$ a ball centered in $\Omega$ of radius $r$, by Minkowski's integral inequality
+\begin{align*}
+ \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)|^p \right)^{\frac{1}{p}} &= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} D^\alpha_w f(x-y)\eta(\frac{y}{\varepsilon} )dy\right|^pdx \right)^{\frac{1}{p}} \\
+ &\le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} |D^\alpha f(x-y)|^p dx\right)^{\frac{1}{p}}dy \\
+ &=\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
+ & \le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \| D^\alpha f\|_{M_p^\phi(\Omega)} dy=\| D^\alpha f\|_{M_p^\phi(\Omega)}
+\end{align*}
+because $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Next from \eqref{Tbound} we get 
+\[  \| D^\alpha Tf_\varepsilon\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f_\varepsilon \|_{M_p^\phi(\Omega)} \label{Tbound}. \]
+Hence the sequence $D^\alpha Tf_\varepsilon$ is Cauchy in $M_p^\phi(\rr^n)$
+ \end{proof} 
+\end{theorem}
+
 
 
 \bibliographystyle{plain}
