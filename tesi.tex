@@ -628,7 +628,7 @@ where $c$ is some constant depending only on $n.$ The second inequality follows 
 \begin{lemma}
 Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$
 \begin{equation}
- \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound}
+ \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound2}
  \end{equation}
 where $l=|\alpha|$ and $C_{l,n}(M)$ is a constant depending only on $l,n$ and $M.$
 \end{lemma}
@@ -768,7 +768,7 @@ for every $Q$ in case 3, where $c_6,c_7$ depend only on $n,l$ and $M$. This conc
 \begin{theorem}
 Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $S$ be the Stein extension operator. Then for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ we have
 \begin{equation}
- \| D^\alpha Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound}
+ \| D^\alpha Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Sbound}
  \end{equation}
  where $C_{l,n}(\Omega)$ depends only on $n,l$ and $M.$
 
@@ -784,9 +784,24 @@ To see this first we notice that $D^\alpha_w f_\varepsilon(x)=1/\varepsilon^n \i
  &=\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
  & \le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \| D^\alpha f\|_{M_p^\phi(\Omega)} dy=\| D^\alpha f\|_{M_p^\phi(\Omega)}
 \end{align*}
-because $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Next from \eqref{Tbound} we get 
+because $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Next we prove that for every $|\alpha|\le l-1$
+\[ \|D^\alpha f -D^\alpha f_\varepsilon \|_{M^\phi_p(\Omega)} \to 0, \text{ as } \varepsilon \to 0.\]
+We observe first that for every $x \in \Omega$ and $y \in \Gamma$, we have
+\[ f(x-y)=f(x)-\sum_{i=1}^n y_i \int_0^1 \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)dt.\]
+Hence
+\begin{align*}
+&\left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)-f(x)|^p \right)^{\frac{1}{p}} \\
+&= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} [D^\alpha_w f(x-y)-D^\alpha_wf(x)]\eta(\frac{y}{\varepsilon} )dy \right|^pdx \right)^{\frac{1}{p}} \\
+&\le \frac{1}{\varepsilon^n}\int_{\rr^n}  \eta(\frac{y}{\varepsilon} )\left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega}  \left |D^\alpha_w f(x-y)-D^\alpha_wf(x) \right|^pdx\right)^{\frac{1}{p}}dy  \\
+&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )\left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega}   \left| \int_0^1 \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)dt \right|^pdx\right)^{\frac{1}{p}}dy  \\
+&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}y_i  \eta(\frac{y}{\varepsilon} )   \int_0^1 \left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} \left| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)\right|^pdx\right)^{\frac{1}{p}} dtdy  \\
+&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )   \int_0^1 \left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0-ty)\cap \Omega} \left| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x)\right|^pdx\right)^{\frac{1}{p}} dtdy  \\
+&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )   \int_0^1 \| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w\|_{M_p^\phi(\Omega)}dtdy \le\sum_{i=1}^n  y_i \| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w\|_{M_p^\phi(\Omega)}\le C_f \varepsilon.
+\end{align*}
+Now from \eqref{Tbound2} we have that
 \[  \| D^\alpha Tf_\varepsilon\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f_\varepsilon \|_{M_p^\phi(\Omega)} \label{Tbound}. \]
-Hence the sequence $D^\alpha Tf_\varepsilon$ is Cauchy in $M_p^\phi(\rr^n)$
+Hence the sequence $D^\alpha Tf_\varepsilon$ is Cauchy in $M_p^\phi(\rr^n)$ for every $|\alpha|\le l-1$ and its limit must be $Sf.$ Thus from \eqref{epsbound} we deduce \eqref{Sbound}.
+
  \end{proof} 
 \end{theorem}
 
