@@ -507,7 +507,7 @@ Moreover the constant $\Lip \psi$ is said to be the Lipschitz bound of $\Omega.$
 \end{definition}
 It's convenient to define first the Stein extension operator in the case of a special Lipschitz domain, to do this we need the following two lemmas.
 \begin{lemma}\label{lemma1}
-Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant a, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
+Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant $a$, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
 \end{lemma}
 
 \begin{lemma}\label{lemma2}
@@ -530,8 +530,12 @@ where $\delta^*(\overline x,y)=2a\Delta(\overline x, y).$ Then $Tf \in C^\infty(
 where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
+We are now ready to define the Stein extension operator in the case of special Lipschitz domains. The construction is the following. Let $\Omega$ be a special Lipschitz domain in $\rr^n$ with Lipschitz bound $M$. We denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ and every $\varepsilon>0$ we define
+\[f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy =\int_{\rr^n} f(x-\varepsilon y) \eta(y)dy.\]
+Notice that, since the support of $\eta$ is strictly inside $\Gamma$, the above integral is well defined for every $x$ in some neighborhood of $\overline \Omega$ depending on $\varepsilon$. Hence $f_\varepsilon \in C^\infty(\overline\Omega)$ and it is bounded with all its partial derivatives, thus $Tf_\varepsilon$ is well defined. The Stein operator is then taken to be the limit of $Tf_\varepsilon$ as $\varepsilon \to 0.$ This limit procedure is formalized in the following result.
+
 \begin{theorem}\label{Sdef}
-Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ and every $x \in \overline \Omega$ define $f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy$. Then $Tf_\varepsilon $ is well defined and the sequence $\{Tf_\varepsilon \}_{\varepsilon>0}$ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
+Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. For every $f \in W^{l,p}(\Omega)$ define $Tf_\varepsilon$ as above. Then $Tf_\varepsilon $ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
 \[ Sf=\lim_{\varepsilon \to 0} Tf_\varepsilon\]
 we have that $Sf$ extend $f$ to $\rr^n$ and 
 \[ \| Sf\|_{W^{l,p}(\rr^n)} \le C_{l,n}(M) \| f\|_{W^{l,p}(\Omega) } ,\] 
