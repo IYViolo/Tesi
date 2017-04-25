@@ -312,17 +312,17 @@ then $\#S\le C_{n,k}$ where $C_{k,n}$ is an integer depending only on $k$ and $n
 
 \begin{lemma}\label{lcircle}
 Let $W \subset \mathbb{R}^{n-1}$ be open connected and define
-\[\Omega =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n\le \phi(\overline x)  \} \]
-\[\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \phi(\overline x)  \} \]
-where $\phi \in \Lip(\overline W)$. Let $\beta>0$ and consider the function $A_\beta$ from $W \times \rr$ to $\Omega$ defined by
+\[\Omega =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n\le \psi(\overline x)  \} \]
+\[\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \psi(\overline x)  \} \]
+where $\psi \in \Lip(\overline W)$. Let $\beta>0$ and consider the function $A_\beta$ from $W \times \rr$ to $\Omega$ defined by
 \[ A_\beta(\overline x, x_n) =\begin{cases}
-							(\overline x , \phi(\overline x)-\beta(x_n-\phi(\overline x))), & \text{if } (\overline x, x_n) \in \Omega^+ ,\\
+							(\overline x , \psi(\overline x)-\beta(x_n-\psi(\overline x))), & \text{if } (\overline x, x_n) \in \Omega^+ ,\\
 							(\overline x, x_n), & \text{if } (\overline x, x_n) \in \Omega .\\
 \end{cases}
 \]
  Then for every $x_0 \in W \times \mathbb{R}$ and $r>0$
 \[ A(B_r(x_0)\cap \Omega^+)\subset B_{cr}(A(x_0))\cap \Omega\]
-where $c\ge 1$ is a constant depending only on $\Lip \phi$ and $\beta$.
+where $c\ge 1$ is a constant depending only on $\Lip \psi$ and $\beta$.
 \end{lemma}
 
 \begin{proof}
@@ -330,12 +330,12 @@ Notice that it is sufficient to prove that for every $x,y \in W \times \mathbb{R
 \begin{equation}\label{circle}
  \|A(x)-A(y)\| \le c\|x-y \|.
 \end{equation}
-Set $M= \Lip \phi$. We distinguish three cases: 1. $x,y \in \Omega$ : in this case $A(x)=x$ and $A(y)=y$, so $\|x-y \| = \|A(x)-A(y)\|$ and there is nothing to prove.
+Set $M= \Lip \psi$. We distinguish three cases: 1. $x,y \in \Omega$ : in this case $A(x)=x$ and $A(y)=y$, so $\|x-y \| = \|A(x)-A(y)\|$ and there is nothing to prove.
 
 2. $x,y \in \Omega^+$ : we have 
 \begin{align*}
-|A(x)_n-A(y)_n|&=|\phi(\overline x)-\beta(x_n-\phi(\overline x))-\phi(\overline y)+\beta(y_n-\phi(\overline y))| \\
-				& \le (1+\beta)|\phi(\overline x)-\phi(\overline y)| + \beta|x_n-y_n|\\
+|A(x)_n-A(y)_n|&=|\psi(\overline x)-\beta(x_n-\psi(\overline x))-\psi(\overline y)+\beta(y_n-\psi(\overline y))| \\
+				& \le (1+\beta)|\psi(\overline x)-\psi(\overline y)| + \beta|x_n-y_n|\\
 				& \le M(1+\beta)\|\overline x -\overline y\| + \beta|x_n-y_n|
 \end{align*}
 Hence
@@ -347,12 +347,12 @@ Hence
 \end{align*}
 for some constant $c_1(M,\beta)$.
 
-3. $x \in \Omega^+, y \in \Omega$ : first notice that, since $\phi(\overline x) < x_n$, then $x_n-y_n>\phi(\overline x)-y_n$. Moreover $\phi(\overline y) > y_n$, hence $M\|\overline x -\overline y\| \ge \phi(\overline y)-\phi(\overline x)> y_n-\phi(\overline x).$ This implies
-\[ |\phi(\overline x)-y_n |< |x_n-y_n|+M\|\overline x -\overline y\|.\]
+3. $x \in \Omega^+, y \in \Omega$ : first notice that, since $\psi(\overline x) < x_n$, then $x_n-y_n>\psi(\overline x)-y_n$. Moreover $\psi(\overline y) > y_n$, hence $M\|\overline x -\overline y\| \ge \psi(\overline y)-\psi(\overline x)> y_n-\psi(\overline x).$ This implies
+\[ |\psi(\overline x)-y_n |< |x_n-y_n|+M\|\overline x -\overline y\|.\]
 Now
 \begin{align*}
-|A(x)_n-A(y)_n|&=|\phi(\overline x)-\beta(x_n-\phi(\overline x))-y_n| \\
-				&=|(1+\beta)(\phi(\overline x)-y_n)+\beta(y_n-x_n)|\\
+|A(x)_n-A(y)_n|&=|\psi(\overline x)-\beta(x_n-\psi(\overline x))-y_n| \\
+				&=|(1+\beta)(\psi(\overline x)-y_n)+\beta(y_n-x_n)|\\
 				&\le M(1+\beta)\|\overline x -\overline y\|+(1+2\beta)|x_n-y_n|
 \end{align*}
 and
@@ -371,8 +371,8 @@ for some constant $c_2(M,\beta)$. Then $\eqref{circle}$ by taking $c=max(\sqrt c
 \begin{lemma}\label{hmorrey1}
 Let $l,n,m \in \mathbb{N},m\ge l, 1\le p \le \infty$, $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Moreover define
 \[ S=W \times \mathbb{R} \]
-\[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\phi(\overline x)  \} \]
-where $\phi \in C^m(\overline W)$ and $\| D^{\alpha}\phi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for every $f \in W^{l,p}(\Omega)$  and  $1\le |\alpha|\le l$
+\[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\psi(\overline x)  \} \]
+where $\psi \in C^m(\overline W)$ and $\| D^{\alpha}\psi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for every $f \in W^{l,p}(\Omega)$  and  $1\le |\alpha|\le l$
 \begin{align}
 \| Tf\|_{M_p^\phi(S)} &\le    C\| f\|_{M_p^\phi(\Omega)} ,\\
 \| D^\alpha_w Tf\|_{M_p^\phi(S)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)},
@@ -381,10 +381,10 @@ where $T$ is the Hestenes operator defined in Lemma $\ref{hestenes1}$ and $C$ is
 \end{lemma}
 
 \begin{proof}
-Define $\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \phi(\overline x)  \}$ . We recall the definition of $T$
+Define $\Omega^+ =\{ (\overline x,x_n) \ |\ \overline x\in W, x_n> \psi(\overline x)  \}$ . We recall the definition of $T$
 \[ Tf(x) = \begin{cases}
 		f(x) & x \in \Omega \\
-		\sum_{i=1}^l \alpha_k f(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\overline x))) & x \in \Omega^+
+		\sum_{i=1}^l \alpha_k f(\overline x, \psi(\overline x)- \beta_k(x_n-\psi(\overline x))) & x \in \Omega^+
 \end{cases} 
 \]
 and observe that we can rewrite it as
@@ -393,8 +393,8 @@ and observe that we can rewrite it as
 		\sum_{i=1}^l \alpha_k f(G_k(x)), & \text{if } x \in \Omega^+,
 \end{cases} 
 \]
-where $G_k(\overline x, x_n)=(\overline x, \phi(\overline x)- \beta_k(x_n-\phi(\overline x)))$. Note that $G_k: \Omega^+\rightarrow \Omega$ defines a diffeomorphism from $\Omega^+$ to $\Omega$ of class $C^m$ and satisfying $|\det JG_k^{-1}|\equiv 1/\beta_k.$ First we prove ii). Let's fix $x_0 \in S$ and a radius $r>0$. We want to estimate the quantity 
-\[ I=\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}\]
+where $G_k(\overline x, x_n)=(\overline x, \psi(\overline x)- \beta_k(x_n-\psi(\overline x)))$. Note that $G_k: \Omega^+\rightarrow \Omega$ defines a diffeomorphism from $\Omega^+$ to $\Omega$ of class $C^m$ and satisfying $|\det JG_k^{-1}|\equiv 1/\beta_k.$ First we prove ii). Let's fix $x_0 \in S$ and a radius $r>0$. We want to estimate the quantity 
+\[ I=\left ( \frac{1}{\psi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}\]
 for $1\le|\alpha| \le l$. To do this we estimate the integral as follows
 
 \[ I \le \underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega^+} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_1$}+\underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_2$}.\]
@@ -432,7 +432,7 @@ Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be
 
 
 \begin{theorem}
-Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a domain in $\mathbb{R}^n$ with $C^m$ resolved boundary. Let also $ T$ be the Hestenes operator defined in Theorem \ref{teorh}. Then if $\Omega$ is bounded for every $f \in W^{l,p}(\Omega)$ and $1\le |\alpha| \le l$ we have
+Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a domain in $\mathbb{R}^n$ with $C^m$ resolved boundary. Let also $ T$ be the Hestenes operator defined in Theorem \ref{teorh}. Then if $\Omega$ is bounded, for every $f \in W^{l,p}(\Omega)$ and $1\le |\alpha| \le l$ we have
 \begin{align}
 \| Tf\|_{M_p^\phi(\rr^n)} &\le    C\| f\|_{M_p^\phi(\Omega)}, \label{b0}\\
 \| D^\alpha_w Tf\|_{M_p^\phi(\rr^n)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}, \label{bl}
@@ -440,7 +440,7 @@ Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr
 where  $C$ doesn't depend on $f$. If instead $\Omega$ is unbounded, for every $f \in W^{l,p}(\Omega)$ and $\delta>0$ we have
 \begin{align}
 \| Tf\|_{M_p^{\phi,\delta}(\rr^n)} &\le    C_\delta\| f\|_{M_p^\phi(\Omega)}, \label{u0} \\
-\| D^\alpha_w Tf\|_{M_p^\phi(\rr^n)} &\le   C_\delta\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}, \label{ul}
+\| D^\alpha_w Tf\|_{M_p^{\phi,\delta}(\rr^n)} &\le   C_\delta\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}, \label{ul}
 \end{align}
 where $C_\delta$ depends on $\delta$ but not on $f.$
 \end{theorem}
@@ -475,11 +475,11 @@ We notice that there exists an integer $\widetilde s$ depending only on the cove
 \end{align*}
 This proves \eqref{b0} and \eqref{u0}. Let now $\alpha \in \nn_0^n$ with $1\le|\alpha|\le l.$ We have 
 \begin{align*}
-\left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha Tf(x)|^pdx  \right)^{\frac{1}{p}} &=  \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha \sum_{i=1}^s \psi_i(x) \widetilde T_i(\psi_if))(x) |^pdx \right)^{\frac{1}{p}}\\
-&\le C_\alpha \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^{\alpha -\beta}\psi_i(x) D^\beta \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
-&\le C_\alpha M_1 \widetilde s \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^\beta \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
-&\le C_\alpha M_1\widetilde s \sum_{\beta \le \alpha } M_2M_3 \sum_{|\gamma|\le |\beta|} \| D^\gamma f\|_{M_p^\phi(V_i)} \\
-&  \overset{b)}\le \widetilde C_\alpha M_1M_2M_3\widetilde s \sum_{|\beta| \le |\alpha|}\| D^\beta f\|_{M_p^\phi(V_i)} 
+\left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha_w Tf(x)|^pdx  \right)^{\frac{1}{p}} &=  \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha_w \sum_{i=1}^s \psi_i(x) \widetilde T_i(\psi_if))(x) |^pdx \right)^{\frac{1}{p}}\\
+&\le C_\alpha \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^{\alpha -\beta}\psi_i(x) D^\beta_w \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
+&\le C_\alpha M_1 \widetilde s \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^\beta_w \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
+&\overset{b)}\le C_\alpha M_1\widetilde s \sum_{\beta \le \alpha } M_2M_3 \sum_{|\gamma|\le |\beta|} \| D^\gamma_w f\|_{M_p^\phi(V_i)} \\
+&  \le \widetilde C_\alpha M_1M_2M_3\widetilde s \sum_{|\beta| \le |\alpha|}\| D^\beta_w f\|_{M_p^\phi(V_i)} 
 \end{align*}
 This proves \eqref{bl} and \eqref{ul}. Let's now prove a) and b). a) $\Omega$ has a resolved $C^m$ boundary with parameters $\varkappa,d,D,M$. Hence, if $\phi_i$ are the $C^m$ functions of Definition 1, we have $\| D^{\alpha}\phi_i \|_{L^\infty}\le M$ for every $i$ and for every $1\le|\alpha|\le l$. Therefore by the proof of Lemma \ref{hmorrey1} we deduce that $C_i$ depends only on $l,n,M$ and on the choice of the constants $\alpha_k,\beta_k$, which can be chosen to be the same for every $T_i$.
 b) We notice that since $\lambda_i$ are isometries, they are smooth and their derivatives are uniformly bounded with a bound depending only on $n$. Then the result follows from a) and from a straightforward computation using a change of variable and Lemma \ref{composition}.
@@ -488,7 +488,7 @@ b) We notice that since $\lambda_i$ are isometries, they are smooth and their de
 \section{Stein operator}
 
 \subsection{Construction}
-In this section we will define the Stein extension operator for Lipschitz domains in $\rr^n$. The details of the construction and the proofs of all the following results can be found in \cite[Section 2-3, Ch. VI]{stein}. We start by introducing the notion of regularized distance with the following theorem.
+In this section we will define the Stein extension operator for Lipschitz domains in $\rr^n$. The details of the construction and the proofs of all the results in this subsection can be found in \cite[Section 2-3, Ch. VI]{stein}. We start by introducing the notion of regularized distance with the following theorem.
 
 \begin{theorem}\label{regdist}
 Let $F$ be a closed set in $\rr^n$ and denote $d(x,F)$ the distance of $x$ from $F$. Then there exists a function $\Delta(x)=\Delta(x,F)$ defined in $F^c$ such that
@@ -499,15 +499,15 @@ Let $F$ be a closed set in $\rr^n$ and denote $d(x,F)$ the distance of $x$ from 
 \end{enumerate}
 where $B_\alpha$, $c_1$,$c_2$ are constants independent of $F$ and $d(x,F)$ is the distance of $x$ from $F.$
 \end{theorem}
-Next we give the definition of a Lipschitz subgraph 
+Next we give the definition of a special Lipschitz domain.
 \begin{definition}
-An domain $\Omega$ of $\rr^n$ it's said to be a special Lipschitz domain if exists a Lipschitz function $\psi$ defined from $\rr^{n-1}$ to $\rr$ such that
+A domain $\Omega$ of $\rr^n$ it's said to be a special Lipschitz domain if exists a Lipschitz function $\psi$ defined from $\rr^{n-1}$ to $\rr$ such that
 \[ \Omega=\{(\overline x, y) \in \rr^n \ | \ \psi(\overline x)<y \}.\]
 Moreover the constant $\Lip \psi$ is said to be the Lipschitz bound of $\Omega.$ 
 \end{definition}
 It's convenient to define first the Stein extension operator in the case of a special Lipschitz domain, to do this we need the following two lemmas.
 \begin{lemma}\label{lemma1}
-Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant a, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
+Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant $a$, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
 \end{lemma}
 
 \begin{lemma}\label{lemma2}
@@ -625,7 +625,7 @@ where $c$ is some constant depending only on $n.$ The second inequality follows 
 \end{remark}
 
 \end{proof}
-\begin{lemma}
+\begin{lemma}\label{Tlemma}
 Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$
 \begin{equation}
  \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound2}
@@ -749,31 +749,31 @@ We observe that the terms inside the sum doesn't give any contribution in (8), s
 &=\frac{\partial^i D\beta f}{\partial x_n^i}(\overline x,y+\delta^*) \frac{(\delta^*)^i}{i!} \int_1^\infty \lambda^s(\lambda-1)^i\tau(\lambda)d\lambda=0
 \end{align*}
 by the properties of $\tau$, since $s>0$ by Lemma \ref{derivatives}. Hence combining this with \eqref{zzz} we obtain
-\[|T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{(\psi(\overline x)-y)^{m}} \left |\int_1^\infty \int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,y+t)dt \lambda^s \tau(\lambda)d\lambda\right |.\]
+\[|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{(\psi(\overline x)-y)^{m}} \left |\int_1^\infty \int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,y+t)dt \lambda^s \tau(\lambda)d\lambda\right |.\]
 Observing that $(\lambda\delta^*-t)^{m-1}\le (\lambda\delta^*)^{m-1}$, recalling that $\psi(\overline x)-y\ge c \delta^*$ and using the change of variable $u=y+t$ we get
 \begin{align*}
-|T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{c^mm!\delta^*}\int_1^\infty \int_{y+\delta^*}^{y+\lambda \delta^*} \left|\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right |\lambda^{s+m-1} |\tau(\lambda)|du d\lambda.
+|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{c^mm!\delta^*}\int_1^\infty \int_{y+\delta^*}^{y+\lambda \delta^*} \left|\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right |\lambda^{s+m-1} |\tau(\lambda)|du d\lambda.
 \end{align*}
 Perform a changing of order of integration we deduce
-\[ |T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5}{c^mm!\delta^*}\int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \int_{(u-y)/\delta^*}^\infty |\lambda^{s+m-1} \tau(\lambda)| d\lambda du.\]
+\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5}{c^mm!\delta^*}\int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \int_{(u-y)/\delta^*}^\infty |\lambda^{s+m-1} \tau(\lambda)| d\lambda du.\]
 Finally recalling that that  $|\tau(\lambda)|\le A_{m+s}/\lambda^{s+m+3}$ for some constant $A_{m+s}$ we can write
-\[ |T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5 A_{m+s}}{3c^mm!} \int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \frac{(\delta^*)^2}{(u-y)^3} du.\]
+\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5 A_{m+s}}{3c^mm!} \int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \frac{(\delta^*)^2}{(u-y)^3} du.\]
 We observe that we are now in the same situation as in the inequality $(\bullet \bullet)$ of the case $l=0$ and the same computations lead us to
-\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_6 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_6 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 2  and
-\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 3, where $c_6,c_7$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
 \end{proof} 
 
 \begin{theorem}
-Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $S$ be the Stein extension operator. Then for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ we have
+Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $S$ be the Stein extension operator. Then for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ 
 \begin{equation}
  \| D^\alpha Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Sbound}
  \end{equation}
  where $C_{l,n}(\Omega)$ depends only on $n,l$ and $M.$
 
  \begin{proof}
-We recall definition of the operator $S.$ Set  $\Gamma$ to be the cone $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$ and let $\eta \in C^\infty_c(\rr^n)$ be a function with total integral 1 and which support is contained in $\Gamma.$ Then, given $f \in W^{l,p}(\Omega)$, $Sf$ is defined to be the limit in $W^{l,p}(\rr^n)$ of $Tf_\varepsilon$ as $\varepsilon \to 0,$ where $f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} f(x-y)\eta(y/\varepsilon)$ for every $x$ in an appropriate neighborhood of $	\overline \Omega$. Next we claim that for every $f \in W^{l,p}(\Omega)$ and $|\alpha|\le l$
+We recall definition of the operator $S.$ Set  $\Gamma$ to be the cone $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$ and let $\eta \in C^\infty_c(\rr^n)$ be a function with total integral 1 and which support is contained in $\Gamma.$ Then, given $f \in W^{l,p}(\Omega)$, $Sf$ is defined to be the limit in $W^{l,p}(\rr^n)$ of $Tf_\varepsilon$ as $\varepsilon \to 0,$ where $f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} f(x-y)\eta(y/\varepsilon)$ for every $x$ in an appropriate neighborhood of $	\overline \Omega$. We claim that for every $f \in W^{l,p}(\Omega)$ and $|\alpha|\le l$
 \begin{equation}
 \| D^\alpha_w f_\varepsilon\|_{M^\phi_p(\Omega)} \le \| D^\alpha_w f\|_{M^\phi_p(\Omega)} \label{epsbound}.
 \end{equation}
@@ -781,27 +781,18 @@ To see this first we notice that $D^\alpha_w f_\varepsilon(x)=1/\varepsilon^n \i
 \begin{align*}
  \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)|^p \right)^{\frac{1}{p}} &= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} D^\alpha_w f(x-y)\eta(\frac{y}{\varepsilon} )dy\right|^pdx \right)^{\frac{1}{p}} \\
  &\le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} |D^\alpha f(x-y)|^p dx\right)^{\frac{1}{p}}dy \\
- &=\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
+ &\le\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
  & \le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \| D^\alpha f\|_{M_p^\phi(\Omega)} dy=\| D^\alpha f\|_{M_p^\phi(\Omega)}
 \end{align*}
-because $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Next we prove that for every $|\alpha|\le l-1$
-\[ \|D^\alpha f -D^\alpha f_\varepsilon \|_{M^\phi_p(\Omega)} \to 0, \text{ as } \varepsilon \to 0.\]
-We observe first that for every $x \in \Omega$ and $y \in \Gamma$, we have
-\[ f(x-y)=f(x)-\sum_{i=1}^n y_i \int_0^1 \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)dt.\]
-Hence
-\begin{align*}
-&\left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)-f(x)|^p \right)^{\frac{1}{p}} \\
-&= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} [D^\alpha_w f(x-y)-D^\alpha_wf(x)]\eta(\frac{y}{\varepsilon} )dy \right|^pdx \right)^{\frac{1}{p}} \\
-&\le \frac{1}{\varepsilon^n}\int_{\rr^n}  \eta(\frac{y}{\varepsilon} )\left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega}  \left |D^\alpha_w f(x-y)-D^\alpha_wf(x) \right|^pdx\right)^{\frac{1}{p}}dy  \\
-&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )\left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega}   \left| \int_0^1 \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)dt \right|^pdx\right)^{\frac{1}{p}}dy  \\
-&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}y_i  \eta(\frac{y}{\varepsilon} )   \int_0^1 \left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} \left| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x-ty)\right|^pdx\right)^{\frac{1}{p}} dtdy  \\
-&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )   \int_0^1 \left(  \frac{1}{	\phi(r)}  \int_{B_r(x_0-ty)\cap \Omega} \left| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w(x)\right|^pdx\right)^{\frac{1}{p}} dtdy  \\
-&\le \frac{1}{\varepsilon^n}\sum_{i=1}^n\int_{\rr^n}  y_i \eta(\frac{y}{\varepsilon} )   \int_0^1 \| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w\|_{M_p^\phi(\Omega)}dtdy \le\sum_{i=1}^n  y_i \| \left(\frac{\partial D^\alpha f}{\partial x_i}\right)_w\|_{M_p^\phi(\Omega)}\le C_f \varepsilon.
-\end{align*}
-Now from \eqref{Tbound2} we have that
-\[  \| D^\alpha Tf_\varepsilon\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f_\varepsilon \|_{M_p^\phi(\Omega)} \label{Tbound}. \]
-Hence the sequence $D^\alpha Tf_\varepsilon$ is Cauchy in $M_p^\phi(\rr^n)$ for every $|\alpha|\le l-1$ and its limit must be $Sf.$ Thus from \eqref{epsbound} we deduce \eqref{Sbound}.
-
+because $B_r(x_0)\cap \Omega -y \subset B_r(x_0-y)\cap \Omega$ and $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Now combining \eqref{epsbound} with \eqref{Tbound2} we get 
+\[ \| D^\alpha Tf_\varepsilon\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)}, \]
+for every $\varepsilon>0$ and every $|\alpha|\le l$, with $C_{l,n}(M)$ independent of $\varepsilon$. In particular, for every ball $B$ in $\rr^n$ of radius $r>0$ we have
+\begin{equation}
+\left( \frac{1}{\phi(r)}\int_B |D^\alpha Tf_\varepsilon(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{balleps}
+\end{equation}
+Since $ Tf_\varepsilon$ converges to $Sf$ in $W^{l,p}(\rr^n)$, then  $D^\alpha Tf_\varepsilon$ converges to $D^\alpha Sf$ in $L^p(\rr^n)$ for every $|\alpha|\le l$ and as a consequence also in $L^p(B)$ for every ball $B$. Hence we can pass to the limit as $\varepsilon \to 0$ in \eqref{balleps} and obtain
+\[\left( \frac{1}{\phi(r)}\int_B |D^\alpha S(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \]
+for every ball $B$ of radius $\varepsilon.$ This concludes the proof.
  \end{proof} 
 \end{theorem}
 
