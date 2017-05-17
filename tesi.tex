@@ -544,10 +544,44 @@ we have that $Sf$ extend $f$ to $\rr^n$ and
 where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
+\begin{remark}\label{rotlip}
+Let $\Omega$ be a domain in $\rr^n$ and suppose that there exists a rigid rotation $R$ of $\rr^n$ such that $R(\Omega)$ is a special Lipschitz domain. We observe that all the results stated above that holds for a special Lipschitz domain, holds also for $\Omega.$ This follows directly after a suitable change of coordinates in $\rr^n$. 
+\end{remark}
 
+\begin{definition}\label{minsmooth}
+Let $\Omega$ be an open set in $\rr^n$ and let $\partial \Omega$ be its boundary. We say that $\partial \Omega$ is minimally smooth if there exists an $\varepsilon >0$, an integer $N$, an $M>0$ and a sequence $\{U_i\}_{i=1}^s$ (where $s$ can be $+\infty$) of open sets such that:
+\begin{enumerate}[i)]
+\item if $x \in \partial \Omega,$ then $B_\varepsilon(x) \subset U_i,$ for some $i$; where $B_\varepsilon(x)$ is the open ball centered in $x$ of radius $\varepsilon.$
+\item No point of $\rr^n$ is contained in more than $N$ of the $U_i$'s.
+\item For every $i$ there exist a special Lipschitz domain $D_i$ and a rigid rotation $R_i$ of $\rr^n$ such that
+\[ U_i\cap \Omega = U_i \cap R_i(D_i).\]
+\item The Lipschitz bound of $D_i$ does not exceed $M$ for every $i$. 
+\end{enumerate}
+\end{definition}
 
+We now give the outline of the construction of the Stein extension operator for a set with minimally smooth boundary. The details of this construction can also be found in \cite{stein}. 
 
+First we introduce the following notation: given a set $U$ in $\rr^n$ and an $\varepsilon >0$ we denote by $U_\varepsilon=\{ x 	\in U \ | \ B_\varepsilon(x) \subset U\}$. Now let $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary $\partial \Omega$. Consider also the constants $\varepsilon,N,M$ and the sequence of open sets  $\{U_i\}_{i=1}^s$ relative to $\Omega$ as given in Definition \ref{minsmooth}. We can construct a sequence of real-valued functions $\{\lambda_i\}_{i=1}^s$ defined in $\rr^n$, such that
+\begin{itemize}
+	\item $\supp \lambda_i \subset U_i$ for every $i=1,...,s$,
+	\item $\lambda_i(x)=1$ for every $x \in U_{\varepsilon/2},$
+	\item every $\lambda_i$ is of class $C^\infty$, has bounded derivatives of all orders and the bounds of the derivatives of $\lambda_i$ can be taken to be independent of $i.$
+\end{itemize}
+We can also construct two real-valued functions $\Lambda_+,\Lambda_-$ defined in $\rr^n$, that satisfy the following conditions
+\begin{itemize}
+	\item $\supp \Lambda_+ \subset \Omega_\varepsilon \cup \{ x \in \rr^n \ | \ d(x,\partial \Omega)\le \varepsilon /2\},$
+	\item $\supp \Lambda_- \subset \Omega,$
+	\item $\Lambda_++\Lambda_- =1 $ in $\overline \Omega,$
+	\item $\Lambda_+,\Lambda_-$ are of class $C^\infty(\rr^n)$ with bounded derivatives of all orders.
+\end{itemize}
+Consider now the extension operators $S_i$ for $W^{l,p}(R_i(D_i))$, that is well defined by Remark \ref{rotlip} and Theorem \ref{Sdef}. We define the extension operator $E$ for $\Omega$ as follows
+\begin{equation} 
+Ef(x):= \Lambda_+(x)\frac{\sum_{i=1}^\infty \lambda_i(x)S_i(\lambda_if)(x)}{\sum_{i=1}^\infty \lambda^2_i(x)}+\Lambda_-(x)f(x). \label{defEE}
+\end{equation}
 
+\begin{theorem}
+Let $1\le p\le \infty, l,n \in \nn$. Let $\Omega$ be an open set in $\rr^n$ having minimally smooth boundary. Then $E$ is an extension operator which maps $W^{l,p}(\Omega)$ continuously into $W^{l,p}(\rr^n).$
+\end{theorem}
 \subsection{Stein operator in Sobolev-Morrey spaces}
 
 \begin{definition}
@@ -826,9 +860,9 @@ Performing a change of order of integration we deduce
 Finally recalling that that  $|\tau(\lambda)|\le A_{m+s+3}/\lambda^{s+m+3}$ for some constant $A_{m+s+3}$ we can write
 \[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_6 A_{m+s+3}}{3c^mm!} \int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D^\beta f}{\partial x_n^{m} }(\overline x,u)\right | \frac{(\delta^*)^2}{(u-y)^3} du.\]
 We observe that we are now in the same situation as in the first inequality of \eqref{bullet2} of the case $l=0$ and the same computations lead us to
-\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \bigl\| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \bigr\|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 2  and
-\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_8 \| \frac{\partial^{m} D^\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_8 \bigl\| \frac{\partial^{m} D^\beta f}{\partial x_n^{m} } \bigr\|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 3, where $c_7,c_8$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
 \end{proof} 
 
@@ -840,16 +874,16 @@ Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega
  where $C_{l,n}(\Omega)$ depends only on $n,l$ and $M.$
 
  \begin{proof}
-We recall definition of the operator $S.$ Set  $\Gamma$ to be the cone $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$ and let $\eta \in C^\infty_c(\rr^n)$ be a function with total integral 1 and which support is contained in $\Gamma.$ Then, given $f \in W^{l,p}(\Omega)$, $Sf$ is defined to be the limit in $W^{l,p}(\rr^n)$ of $Tf_\varepsilon$ as $\varepsilon \to 0,$ where $f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} f(x-y)\eta(y/\varepsilon)$ for every $x$ in an appropriate neighborhood of $	\overline \Omega$. We claim that for every $f \in W^{l,p}(\Omega)$ and $|\alpha|\le l$
+We recall definition of the operator $S.$ Set  $\Gamma$ to be the cone $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$ and let $\eta \in C^\infty_c(\rr^n)$ be a function with total integral 1 and support is contained in $\Gamma.$ Then, given $f \in W^{l,p}(\Omega)$, $Sf$ is defined to be the limit in $W^{l,p}(\rr^n)$ of $Tf_\varepsilon$ as $\varepsilon \to 0,$ where $f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} f(x-y)\eta(y/\varepsilon)$ for every $x$ in an appropriate neighborhood of $	\overline \Omega$. We claim that for every $f \in W^{l,p}(\Omega)$ and $|\alpha|\le l$
 \begin{equation}
 \| D^\alpha_w f_\varepsilon\|_{M^\phi_p(\Omega)} \le \| D^\alpha_w f\|_{M^\phi_p(\Omega)} \label{epsbound}.
 \end{equation}
-To see this first we notice that $D^\alpha_w f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} D^\alpha_w f(x-y)\eta(y/\varepsilon)dy$ for every $x \in \Omega.$ Let now $B_{x_0}(r)$ a ball centered in $\Omega$ of radius $r$, by Minkowski's integral inequality
+To see this first we notice that $D^\alpha_w f_\varepsilon(x)=1/\varepsilon^n \int_{\rr^n} D^\alpha_w f(x-y)\eta(y/\varepsilon)dy$ for every $x \in \Omega.$ Let now $B_{x_0}(r)$ a ball centered in $\Omega$ of radius $r$. By Minkowski's integral inequality
 \begin{align*}
- \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)|^p \right)^{\frac{1}{p}} &= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} D^\alpha_w f(x-y)\eta(\frac{y}{\varepsilon} )dy\right|^pdx \right)^{\frac{1}{p}} \\
- &\le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} |D^\alpha f(x-y)|^p dx\right)^{\frac{1}{p}}dy \\
- &\le\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
- & \le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta(\frac{y}{\varepsilon} ) \| D^\alpha f\|_{M_p^\phi(\Omega)} dy=\| D^\alpha f\|_{M_p^\phi(\Omega)}
+ \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha f_\varepsilon (x)|^p \right)^{\frac{1}{p}} &= \left( \frac{1}{	\phi(r)} \int_{B_r(x_0)\cap \Omega} \left |\frac{1}{\varepsilon^n} \int_{\rr^n} D^\alpha_w f(x-y)\eta\left(\frac{y}{\varepsilon} \right)dy\right|^pdx \right)^{\frac{1}{p}} \\
+ &\le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta\left(\frac{y}{\varepsilon} \right) \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0)\cap \Omega} |D^\alpha f(x-y)|^p dx\right)^{\frac{1}{p}}dy \\
+ &\le\frac{1}{\varepsilon^n}  \int_{\rr^n} \eta\left(\frac{y}{\varepsilon} \right)  \left (\frac{1}{	\phi(r)}  \int_{B_r(x_0-y)\cap \Omega} |D^\alpha f(x)|^p dx\right)^{\frac{1}{p}}dy \\
+ & \le \frac{1}{\varepsilon^n}  \int_{\rr^n} \eta\left(\frac{y}{\varepsilon} \right) \| D^\alpha f\|_{M_p^\phi(\Omega)} dy=\| D^\alpha f\|_{M_p^\phi(\Omega)}
 \end{align*}
 because $B_r(x_0)\cap \Omega -y \subset B_r(x_0-y)\cap \Omega$ and $x_0-y \in \Omega$ for every $x_0 \in \Omega$ and $y \in \Gamma.$ This proves \eqref{epsbound}. Now combining \eqref{epsbound} with \eqref{Tbound2} we get 
 \[ \| D^\alpha Tf_\varepsilon\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)}, \]
