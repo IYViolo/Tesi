@@ -12,6 +12,7 @@
 \usepackage{cite}
 \usepackage{bbm}
 
+
 \theoremstyle{definition}
 \newtheorem{definition}{Definition}
 
@@ -25,6 +26,7 @@
 \DeclareMathOperator\nn{\mathbb{N}}
 \DeclareMathOperator\wt{\widetilde}
 \newcommand\addtag{\refstepcounter{equation}\tag{\theequation}}
+
 
 \begin{document}
 \section{Hestenes Operator}
@@ -488,30 +490,30 @@ b) We notice that since $\lambda_i$ are isometries, they are smooth and their de
 \section{Stein operator}
 
 \subsection{Construction}
-In this section we will define the Stein extension operator for Lipschitz domains in $\rr^n$. The details of the construction and the proofs of all the results in this subsection can be found in \cite[Section 2-3, Ch. VI]{stein}. We start by introducing the notion of regularized distance with the following theorem.
+In this section we will define the Stein extension operator for Lipschitz domains in $\rr^n$. The details of the construction and the proofs of all the results in this subsection can be found in \cite[Section 2-3, Ch. VI]{stein}. We start by introducing the notion of regularized distance with the following theorem. Here by $d(x,F)$ we denote the distance of a point $x \in \rr^n$ from the set $F\subset \rr^n.$ 
 
 \begin{theorem}\label{regdist}
-Let $F$ be a closed set in $\rr^n$ and denote $d(x,F)$ the distance of $x$ from $F$. Then there exists a function $\Delta(x)=\Delta(x,F)$ defined in $F^c$ such that
+Let $F$ be a closed set in $\rr^n$. Then there exists a real-valued function $\Delta(.)=\Delta(.,F)$ defined in $F^c$ such that
 \begin{enumerate}[a)]
-\item $c_1 d(x,F)\le \Delta(x)\le c_2d (x,F),$  
-\item $\Delta(x)$ is $C^\infty$ in $F^c$ and
+\item $c_1 d(x,F)\le \Delta(x)\le c_2d (x,F),$ for every $x \in F^c,$  
+\item $\Delta$ is $C^\infty$ in $F^c$ and
 \[ \left | D^\alpha \Delta(x) \right | \le B_\alpha d(x,F)^{1-|\alpha|},\]
 \end{enumerate}
-where $B_\alpha$, $c_1$,$c_2$ are constants independent of $F$ and $d(x,F)$ is the distance of $x$ from $F.$
+for every $x \in F^c$, where $B_\alpha$, $c_1$,$c_2$ are constants independent of $x$ and $F$.
 \end{theorem}
 Next we give the definition of a special Lipschitz domain.
 \begin{definition}
-A domain $\Omega$ of $\rr^n$ it's said to be a special Lipschitz domain if exists a Lipschitz function $\psi$ defined from $\rr^{n-1}$ to $\rr$ such that
+A domain $\Omega$ of $\rr^n$ is said to be a special Lipschitz domain if there exists a Lipschitz function $\psi$ defined from $\rr^{n-1}$ to $\rr$ such that
 \[ \Omega=\{(\overline x, y) \in \rr^n \ | \ \psi(\overline x)<y \}.\]
-Moreover the constant $\Lip \psi$ is said to be the Lipschitz bound of $\Omega.$ 
+Moreover the Lipschitz constant $\Lip \psi$ is said to be the Lipschitz bound of $\Omega.$ 
 \end{definition}
-It's convenient to define first the Stein extension operator in the case of a special Lipschitz domain, to do this we need the following two lemmas.
+It is convenient to define first the Stein extension operator in the case of a special Lipschitz domain. To do so we need the following two lemmas.
 \begin{lemma}\label{lemma1}
-Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Suppose $\Delta(\overline x, y)$ is the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a constant $a$, which depends only on the Lipschitz bound of $\Omega$, so that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
+Let $\Omega$ be a special Lipschitz domain of $\rr^n$ and set $F=\overline \Omega$. Let $\Delta$ be the regularized distance from $F$ as given in Theorem \ref{regdist}. Then there exists a positive constant $a$, which depends only on the Lipschitz bound of $\Omega$, such that if $(\overline x, y) \in F^c$, then $a\Delta(\overline x,y)\ge \psi(\overline x)- y.$
 \end{lemma}
 
 \begin{lemma}\label{lemma2}
-There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
+There exists a continuous real-valued function $\tau$ defined in $[1,\infty)$ satisfying
 \begin{enumerate}[i)]
 	\item $\tau(\lambda)=O(\lambda^N)$, as $\lambda \rightarrow \infty$ for every $N,$
 	\item $\int_1^\infty \tau(\lambda)d\lambda=1$, $\int_1^\infty \lambda^k\tau(\lambda)d\lambda=0$, for every $k=1,2,...$
@@ -520,22 +522,22 @@ There exists a continuous function $\tau$ defined in $[1,\infty)$ satisfying
 
 
 \begin{theorem}\label{defT}Let $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. Moreover let $\tau$ be the function in Lemma \ref{lemma2} and $a$ the constant of Lemma \ref{lemma1}. For every function $f$ that is $C^\infty$ in $\overline \Omega$ and bounded in $\overline \Omega$ together with all its partial derivatives, define
-\[ Tf(\overline x, y)= \begin{cases}
+\begin{equation} Tf(\overline x, y)= \begin{cases}
 						f(\overline x, y), & \text{ if } y\ge\psi(\overline x) \\
 						\int_1^\infty f(\overline x, y+ \lambda \delta^*(\overline x,y))\tau(\lambda)d\lambda, & \text{ if } y<\psi(\overline x),		
 \end{cases}
-\]
+\label{defT2}\end{equation}
 where $\delta^*(\overline x,y)=2a\Delta(\overline x, y).$ Then $Tf \in C^\infty(\rr^n)$ and 
 \[\| Tf\|_{W^{l,p}(\rr^n)}\le C_{n,l}(M) \| f\|_{W^{l,p}(\Omega)} ,\]
 where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
-We are now ready to define the Stein extension operator in the case of special Lipschitz domains. The construction is the following. Let $\Omega$ be a special Lipschitz domain in $\rr^n$ with Lipschitz bound $M$. We denote with $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with total integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ and every $\varepsilon>0$ we define
+We are now ready to define the Stein extension operator in the case of special Lipschitz domains. The construction is the following. Let $\Omega$ be a special Lipschitz domain in $\rr^n$ with Lipschitz bound $M$. We denote by $\Gamma$ the cone with vertex at the origin given by $\Gamma=\{(\overline x, y) \in \rr^n \ | \ M |\overline x|<|y|, y<0 \}$. Suppose now that $\eta \in C^\infty_c(\rr^n)$ is a non-negative function with integral 1 and which support is contained in $\Gamma.$ For every $f \in W^{l,p}(\Omega)$ and every $\varepsilon>0$ we define
 \[f_\varepsilon(x)=\frac{1}{\varepsilon^n}\int_{\rr^n} f(x-y) \eta(y/\varepsilon)dy =\int_{\rr^n} f(x-\varepsilon y) \eta(y)dy.\]
 Notice that, since the support of $\eta$ is strictly inside $\Gamma$, the above integral is well defined for every $x$ in some neighborhood of $\overline \Omega$ depending on $\varepsilon$. Hence $f_\varepsilon \in C^\infty(\overline\Omega)$ and it is bounded with all its partial derivatives, thus $Tf_\varepsilon$ is well defined. The Stein operator is then taken to be the limit of $Tf_\varepsilon$ as $\varepsilon \to 0.$ This limit procedure is formalized in the following result.
 
 \begin{theorem}\label{Sdef}
-Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. For every $f \in W^{l,p}(\Omega)$ define $Tf_\varepsilon$ as above. Then $Tf_\varepsilon $ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
+Let $l \in \nn,1\le p \le \infty$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M$. For every $f \in W^{l,p}(\Omega)$ define $Tf_\varepsilon$ as in \eqref{defT2}. Then $Tf_\varepsilon $ converges in $W^{l,p}(\rr^n)$ if $p<\infty$ and in $W^{l-1,p}(\rr^n)$ if $p=\infty$, as $\varepsilon \to 0.$ Moreover setting
 \[ Sf=\lim_{\varepsilon \to 0} Tf_\varepsilon\]
 we have that $Sf$ extend $f$ to $\rr^n$ and 
 \[ \| Sf\|_{W^{l,p}(\rr^n)} \le C_{l,n}(M) \| f\|_{W^{l,p}(\Omega) } ,\] 
@@ -556,8 +558,8 @@ where $x=(x_1,...,x_n).$
 
 
 \begin{definition}
-Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
-\[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{Q_{2r}(x), x \in \Omega,r>0} \left(  \frac{1}{\phi(r)}\int_{Q_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
+Let $1\le p< \infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
+\[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{\substack{Q_{2r}(x) \\ x \in \Omega \\r>0}} \left(  \frac{1}{\phi(r)}\int_{Q_{2r}(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
 where $Q_{2r}(x)$ is the open cube centered in $x$ of side $2r$.
 \end{definition}
 \begin{lemma}\label{cubicmorrey}
@@ -578,12 +580,12 @@ and this concludes the proof.
 \end{proof}
 
 \begin{lemma}\label{derivatives}
-Let $\Omega$ be an open set in $\rr^n$ and let $f,h \in C^\infty(\rr^n)$. Define the function $g\in C^\infty(\rr^n)$ as $g(x)=f(\overline x, x_n+\lambda h(x))$ where $\overline x=x_1,...,x_{n-1}$ and $0\neq\lambda \in \rr.$ Then for every $\alpha \in \nn_0^n$ and $x \in \rr^n$ the number $D^\alpha g(x)$ is a finite sum of terms of the following form
+Let $\Omega$ be an open set in $\rr^n$ and let $f,h \in C^\infty(\rr^n)$. Define the function $g\in C^\infty(\rr^n)$ by $g(x)=f(\overline x, x_n+\lambda h(x))$ where $\overline x=x_1,...,x_{n-1}$ and $0\neq\lambda \in \rr.$ Then, for every $\alpha \in \nn_0^n$ and $x \in \rr^n$, $D^\alpha g(x)$ is a finite sum of terms of the following form
 
 \[
 c\lambda^s D^{\beta} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}
 \]
-for some constant $c$, with $\beta,\gamma_i \in \nn_0^n $, $k,s,n_i \in \nn_0$ and $\beta,\gamma_i\neq0$, $k,s\ge 0$, $n_i>0$. Moreover every term satisfies the following conditions
+for some constant $c$, with $\beta,\gamma_i \in \nn_0^n $, $k,s,n_i \in \nn_0$ and $\beta,\gamma_i\neq0$, $k,s\ge 0$, $n_i>0$. It is meant that for $k=0$ no term $(D^{\gamma_i}h(x))^{n_i}$ is present. Moreover every term satisfies the following conditions
 \begin{enumerate}[a)]
 \item $n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\alpha|-|\beta|$,
 \item  $s=0$ if and only if $k=0$.
@@ -600,22 +602,23 @@ Suppose first that $k\ge 1,$ so by induction we know that
  n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\beta|-|\gamma| 
  \end{equation}
  and that $s\ge 1.$
- Now expanding the derivation using the chain rule we get
+ Now using the chain rule we get
 \begin{align*}
 &\frac{\partial}{\partial x_i} [c\lambda^s D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}]=\\
 &=c\lambda^s \frac{\partial D^{\gamma} f}{\partial x_i}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}+\\
 &+ c\lambda^{s+1} \frac{\partial D^{\gamma} f}{\partial x_n}  (\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k}\frac{\partial h}{\partial x_i} (x)+\\
-&+ \sum_{j=1}^k c\lambda^sn_j D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k} \frac{\frac{\partial D^{\gamma_j}h}{\partial x_i} (x)}{D^{\gamma_j}h(x)}.
+&+ \sum_{j=1}^k c\lambda^sn_j D^{\gamma} f(\overline x, x_n+\lambda h(x))(D^{\gamma_1}h(x))^{n_1}\cdots (D^{\gamma_k}h(x))^{n_k} \frac{\frac{\partial D^{\gamma_j}h}{\partial x_i} (x)}{D^{\gamma_j}h(x)} \addtag \label{derivate}.
 \end{align*}
-Let's see that every term satisfies a). By \eqref{indder} we have
+Let's see that every term in the right hand side of \eqref{derivate} satisfies a). By \eqref{indder} we have
 \[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)=|\beta|-|\gamma|=|\alpha|-|\gamma + e_i|\]
-where $e_i=(0,...,\underset{i}1,...,0),$ hence that first summand satisfies a). Again by \eqref{indder}
+where $e_i=(0,...,1,...,0),$ is the $n$-th element of the canonical base of $\rr^n$. Hence that first summand satisfies a). Again by \eqref{indder}
 \[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)+(|e_i|-1)=|\alpha|-|\gamma + e_n|\]
-and this proves a) for the second term. Now we consider the final sum, we will prove a) just for $j=1$, the other terms are dealt in the same way. We need to prove that
+and this proves a) for the second term. Now we consider the final sum, we will prove a) just for $j=1$, since the other terms can be discussed in the same way. We need to prove that
 \[ n_1(|\gamma_1|-1)+...+(n_j-1)(|\gamma_j|-1)+...+n_k(|\gamma_k|-1)+(|\gamma_j+e_i|-1)=|\alpha|-|\gamma|. \]
 Expanding the left-hand side we get
 \[ n_1(|\gamma_1|-1)+n_2(|\gamma_2|-1)+...+n_k(|\gamma_k|-1)+1\]
-and since $|\beta|=|\alpha|-1$ we conclude using \eqref{indder}. We observe that, since $k,s\ge1$, all the terms also satisfies b). Suppose know that $k=0$, hence we need to consider
+and since $|\beta|=|\alpha|-1$ we conclude using \eqref{indder}. We observe that, since $k,s\ge1$, all the terms also satisfies b). \\
+Suppose know that $k=0$, hence we need to consider
 \[ \frac{\partial}{\partial x_i} [c D^{\gamma} f(\overline x, x_n+\lambda h(x)) ]\]
 that becomes
 
@@ -623,7 +626,7 @@ that becomes
 By induction and by a) we know that $|\gamma|=|\beta|,$ therefore it's immediate that both the above terms satisfies a) and b).
 
 \begin{remark}\label{deltastar}
-Let $\Omega$ a special Lipschitz domain and let $\delta^*(\overline x, y)$ be the function defined in Theorem \ref{defT}. Then for every $(\overline x, y)$ with $\psi(\overline x)>y$ the following holds
+Let $\Omega$ be a special Lipschitz domain and let $\delta^*(\overline x, y)$ be the function defined in Theorem \ref{defT}. Then for every $(\overline x, y)$ with $\psi(\overline x)>y$ the following holds
 \[c(\psi(\overline x)-y) \ge \delta^*(\overline x, y) \ge 2 (\psi(\overline x)-y), \] 
 where $c$ is some constant depending only on $n.$ The second inequality follows directly from the definition of $\delta^*$ and Lemma \ref{lemma1}. Next we notice that $(\psi(\overline x)-y)\ge d(x,\overline \Omega)$, hence the first inequality follows from a) of Theorem \ref{regdist}.
 \end{remark}
@@ -639,23 +642,27 @@ where $l=|\alpha|$ and $C_{l,n}(M)$ is a constant depending only on $l,n$ and $M
 \begin{proof}
 Let's start by proving the case $l=0$. By Lemma \ref{cubicmorrey} it's enough to prove that for an arbitrary open cube $Q$ of side $r$ in $\rr^n$ with sides parallel to the axis we have
 \begin{equation}
-\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C_n(M) \| f\|_{M_{p,Q}^\phi(\Omega)}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C_n(M) \| f\|_{M_{p,Q}^\phi(\Omega)} \label{cubestimate}
 \end{equation}
 for a constant $C_n(M)$ depending only on $n,M$. Let's define  $\Omega^- = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y<\psi(\overline x) \}$. There are three cases: 1. $Q \subset \Omega$ 2. $Q \subset \Omega^-$ 3. $Q\cap \{y=\psi(\overline x)\} \neq \emptyset.$ 
 
-1. Since $Tf=f$ in $\Omega$
+Case 1. Since $Tf=f$ in $\Omega$
 \[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\Omega)}\]
 and we are done.
 
-2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (a-r,a) \}$ where $F$ is an open cube of $\rr^{n-1}$ of side $r$ and $a<\phi(\overline x)$ for every $\overline x \in F$. Fix now $(\overline x, y) \in Q$. By Lemma \ref{lemma2} there exists a constant $A_3$ such that $|\tau(\lambda)|\le A_3/\lambda^3$  for every $\lambda \ge 1.$ From the definition of $Tf$ we have
-\[ |Tf(\overline x,y)| \overset{(\bullet)}\le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\tau(\lambda)|d\lambda \le A_3 \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda\]
+Case 2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (a-r,a) \}$ where $F$ is an open cube of $\rr^{n-1}$ of side $r$ and $a<\psi(\overline x)$ for every $\overline x \in F$. Fix now $(\overline x, y) \in Q$. By Lemma \ref{lemma2} there exists a constant $A_3$ such that $|\tau(\lambda)|\le A_3/\lambda^3$  for every $\lambda \ge 1.$ From the definition of $Tf$ we have
+\begin{equation} |Tf(\overline x,y)| \le\int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))||\tau(\lambda)|d\lambda \le A_3 \int_1^\infty |f(\overline x, y+\lambda \delta^*(\overline x,y))|\frac{1}{\lambda^3}d\lambda \label{bullet1}
+\end{equation}
 Let's apply the change of variable $s=y+\lambda \delta^*(\overline x,y)$
-\[ |Tf(\overline x,y)|\overset{(\bullet \bullet)}\le A_3\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le A_3 c^2 \int_{2\psi(\overline x)-y}^\infty |f(\overline x, s)|\frac{(\psi(x)-y)^2}{(s-y)^3}ds\]
+\begin{equation}  |Tf(\overline x,y)|\le A_3\int_{y+\delta^*}^\infty |f(\overline x, s)|\frac{(\delta^*)^2}{(s-y)^3}ds\le A_3 c^2 \int_{2\psi(\overline x)-y}^\infty |f(\overline x, s)|\frac{(\psi(x)-y)^2}{(s-y)^3}ds \label{bullet2}
+\end{equation} 
 because $c(\psi(x)-y)\ge\delta^*\ge 2(\psi(x)-y)$ as seen in Remark \ref{deltastar}. Let's now decompose the last integral as follows
 \[ |Tf(\overline x,y)|\le \sum_{k=0}^\infty A_3c^2\int_{2\psi(\overline x)-y+kr}^{2\psi(\overline x)-y+(k+1)r} |f(\overline x, s)|\frac{(\psi(\overline x)-y)^2}{(s-y)^3}ds.\]
 Now by applying Minkowski's inequality for an infinite sum we get
-\[ \left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}}\le A_3 c^2\sum_{k=0}^\infty \left( \int_{a-r}^{a}\left ( \int_{2\psi(\overline x)-y+kr}^{2\psi(\overline x)-y+(k+1)r} \frac{|f(\overline x, s)|(\psi(x)-y)^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}} (*)\]
-Next we plan to estimate each summand. In the right-hand side of (*) we apply the change of variable $y=\psi(\overline x)-z$ 
+\begin{align*} &\left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \\
+&\le A_3 c^2\sum_{k=0}^\infty \left( \int_{a-r}^{a}\left ( \int_{2\psi(\overline x)-y+kr}^{2\psi(\overline x)-y+(k+1)r} \frac{|f(\overline x, s)|(\psi(x)-y)^2}{(s-y)^3}ds\right)^pdy \right)^{\frac{1}{p}} \addtag \label{sum2} 
+\end{align*}
+Next we plan to estimate each summand in \eqref{sum2}. To each summand in the right-hand side of \eqref{sum2} we apply the change of variable $y=\psi(\overline x)-z$ and we get
 \[ \left( \int_{\psi(x)-a}^{\psi(x)-a+r}\left (\int_{\psi(x)+z+kr}^{\psi(x)+z+(k+1)r} |f(\overline x, s)|\frac{z^2}{(s-\psi(x)+z)^3}ds\right)^pdz \right)^{\frac{1}{p}}\]
 and the change of variable $u=s-\psi(x)$
 \[ \left( \int_{\psi(x)-a}^{\psi(x)-a+r}\left (\int_{z+kr}^{z+(k+1)r} |f(\overline x, u+\psi(x))|\frac{z^2}{(u+z)^3}du\right)^pdz \right)^{\frac{1}{p}}.\]
@@ -672,51 +679,98 @@ that can be rewritten as
  \[ \mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t) \le \mathbbm{1}_{(\psi(\overline x)-a+kr, \psi(\overline x) - a+(k+2)r)}(tz)   \]
  hence using the change of variable $w=tz$
  \begin{align*}
- &\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, tz+\psi(x))|^p\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt \\
+ &\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x) -a}^{\psi(\overline x) -a+r}|f(\overline x, tz+\psi(x))|^p\mathbbm{1}_{(1+kr/z,  1+(k+1)r/z ) }(t)\frac{1}{(t+1)^{3p}} dz \right) ^{\frac{1}{p}}dt \\
 &\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p \frac{1}{t(t+1)^{3p}} dw \right) ^{\frac{1}{p}}dt\\
 &=\int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha}\frac{1}{t^{\frac{1}{p}}(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}\\
-&\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha}\frac{1}{(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right)\\
-&= \frac{1}{2}\left[\frac{1}{(1+(k+1)\alpha)^2}-\frac{1}{(1+k\alpha/(\alpha+1))^2}\right] \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}\\
+&\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+1)\alpha}\frac{1}{(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right)^{\frac{1}{p}}\\
+&\le \int_{1+k\alpha/(\alpha+1)}^{1+(k+2)\alpha}\frac{1}{(t+1)^{3}}dt \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right)^{\frac{1}{p}}\\
+&= \frac{1}{2}\left[\frac{1}{(2+k\alpha/(\alpha+1))^2} -\frac{1}{(2+(k+2)\alpha)^2}\right] \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}\\
 &=\frac{s_k(\alpha)}{2} \left ( \int_{\psi(\overline x)-a+kr}^{\psi(\overline x)-a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}}.
 \end{align*}
-Plugging this estimate inside (*) we get
+Where $s_k(\alpha)=\frac{1}{(2+k\alpha/(\alpha+1))^2} -\frac{1}{(2+(k+2)\alpha)^2}.$ Plugging this estimate inside \eqref{sum2} we get
 \begin{align*}
  \left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} &\le A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{\psi(\overline x) -a+kr}^{\psi(\overline x) -a+(k+2)r}|f(\overline x, w+\psi(\overline x))|^p  dw \right) ^{\frac{1}{p}} \\
-&=A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{2\psi(\overline x) -a+kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy \right) ^{\frac{1}{p}}.
+&= A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{2\psi(\overline x) -a+kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy \right) ^{\frac{1}{p}}. \addtag \label{sum3}\\
 \end{align*}
 Taking the $L^p$ norm on $F$ on both sides and applying again Minkowski inequality we obtain
 \begin{align*}
 \left(\int_F\int_{a-r}^{a}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}} &\le A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left (\int_F \int_{2\psi(\overline x) -a+kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy d\overline x\right) ^{\frac{1}{p}}\\
-&=A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S_k)}. \tag{**}\\
+&=A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S_k)}. \addtag \label{finalsum}\\
 \end{align*}
-where $S_k=\{ (\overline x, y) \in \rr^n \ | \ \overline x \in F ,\  2\psi(\overline x) -a+kr < y < 2\psi(\overline x) -a+(k+2)r \}$. Clearly the set $S_k$ has diameter less than $dr$, where $d$ is a constant depending only on $n$ and $M$. Hence by Lemma \ref{covering} there exists a collection of open cubes $Q_1,...,Q_m$ centered in $S_k$ of side $r$ that covers $S_k$, with $m \in \nn$ depending only on $M$ and $n$. Moreover for every $(\overline x, y ) \in S_k$ we have $y>2\psi(\overline x)-a>\psi(\overline x)$, so $S_k \subset \Omega$. This implies that
-\[ S_k \subset \bigcup_{i=1}^m (Q_i\cap \Omega) \]
-and that every cube $Q_i$ is centered in $\Omega.$ Therefore by (**) 
-\[ \| Tf\|_{L^P(Q)} \le \frac{c^2}{2}\sum_{k=0}^\infty s_k(\alpha) (\|f\|_{L^p(Q_1\cap \Omega)}+...+\|f\|_{L^p(Q_m\cap \Omega)}),\]
- then dividing in both sides by $\psi(r/2)^{\frac{1}{p}}$ we obtain
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{A_3c^2m}{2} \sum_{k=0}^\infty s_k(a,r) \| f\|_{M_{p,Q}(\Omega)} \]
-We want now to estimate the series $\sum_{k=0}^\infty s_k(\alpha)$. First we notice that can be rewritten as as
-\[\sum_{k=0}^\infty s_k(\alpha)= \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2}.\]
-To bound this series we distinguish two cases, when $\alpha\le 1$ and when $\alpha>1$. In the first case we can bound the series using a Riemann Sum
-\[ \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2} \le 3\sum_{k=1}^\infty \frac{\alpha}{(k\alpha+1)^2}=3\sum_{k=1}^\infty \int_{\rr} \mathbbm{1}_{(\alpha (k-1), \alpha k)}(t) \frac{1}{(\alpha k+1)^2}dt \le 3\int_{\rr}\frac{1}{(t+1)^2}dt=3. \]
-In the second case
-\[  \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+1)^2}  \le \sum_{k=1}^\infty \frac{\alpha(\alpha+2)}{k^2\alpha^2}=\sum_{k=1}^\infty \frac{1+\frac{2}{\alpha}}{k^2} \le 3 \frac{\pi^2}{6}<5.\]
-Hence we get 
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le A_35c^2 \| f\|_{M_{p,Q}^\phi(\Omega)} \]
-that shows (1). 
-
-3. We write $Q$ as $F \times (a-r,a)$ and and we define $Q^+=Q\cap\Omega$ and $Q^-=Q\cap\Omega^-.$ Then 
-\[\|Tf\|_{L^p(Q)}\le\|f\|_{L^p(Q^+)}+\|Tf\|_{L^p(Q^-)}.\]
-Moreover $Q^+$ can be written as $\{ (\overline x, y) \ | \ \overline x \in S, a-r<y<\min(\psi(\overline x),a)\}$ for some set $S \subset F.$ Hence
-\[ \int_{Q^-} |Tf(x)|^pdx = \int_S \int_{a-r}^{\min(\psi(\overline x),a)} |Tf(\overline x,y)|^pdy d\overline x. \]
-We can then proceed as in 2. to obtain
+where $S_k=\{ (\overline x, y) \in \rr^n \ | \ \overline x \in F ,\  2\psi(\overline x) -a+kr < y < 2\psi(\overline x) -a+(k+2)r \}$. The set $S_k$ has the following two properties 
+\begin{enumerate}[a)]
+ 	\item $S_k$ has diameter less than $dr$, where $d$ is a constant depending only on $n$ and $M$.
+ 	\item $S_k \subset \Omega$.
+ \end{enumerate}  To prove a), let $(\overline x_1,y_1),(\overline x_2,y_2)$ be two arbitrary points in $S_k$. We can suppose that $y_2\ge y_1.$ Then 
 \begin{align*}
- \left(\int_S\int_{a-r}^{a}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}} &\le A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left (\int_S \int_{2\psi(\overline x) -\min(a,\psi(\overline x)) +kr}^{2\psi(\overline x) -a+(k+2)r}|f(\overline x, y)|^p  dy d\overline x\right) ^{\frac{1}{p}}\\
- &=A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S'_k)}.
- \end{align*}
-One can observe that the sets $S'_k$ have the same property as the sets $S_k$ in 2. Therefore
-\[ \frac{1}{\psi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-)} \le c_1 \| f\|_{M_p^\phi(\Omega)} \]
-for some constant $c_1$ depending only on $n$ and $M$. Finally it's immediate to verify that $\| f\|_{L^p(Q^+)} \le \phi(r/2)^{\frac{1}{p}} \| f\|_{M_p^\phi(\Omega)}.$ This concludes the proof of case 3.
+|y_1-y_2|&=y_2-y_1 \\
+		&\le2\psi(\overline x_2)-a+(k+2)r -(2\psi(\overline x_1) -a+kr) \\
+		&=2 (\psi(\overline x_2)-\psi(\overline x_1))+2r\le 2M|\overline x_1 - \overline x_2|+2r.
+\end{align*}
+Moreover 
+\[ |\overline x_1 - \overline x_2|\le r \sqrt {n-1}\]
+because $\overline x_1,\overline x_2 $ belongs to the $n-1$-dimensional cube $F.$ This proves a). To prove b) just notice that for every $(\overline x, y ) \in S_k$ we have $y>2\psi(\overline x)-a>\psi(\overline x)$.
+Property a) together with Lemma \ref{covering} implies that there exists a collection of open cubes $Q_1,...,Q_m$ centered in $S_k$ of side $r$ that covers $S_k$, with $m \in \nn$ depending only on $M$ and $n$. Hence
+\[ S_k \subset \bigcup_{i=1}^m (Q_i\cap \Omega) \]
+and property b) assures that every cube $Q_i$ is centered in $\Omega.$ Therefore by \eqref{finalsum} 
+\[ \| Tf\|_{L^P(Q)} \le \frac{A_3c^2}{2}\sum_{k=0}^\infty s_k(\alpha) (\|f\|_{L^p(Q_1\cap \Omega)}+...+\|f\|_{L^p(Q_m\cap \Omega)}),\]
+ then dividing in both sides by $\phi(r/2)^{\frac{1}{p}}$ we obtain
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{A_3c^2m}{2} \sum_{k=0}^\infty s_k(\alpha) \| f\|_{M_{p,Q}(\Omega)} \]
+We want now to estimate the series $\sum_{k=0}^\infty s_k(\alpha)$. First we rewrite it in the following way
+\begin{align*}
+\sum_{k=0}^\infty s_k(\alpha)&=\sum_{k=0}^\infty \frac{1}{(2+k\alpha/(\alpha+1))^2} -\frac{1}{(2+(k+2)\alpha)^2}=\\
+&=\sum_{k=0}^\infty \frac{(\alpha+1)^2}{(2+(k+2)\alpha)^2} -\frac{1}{(2+(k+2)\alpha)^2}=\\
+&=\sum_{k=0}^\infty \frac{\alpha(\alpha+2)}{(2+(k+2)\alpha)^2}= \sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{(2+k\alpha)^2}.
+\end{align*}
+To bound this series we distinguish two cases, when $\alpha\le 1$ and when $\alpha>1$. In the first case we can bound the series using a Riemann Sum
+\begin{align*}
+\sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+2)^2} &\le 3\sum_{k=2}^\infty \frac{\alpha}{(k\alpha+2)^2}=\\
+&=3\sum_{k=2}^\infty \int_{\alpha (k-1)}^{\alpha k} \frac{1}{(\alpha k+2)^2}dt \le 3\int_0^\infty \frac{1}{(t+2)^2}dt=\frac{3}{2}. 
+\end{align*}
+In the second case
+\[  \sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+2)^2}  \le \sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{k^2\alpha^2}=\sum_{k=2}^\infty \frac{1+\frac{2}{\alpha}}{k^2} \le 3 \bigl(\frac{\pi^2}{6}-1\bigr)<2.\]
+Hence we get 
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{3mA_3c^2}{2} \| f\|_{M_{p,Q}^\phi(\Omega)} \]
+that shows \eqref{cubestimate}. 
+
+Case 3. We write $Q$ as $F \times (a-r,a)$ and and we define $Q^+=Q\cap\Omega$ and $Q^-=Q\cap\Omega^-.$ Then 
+\[\|Tf\|_{L^p(Q)}\le\|f\|_{L^p(Q^+)}+\|Tf\|_{L^p(Q^-)}.\]
+Moreover $Q^-$ can be furtherly decompose as $Q^-=Q^-_1 \cup Q^-_2$ where $Q^-_1=\{ (\overline x,y) \in Q^- \ | \ \psi(\overline x)>a \}$ and $Q^-_2=\{ (\overline x,y) \in Q^- | \psi(\overline x)\le a \}$. Hence
+\begin{align*} \int_{Q^-} |Tf(x)|^pdx &= \int_{Q^-_1} |Tf(x)|^pdx +\int_{Q^-_2} |Tf(x)|^pdx\\
+&=\int_{S_1} \int_{a-r}^{a} |Tf(\overline x,y)|^pdy d\overline x+\int_{S_2} \int_{a-r}^{\psi(\overline x)} |Tf(\overline x,y)|^pdy d\overline x
+\end{align*}
+for two suitable measurable sets $S_1$ and $S_2$ with $S_1 \cup S_2 = F.$ From \eqref{sum3} we know that if $\overline x \in S_1$ then
+\begin{align*}
+ \left(\int_{a-r}^{a}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{2\psi(\overline x) -a +kr}^{2\psi(\overline x) -a +(k+2)r}|f(\overline x, y)|^p  dy \right) ^{\frac{1}{p}}. \\
+\end{align*}
+Hence taking the $L^p$ norm over $S_1$ and reasoning as in Case 2 we obtain
+\begin{equation}
+\frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-_1)} \le c_1 \| f\|_{M_p^\phi(\Omega)} \label{q1}
+\end{equation}
+for some constant $c_1$ depending only on $n$ and $M$. If instead $\overline x \in S_2$, since $\psi(\overline x)\le a$, we have
+\begin{equation}
+\int_{a-r}^{\psi(\overline x)} |Tf(\overline x,y)|^pdy \le \int_{\psi(\overline x)-r}^{\psi(\overline x)} |Tf(\overline x,y)|^pdy. \label{psia}
+\end{equation}
+Now from (§) with $a=\psi(\overline x)-\delta$ ($\delta>0$) we obtain
+\begin{align*}
+ \left(\int_{\psi(\overline x)-\delta-r}^{\psi(\overline x)-\delta}|Tf(\overline x,y)|^p dy\right)^{\frac{1}{p}} \le A_3\frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left ( \int_{\psi(\overline x) +\delta +kr}^{\psi(\overline x) +\delta +(k+2)r}|f(\overline x, y)|^p  dy \right) ^{\frac{1}{p}}. \\
+\end{align*}
+Taking this time the $L^p$ norm in $S_2$ 
+\begin{align*}
+\left(\int_{S_2}\int_{\psi(\overline x)-\delta-r}^{\psi(\overline x)-\delta}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}} &\le A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \left (\int_{S_2} \int_{\psi(\overline x) +\delta +kr}^{\psi(\overline x) +\delta +(k+2)r}|f(\overline x, y)|^p  dy d\overline x\right) ^{\frac{1}{p}}\\
+&=A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S'_k)}. \\
+\end{align*}
+One can observe that the sets $S'_k$ have the properties a) and b) like the sets $S_k$ in Case 2, therefore
+\[  \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{\psi(\overline x)-\delta-r}^{\psi(\overline x)-\delta}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^\phi(\Omega)} \]
+for some constant $c_2$ depending only on $n$ and $M$. We now let $\delta$ go to 0 
+\begin{equation}
+  \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{\psi(\overline x)-r}^{\psi(\overline x)}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^\phi(\Omega)} . \label{q2}
+ \end{equation}
+Combining the above inequality with \eqref{psia} we obtain
+\[  \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{a-r}^{\psi(\overline x)}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^\phi(\Omega)} .\]
+Thus from \eqref{q1} and \eqref{q2}
+\[ \frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-)} \le \frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-_1)} +\frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-_2)} \le (c_1 +c_2)\| f\|_{M_p^\phi(\Omega)} \]
+ Finally it's immediate to verify that $\| f\|_{L^p(Q^+)} \le \phi(r/2)^{\frac{1}{p}} \| f\|_{M_p^\phi(\Omega)}.$ This concludes the proof of Case 3.
 
 We consider now the case $l>0.$ By Lemma \ref{cubicmorrey} it's again enough to prove that for an arbitrary open cube $Q$ of side $r$ contained in $\rr^n$ we have
 \begin{equation}
@@ -727,46 +781,55 @@ for a constant $C_{l,n}(M)$ depending only on $l,n,M$. We will consider the same
 for every $(\overline x, y) \in \Omega^-$, where $g_\lambda(\overline x,y)=f(\overline x, y+\lambda \delta^*(\overline x, y))$. By Lemma \ref{derivatives} $D^\alpha g_\lambda(\overline x,y)$ is a finite sum of terms of the type 
 \[ \widetilde c\lambda ^s D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)(D^{\gamma_1}\delta^*(x))^{n_1}\cdots (D^{\gamma_k}\delta^*(x))^{n_k}.\]
 For each of these terms we also set
-\[ T_{s,,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) = \int_1^\infty \lambda ^s D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)(D^{\gamma_1}\delta^*(x))^{n_1}\cdots (D^{\gamma_k}\delta^*(x))^{n_k} \tau(\lambda) d\lambda.\]
-Now, since the constants $\widetilde c$ and the number of terms of the sum depend only on $l$ and $n$, we just need to estimate the quantities
+\begin{align*}
+ &T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) \\
+ &= \int_1^\infty \lambda ^s D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)(D^{\gamma_1}\delta^*(x))^{n_1}\cdots (D^{\gamma_k}\delta^*(x))^{n_k} \tau(\lambda) d\lambda.
+ \end{align*}
+In this way $D^\alpha Tf(\overline x,y)$ is a finite sum of terms of type $\widetilde c T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)$. Now, since the constants $\widetilde c$ and the number of terms of the sum depend only on $l$ and $n$, we just need to estimate the quantities
 \[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}}.\]
 We start by assuming that $|\beta|=|\alpha|.$ By the property a) in Lemma \ref{derivatives} and by the estimates of the derivatives of $\delta^*(=2a\Delta)$ given in Theorem \ref{regdist} we have that
-\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | 
-\le c_2 \int_1^\infty |D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)| |\tau(\lambda)|d\lambda \]
-where $c_2$ depends only on $n$ and $M.$ We are now in the same situation as in the inequality $(\bullet)$ of case $l=0$. Hence we can proceed the estimate in the same way to get 
-\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_3 \| D^\beta f \|_{M_p^\phi(\Omega)} \] 
+
+\begin{align*}
+ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | &\le c_3 \int_1^\infty\lambda^s |D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)| |\tau(\lambda)|d\lambda \\
+&\le c_3A_{s+3} \int_1^\infty|D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)| \frac{1}{\lambda^3}d\lambda
+\end{align*}
+where  $A_{s+3}$ is such that $|\tau(\lambda)|\le A_{s+3}/\lambda^{s+3}$ and  $c_3$ depends only  on $n$ and $M.$ We are now in the same situation as in the second inequality of \eqref{bullet1}. Hence we can proceed the estimate in the same way as in case $l=0$ to get 
+\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_4 \| D^\beta f \|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 2 and
-\[\left( \frac{1}{\phi(r/2)}\int_{Q \cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_4 \| D^\beta f \|_{M_p^\phi(\Omega)} \] 
- for every $Q$ in case 3, where $c_3,c_4$ depend only on $n$ and $M.$
+\[\left( \frac{1}{\phi(r/2)}\int_{Q \cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_5 \| D^\beta f \|_{M_p^\phi(\Omega)} \] 
+ for every $Q$ in Case 3, where $c_4,c_5$ depend only on $n$ and $M.$
 Suppose now that $|\alpha|>|\beta|.$ Arguing as above, by Theorem \ref{regdist} and Lemma \ref{derivatives} we get
 \begin{align*}
 &|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \\
-&\le c_5 \frac{1}{d(x,\overline \Omega)^{|\alpha|-|\beta|}} \left|\int_1^\infty \lambda^sD^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)\tau(\lambda)d\lambda \right| \\
-& \le  c_5 \frac{1}{(\psi(\overline x)-y)^{|\alpha|-|\beta|}} \left |\int_1^\infty \lambda^s D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y) \tau(\lambda)d\lambda \right |\addtag \label{zzz} .   
+&\le c_6 \frac{1}{d(x,\overline \Omega)^{|\alpha|-|\beta|}} \left|\int_1^\infty \lambda^sD^\beta f(\overline x, y+\lambda \delta^*(\overline x, y)\tau(\lambda)d\lambda \right| \\
+& \le  c_6 \frac{1}{(\psi(\overline x)-y)^{|\alpha|-|\beta|}} \left |\int_1^\infty \lambda^s D^\beta f(\overline x, y+\lambda \delta^*(\overline x, y) \tau(\lambda)d\lambda \right |\addtag \label{zzz} .   
 \end{align*}
-Where $c_5$ depends only on $n,l$ and $M$. We now write the Taylor expansion with integral remainder of the function $D^\beta f(\overline x, y+t)$ centered in $\delta^*(\overline x,y)$ up to order $m=|\alpha|-|\beta|$ and evaluated at $\lambda \delta^*(\overline x,y)$
+Where $c_6$ depends only on $n,l$ and $M$. We now write the Taylor expansion with integral remainder of the function $t \mapsto D^\beta f(\overline x, y+t)$ centered in $\delta^*(\overline x,y)$ up to order $m=|\alpha|-|\beta|$ and evaluated at $\lambda \delta^*(\overline x,y)$
 \[
-D^\beta f(\overline x, y+\lambda \delta^*) =\sum_{i=0}^{m-1} \frac{(\lambda \delta^*-\delta^*)^i}{i!}\frac{\partial^i D\beta f}{\partial x_n^i}(\overline x,y+\delta^*) +\int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,y+t)dt. 
+D^\beta f(\overline x, y+\lambda \delta^*) =\sum_{i=0}^{m-1} \frac{(\lambda \delta^*-\delta^*)^i}{i!}\frac{\partial^i D^\beta f}{\partial x_n^i}(\overline x,y+\delta^*) +\int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D^\beta f}{\partial x_n^{m} }(\overline x,y+t)dt. 
 \]
-We observe that the terms inside the sum doesn't give any contribution in (8), since
-\begin{align*} &\int_1^\infty \frac{\lambda^s(\lambda \delta^*-\delta^*)^i}{i!}\frac{\partial^i D\beta f}{\partial x_n^i}(\overline x,y+\delta^*)\tau(\lambda)d\lambda \\
-&=\frac{\partial^i D\beta f}{\partial x_n^i}(\overline x,y+\delta^*) \frac{(\delta^*)^i}{i!} \int_1^\infty \lambda^s(\lambda-1)^i\tau(\lambda)d\lambda=0
+We observe that the terms inside the first sum in the right hand side don't give any contribution in \eqref{zzz}, since
+\begin{align*} &\int_1^\infty \frac{\lambda^s(\lambda \delta^*-\delta^*)^i}{i!}\frac{\partial^i D^\beta f}{\partial x_n^i}(\overline x,y+\delta^*)\tau(\lambda)d\lambda \\
+&=\frac{\partial^i D^\beta f}{\partial x_n^i}(\overline x,y+\delta^*) \frac{(\delta^*)^i}{i!} \int_1^\infty \lambda^s(\lambda-1)^i\tau(\lambda)d\lambda=0
 \end{align*}
 by the properties of $\tau$, since $s>0$ by Lemma \ref{derivatives}. Hence combining this with \eqref{zzz} we obtain
-\[|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{(\psi(\overline x)-y)^{m}} \left |\int_1^\infty \int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,y+t)dt \lambda^s \tau(\lambda)d\lambda\right |.\]
+\begin{align*}
+&|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \\
+&\le \frac{c_6}{(\psi(\overline x)-y)^{m}} \left |\int_1^\infty \int_{\delta^*}^{\lambda \delta^*} \frac{(\lambda \delta^*-t)^{m-1}}{m!}\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,y+t)dt \lambda^s \tau(\lambda)d\lambda\right |.
+\end{align*}
 Observing that $(\lambda\delta^*-t)^{m-1}\le (\lambda\delta^*)^{m-1}$, recalling that $\psi(\overline x)-y\ge c \delta^*$ and using the change of variable $u=y+t$ we get
 \begin{align*}
-|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_5}{c^mm!\delta^*}\int_1^\infty \int_{y+\delta^*}^{y+\lambda \delta^*} \left|\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right |\lambda^{s+m-1} |\tau(\lambda)|du d\lambda.
+|T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le \frac{c_6}{c^mm!\delta^*}\int_1^\infty \int_{y+\delta^*}^{y+\lambda \delta^*} \left|\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right |\lambda^{s+m-1} |\tau(\lambda)|du d\lambda.
 \end{align*}
-Perform a changing of order of integration we deduce
-\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5}{c^mm!\delta^*}\int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \int_{(u-y)/\delta^*}^\infty |\lambda^{s+m-1} \tau(\lambda)| d\lambda du.\]
-Finally recalling that that  $|\tau(\lambda)|\le A_{m+s}/\lambda^{s+m+3}$ for some constant $A_{m+s}$ we can write
-\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_5 A_{m+s}}{3c^mm!} \int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D\beta f}{\partial x_n^{m} }(\overline x,u)\right | \frac{(\delta^*)^2}{(u-y)^3} du.\]
-We observe that we are now in the same situation as in the inequality $(\bullet \bullet)$ of the case $l=0$ and the same computations lead us to
-\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_6 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+Performing a change of order of integration we deduce
+\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_6}{c^mm!\delta^*}\int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D^\beta f}{\partial x_n^{m} }(\overline x,u)\right | \int_{(u-y)/\delta^*}^\infty |\lambda^{s+m-1} \tau(\lambda)| d\lambda du.\]
+Finally recalling that that  $|\tau(\lambda)|\le A_{m+s+3}/\lambda^{s+m+3}$ for some constant $A_{m+s+3}$ we can write
+\[ |T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x) | \le\frac{c_6 A_{m+s+3}}{3c^mm!} \int_{y+\delta^*}^{\infty} \left |\frac{\partial^{m} D^\beta f}{\partial x_n^{m} }(\overline x,u)\right | \frac{(\delta^*)^2}{(u-y)^3} du.\]
+We observe that we are now in the same situation as in the first inequality of \eqref{bullet2} of the case $l=0$ and the same computations lead us to
+\[\left( \frac{1}{\phi(r/2)}\int_Q  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
 for every $Q$ in case 2  and
-\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_7 \| \frac{\partial^{m} D\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
-for every $Q$ in case 3, where $c_6,c_7$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
+\[\left( \frac{1}{\phi(r/2)}\int_{Q\cap \Omega^-}  \left| T_{s,\beta,(\gamma_1,n_1),...,(\gamma_k,n_k)}(x)\right|^p dx\right )^{\frac{1}{p}} \le c_8 \| \frac{\partial^{m} D^\beta f}{\partial x_n^{m} } \|_{M_p^\phi(\Omega)} \] 
+for every $Q$ in case 3, where $c_7,c_8$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
 \end{proof} 
 
 \begin{theorem}
@@ -796,7 +859,7 @@ for every $\varepsilon>0$ and every $|\alpha|\le l$, with $C_{l,n}(M)$ independe
 \end{equation}
 Since $ Tf_\varepsilon$ converges to $Sf$ in $W^{l,p}(\rr^n)$, then  $D^\alpha Tf_\varepsilon$ converges to $D^\alpha Sf$ in $L^p(\rr^n)$ for every $|\alpha|\le l$ and as a consequence also in $L^p(B)$ for every ball $B$. Hence we can pass to the limit as $\varepsilon \to 0$ in \eqref{balleps} and obtain
 \[\left( \frac{1}{\phi(r)}\int_B |D^\alpha S(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \]
-for every ball $B$ of radius $\varepsilon.$ This concludes the proof.
+for every ball $B$ of radius $r.$ This concludes the proof.
  \end{proof} 
 \end{theorem}
 
