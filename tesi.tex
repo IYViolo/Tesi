@@ -180,7 +180,8 @@ and that we have similar bounds for the norm of the weak derivatives of $Tf$. He
 
 \begin{lemma}\label{composition}
 Let $l \in \nn$ and $\Omega$ be a domain in $\rr^n$. Suppose that $f \in L^1_{loc}(\Omega)$ admits all the weak derivatives up to order $l$ and that $g:\Omega'\rightarrow \Omega$ is a diffeomorphism of class $C^l$ with bounded derivatives $|D^\alpha g_k|\le M$ for all $1 \le |\alpha| \le l$. Then $f\circ g$ admits weak derivative up to order $l$. Moreover for every $1\le |\alpha|\le l$ we have to following bounds
-\[ |D^\alpha (f\circ g)(x)|\le C \sum_{1\le|\beta|\le |\alpha|} |D^\beta f(g(x))|\]
+\begin{equation} |D^\alpha (f\circ g)(x)|\le C \sum_{1\le|\beta|\le |\alpha|} |D^\beta f(g(x))| \label{compbound}
+\end{equation}
 where $C$ depends only on $M$ and $l$.
 \end{lemma}
 \begin{proof}
@@ -368,16 +369,23 @@ for some constant $c_2(M,\beta)$. Then $\eqref{circle}$ by taking $c=max(\sqrt c
 
 \end{proof}
 
+\begin{definition}
+Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For every $\infty\ge\delta>0$ and every function $f \in L^p_{loc}(\Omega)$ we define the norm $\|f\|_{M^{\delta,\phi}_p}$ as
+\[\| f\|_{M^{\delta,\phi}_p(\Omega)} := \sup_{B_r(x), x \in \Omega, 0<r<\delta} \left(  \frac{1}{\phi(r)}\int_{B_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}.\]
+\end{definition}
 
+\begin{remark}
+	For $\delta=\infty$ we have that $\| .\|_{M^{\delta,\phi}_p(\Omega)}=\| .\|_{M^\phi_p(\Omega)}.$
+\end{remark}
 
 \begin{lemma}\label{hmorrey1}
 Let $l,n,m \in \mathbb{N},m\ge l, 1\le p \le \infty$, $W = \prod\limits_{i=1}^{n-1}]a_i,b_i[$ be an open cuboid of $\mathbb{R}^{n-1}$ and $\phi$ a function from $\rr^+$ to $\rr^+$. Moreover define
 \[ S=W \times \mathbb{R} \]
 \[\Omega =\{ (\overline x,x_n) | \overline x\in W, x_n<\psi(\overline x)  \} \]
-where $\psi \in C^m(\overline W)$ and $\| D^{\alpha}\psi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for every $f \in W^{l,p}(\Omega)$  and  $1\le |\alpha|\le l$
+where $\psi \in C^m(\overline W)$ and $\| D^{\alpha}\psi \|\le M <\infty $ for every $1\le|\alpha|\le l$. Then for every $f \in W^{l,p}(\Omega)$, $\delta>0$ and  $1\le |\alpha|\le l$
 \begin{align}
-\| Tf\|_{M_p^\phi(S)} &\le    C\| f\|_{M_p^\phi(\Omega)} ,\\
-\| D^\alpha_w Tf\|_{M_p^\phi(S)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)},
+\| Tf\|_{M_p^{\phi,\delta}(S)} &\le    C\| f\|_{M_p^{\phi,\delta}(\Omega)} ,\\
+\| D^\alpha_w Tf\|_{M_p^{\phi,\delta}(S)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^{\phi,\delta}(\Omega)},
 \end{align}
 where $T$ is the Hestenes operator defined in Lemma $\ref{hestenes1}$ and $C$ is a constant independent of $f$.
 \end{lemma}
@@ -395,13 +403,13 @@ and observe that we can rewrite it as
 		\sum_{i=1}^l \alpha_k f(G_k(x)), & \text{if } x \in \Omega^+,
 \end{cases} 
 \]
-where $G_k(\overline x, x_n)=(\overline x, \psi(\overline x)- \beta_k(x_n-\psi(\overline x)))$. Note that $G_k: \Omega^+\rightarrow \Omega$ defines a diffeomorphism from $\Omega^+$ to $\Omega$ of class $C^m$ and satisfying $|\det JG_k^{-1}|\equiv 1/\beta_k.$ First we prove ii). Let's fix $x_0 \in S$ and a radius $r>0$. We want to estimate the quantity 
+where $G_k(\overline x, x_n)=(\overline x, \psi(\overline x)- \beta_k(x_n-\psi(\overline x)))$. Note that $G_k: \Omega^+\rightarrow \Omega$ defines a diffeomorphism from $\Omega^+$ to $\Omega$ of class $C^m$ and satisfying $|\det JG_k^{-1}|\equiv 1/\beta_k.$ First we prove ii). Let's fix $x_0 \in S$ and a radius $\delta>r>0$. We want to estimate the quantity 
 \[ I=\left ( \frac{1}{\psi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}\]
 for $1\le|\alpha| \le l$. To do this we estimate the integral as follows
 
 \[ I \le \underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega^+} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_1$}+\underbrace{\left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap \Omega} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}}}_\textrm{$I_2$}.\]
 Since $Tf(x)=f(x)$ when $ x\in\Omega$, we have immediately  
-\[ I_2 \le \|D^\alpha_w f \|_{M_p^\phi(\Omega)} . \]
+\[ I_2 \le \|D^\alpha_w f \|_{M_p^{\phi,\delta}(\Omega)} . \]
 It remains to estimate $I_1$. We start by observing that from Lemma \ref{composition} there exists a constant $C_k$ depending only on $G_k$ and $l$ such that
 \[ |D^{\alpha}_w (f \circ  G_k)| \le C_k \sum_{1\le |\beta|\le|\alpha| }| D^{\beta}_wf(G_k)|.\]
 By the previous inequality and Lemma \ref{lcircle} we are able to produce the following bound
@@ -410,34 +418,30 @@ By the previous inequality and Lemma \ref{lcircle} we are able to produce the fo
  		&\le C_k \beta_k^{-\frac{1}{p}} \sum_{1\le |\beta|\le|\alpha| } \left(\phi(r)^{-1} \int_{B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega} |D^\beta_wf(y)|^pdy\right)^{\frac{1}{p}} 		\\		
 \end{align*}
 where $A_{\alpha_k}$ is defined as in Lemma \ref{lcircle} and $c_k$ depends only on $\beta_k$ and $M$. By Lemma \ref{covering} the set $B_{c_kr}(A_{\beta_k}(x_0))\cap \Omega$ can be covered with a collection of open balls $B_1,...,B_h$ centered in $\Omega$ with radius $r$ and $h\le m_k$, where $m_k$ depends only on $c_k$. Hence we get
-\[ \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}}\le C_k \beta_k^{-\frac{1}{p}} m_k \sum_{1\le |\beta|\le|\alpha| } \|D^\beta f\|_{M_p^\phi(\Omega)}\]
+\[ \frac{\|D^{\alpha}_w(f \circ G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)}}{\phi(r)^{\frac{1}{p}}}\le C_k \beta_k^{-\frac{1}{p}} m_k \sum_{1\le |\beta|\le|\alpha| } \|D^\beta f\|_{M_p^{\delta,\phi}(\Omega)}\]
  Next we estimate $I_1$:
 \begin{align*}
 I_1 = \phi(r)^{-\frac{1}{p}}|D^\alpha_w Tf \|_{L^p(B_r(x_0)\cap \Omega^+)}&\le \phi(r)^{-\frac{1}{p}} \sum_{k=1}^l \alpha_k \|D^\alpha_w f(G_k) \|_{L^p(B_r(x_0)\cap \Omega^+)} \\
-&\le \sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)} \right).																	
+&\le \sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^{\phi,\delta}(\Omega)} \right).																	
 \end{align*}
 Finally putting the estimates of $I_1,I_2$ together 
 \begin{align*}
 \| D^\alpha_w Tf\|_{M_p^\phi(S)}&=\sup_{x_0 \in S, r>0} \left ( \frac{1}{\phi(r)} \int_{B_r(x_0)\cap S} |D^\alpha_w Tf(x)|^pdx \right)^{\frac{1}{p}} \\
-									&\le \|D^\alpha_w f \|_{M_p^\phi(\Omega)}+\sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\phi(\Omega)} \right) \\
-									& \le \widetilde C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^\phi(\Omega)}
+									&\le \|D^\alpha_w f \|_{M_p^\phi(\Omega)}+\sum_{k=1}^l \alpha_kC_k\beta_k^{-\frac{1}{p}}m_k \left( \sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^{\phi,\delta}(\Omega)} \right) \\
+									& \le \widetilde C\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wf\|_{M_p^{\phi,\delta}(\Omega)}
 \end{align*}
 where $\widetilde C$ depends only on $\{b_k\}_k,\{\alpha_k\}_k,l,M,p$. This proves ii). The proof of i) is exactly analogous to the proof of ii).
 \end{proof}
 		
 
-\begin{definition}
-Let $1\le p< \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For every $\delta>0$ and every function $f \in L^p_{loc}(\Omega)$ we define the norm $\|f\|_{M^{\delta,\phi}_p}$ as
-\[\| f\|_{M^{\delta,\phi}_p} := \sup_{B_r(x), x \in \Omega, 0<r<\delta} \left(  \frac{1}{\phi(r)}\int_{B_r(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}.\]
-\end{definition}
 
 
 
 \begin{theorem}
-Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a domain in $\mathbb{R}^n$ with $C^m$ resolved boundary. Let also $ T$ be the Hestenes operator defined in Theorem \ref{teorh}. Then if $\Omega$ is bounded, for every $f \in W^{l,p}(\Omega)$ and $1\le |\alpha| \le l$ we have
+Let $m,l \in \mathbb{N}, l\le m$, $1\le p\le\infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ a domain in $\mathbb{R}^n$ with $C^m$ resolved boundary. Let also $ T$ be the Hestenes operator defined in Theorem \ref{teorh}. Then if $\Omega$ is bounded, for every $f \in W^{l,p}(\Omega)$, $\delta>0$ and $1\le |\alpha| \le l$ we have
 \begin{align}
 \| Tf\|_{M_p^\phi(\rr^n)} &\le    C\| f\|_{M_p^\phi(\Omega)}, \label{b0}\\
-\| D^\alpha_w Tf\|_{M_p^\phi(\rr^n)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^\phi(\Omega)}, \label{bl}
+\| D^\alpha_w Tf\|_{M_p^{\phi,\delta}(\rr^n)} &\le   C\sum_{1\le |\beta|\le|\alpha| }\| D^\beta_wf\|_{M_p^{\phi,\delta}(\Omega)}, \label{bl}
 \end{align}
 where  $C$ doesn't depend on $f$. If instead $\Omega$ is unbounded, for every $f \in W^{l,p}(\Omega)$ and $\delta>0$ we have
 \begin{align}
@@ -456,14 +460,14 @@ Before starting the proof we remark some facts that will be justified at the end
 \begin{enumerate}[a)]
 
 \item Let $C_i$ the constant such that
-\[ \| T_ig\|_{M_p^\phi(\lambda_i(V_i))}\le C_i \|g\|_{M_p^\phi(\lambda_i(\Omega \cap V_i))},\]
-\[\| D^\alpha_w T_ig\|_{M_p^\phi(\lambda_i(V_i)))} \le   C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\phi(\lambda_i(\Omega \cap V_i)))},\]  
+\[ \| T_ig\|_{M_p^{\phi,\delta}(\lambda_i(V_i))}\le C_i \|g\|_{M_p^{\phi,\delta}(\lambda_i(\Omega \cap V_i))},\]
+\[\| D^\alpha_w T_ig\|_{M_p^{\phi,\delta}(\lambda_i(V_i)))} \le   C_i\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^{\phi,\delta}(\lambda_i(\Omega \cap V_i)))},\]  
 
-for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))$. Then $\sup_{i=1,...,s} C_i \le M_2$, where $M_2$ depends only on $\Omega,l,n$.
+for $1\le |\alpha|\le l$, $g \in \widehat W^{l,p}(\lambda_i(\Omega \cap V_i))$ and $\delta>0$. Then $\sup_{i=1,...,s} C_i \le M_2$, where $M_2$ depends only on $\Omega,l,n$.
 \item We have
-\[ \| \widetilde T_ig\|_{M_p^\phi(V_i)}\le M_2 \|g\|_{M_p^\phi(\Omega \cap V_i)},\]
+\[ \| \widetilde T_ig\|_{M_p^{\phi,\delta}(V_i)}\le M_2 \|g\|_{M_p^{\phi,\delta}(\Omega \cap V_i)},\]
 \[\| D^\alpha_w \widetilde T_ig\|_{M_p^\phi(V_i)} \le   M_3M_2\sum_{1\le |\beta|\le|\alpha| }\| D^\alpha_wg\|_{M_p^\phi(\Omega \cap V_i)},\]  
-for $1\le |\alpha|\le l$ and $g \in \widehat W^{l,p}(\Omega \cap V_i)$ and where $M_3$ doesn't depend on $i$. 
+for $1\le |\alpha|\le l$,$g \in \widehat W^{l,p}(\Omega \cap V_i)$, $\delta>0$ and where $M_3$ doesn't depend on $i$. 
 \end{enumerate}
 Let now $x_0 \in \rr^n$, $0<r<\delta$ and $B_r(x_0)$ the ball centered in $x_0$ of radius $r.$ Let's consider the set $J=\{ i=1,...,s \ | \ V_i \cap B_r(x_0) \neq \emptyset\}.$
 We notice that there exists an integer $\widetilde s$ depending only on the covering $(V_i)_{i=1}^s$ and on $\delta$ such that $\# J\le \widetilde s.$ We also recall that if $\Omega$ is bounded then $\widetilde s\le s<\infty$. We have
@@ -473,15 +477,15 @@ We notice that there exists an integer $\widetilde s$ depending only on the cove
 \begin{align*}
 \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |Tf(x)|^pdx  \right)^{\frac{1}{p}} &=  \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |\sum_{i=1}^s \psi_i(x) \widetilde T_i(\psi_if))(x) |^pdx \right)^{\frac{1}{p}}\\
 &\le \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} | \widetilde T_i(\psi_if)(x)|^p |dx \right)^{\frac{1}{p}}\\
-&\overset{b)}\le \widetilde s M_2\| \psi_i f\|_{M_p^\phi(V_i \cap \Omega)} \le M_2\widetilde s \| f\|_{M_p^\phi(\Omega)}.
+&\overset{b)}\le \widetilde s M_2\| \psi_i f\|_{M_p^{\phi,\delta}(V_i \cap \Omega)} \le M_2\widetilde s \| f\|_{M_p^{\phi,\delta}(\Omega)}.
 \end{align*}
 This proves \eqref{b0} and \eqref{u0}. Let now $\alpha \in \nn_0^n$ with $1\le|\alpha|\le l.$ We have 
 \begin{align*}
 \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha_w Tf(x)|^pdx  \right)^{\frac{1}{p}} &=  \left( \frac{1}{\phi(r)} \int_{B_r(x_0)} |D^\alpha_w \sum_{i=1}^s \psi_i(x) \widetilde T_i(\psi_if))(x) |^pdx \right)^{\frac{1}{p}}\\
 &\le C_\alpha \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^{\alpha -\beta}\psi_i(x) D^\beta_w \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
 &\le C_\alpha M_1 \widetilde s \sum_{i \in J} \left( \frac{1}{\phi(r)} \int_{{B_r(x_0)} \cap V_i} \sum_{\beta \le \alpha}|D^\beta_w \widetilde T_i(\psi_if)(x)|^p dx \right)^{\frac{1}{p}}\\
-&\overset{b)}\le C_\alpha M_1\widetilde s \sum_{\beta \le \alpha } M_2M_3 \sum_{|\gamma|\le |\beta|} \| D^\gamma_w f\|_{M_p^\phi(V_i)} \\
-&  \le \widetilde C_\alpha M_1M_2M_3\widetilde s \sum_{|\beta| \le |\alpha|}\| D^\beta_w f\|_{M_p^\phi(V_i)} 
+&\overset{b)}\le C_\alpha M_1\widetilde s \sum_{\beta \le \alpha } M_2M_3 \sum_{|\gamma|\le |\beta|} \| D^\gamma_w f\|_{M_p^{\phi,\delta}(V_i)} \\
+&  \le \widetilde C_\alpha M_1M_2M_3\widetilde s \sum_{|\beta| \le |\alpha|}\| D^\beta_w f\|_{M_p^{\phi,\delta}(V_i)} 
 \end{align*}
 This proves \eqref{bl} and \eqref{ul}. Let's now prove a) and b). a) $\Omega$ has a resolved $C^m$ boundary with parameters $\varkappa,d,D,M$. Hence, if $\phi_i$ are the $C^m$ functions of Definition 1, we have $\| D^{\alpha}\phi_i \|_{L^\infty}\le M$ for every $i$ and for every $1\le|\alpha|\le l$. Therefore by the proof of Lemma \ref{hmorrey1} we deduce that $C_i$ depends only on $l,n,M$ and on the choice of the constants $\alpha_k,\beta_k$, which can be chosen to be the same for every $T_i$.
 b) We notice that since $\lambda_i$ are isometries, they are smooth and their derivatives are uniformly bounded with a bound depending only on $n$. Then the result follows from a) and from a straightforward computation using a change of variable and Lemma \ref{composition}.
@@ -545,41 +549,52 @@ where $C_{l,n}(M)$ is a constant depending only on $n,l$ and $M.$
 \end{theorem}
 
 \begin{remark}\label{rotlip}
-Let $\Omega$ be a domain in $\rr^n$ and suppose that there exists a rigid rotation $R$ of $\rr^n$ such that $R(\Omega)$ is a special Lipschitz domain. We observe that all the results stated above that holds for a special Lipschitz domain, holds also for $\Omega.$ This follows directly after a suitable change of coordinates in $\rr^n$. 
+Let $\Omega$ be a domain in $\rr^n$ and suppose that there exists a rotation $R$ of $\rr^n$ such that $R(\Omega)$ is a special Lipschitz domain with Lipschitz bound $M$. We observe that we can use the operator $S$ to extend the space $W^{l,p}(\Omega)$ to $W^{l,p}(\rr^n)$ continuously. Indeed, given $f \in W^{l,p}(\Omega)$, by Lemma \ref{composition} we have $f\circ R^{-1} \in W^{l,p}(R(\Omega))$. Hence we can use Theorem \ref{Sdef} to extend  $f\circ R^{-1}$ to $\rr^n$ with $S(f\circ R^{-1})\in W^{l,p}(\rr^n).$ Then $S(f\circ R^{-1})\circ R$ clearly extends $f$ and $S(f\circ R^{-1})\circ R \in W^{l,p}(\rr^n)$ by Lemma \ref{composition}. Now given $\alpha \in \nn^n_0$ with $|\alpha|\le l$ we argue as follows. Applying repeatedly \eqref{compbound} we have
+\begin{align*}
+&\left( \int_{\rr^n} |D^\alpha_w(S(f\circ R^{-1})\circ R)(x)|^pdx \right)^\frac{1}{p} \le C \sum_{|\beta|\le |\alpha|} \left( \int_{\rr^n} |D^\beta_w(S(f\circ R^{-1}))(R)|^p dx\right)^\frac{1}{p}=\\
+&= C \sum_{|\beta|\le |\alpha|} \left( \int_{\rr^n} |D^\beta_w(S(f\circ R^{-1}))|^p |\det JR^{-1}(x)| dx\right)^\frac{1}{p}\\
+&= C \sum_{|\beta|\le |\alpha|} \left( \int_{\rr^n} |D^\beta_w(S(f\circ R^{-1}))|^p  dx\right)^\frac{1}{p} \\
+&\le CC_{l,n}(M)  \sum_{|\beta|\le |\alpha|} \sum_{|\gamma|\le |\beta|}\left( \int_{\rr^n} |D^\gamma_w(f\circ R^{-1})|^p  dx\right)^\frac{1}{p}\\
+&\le C^2C_{l,n}(M)  \sum_{|\beta|\le |\alpha|} \sum_{|\gamma|\le |\beta|} \sum_{|\eta|\le |\gamma|}\left( \int_{\rr^n} |D^\eta_wf(R^{-1})|^p  dx\right)^\frac{1}{p}=\\
+&= C^2C_{l,n}(M)  \sum_{|\beta|\le |\alpha|} \sum_{|\gamma|\le |\beta|} \sum_{|\eta|\le |\gamma|}\left( \int_{\rr^n} |D^\eta_w f|^p  dx\right)^\frac{1}{p},
+\end{align*}
+where $C$ depends only on the bound of the derivatives of $R$, hence only on $n$. This proves the continuity of the extension. In what follows we will denote the extension operator for a rotated special Lipschitz domain, that is $S(f\circ R^{-1})\circ R$, just by $Sf$.
 \end{remark}
 
 \begin{definition}\label{minsmooth}
-Let $\Omega$ be an open set in $\rr^n$ and let $\partial \Omega$ be its boundary. We say that $\partial \Omega$ is minimally smooth if there exists an $\varepsilon >0$, an integer $N$, an $M>0$ and a sequence $\{U_i\}_{i=1}^s$ (where $s$ can be $+\infty$) of open sets such that:
+Let $\Omega$ be an open set in $\rr^n$ and let $\partial \Omega$ be its boundary. We say that $\partial \Omega$ is minimally smooth if there exists an $\varepsilon >0$, $N \in \nn$, $M>0$ and a sequence $\{U_i\}_{i=1}^s$ (where $s$ can be $+\infty$) of open sets such that:
 \begin{enumerate}[i)]
-\item if $x \in \partial \Omega,$ then $B_\varepsilon(x) \subset U_i,$ for some $i$; where $B_\varepsilon(x)$ is the open ball centered in $x$ of radius $\varepsilon.$
-\item No point of $\rr^n$ is contained in more than $N$ of the $U_i$'s.
-\item For every $i$ there exist a special Lipschitz domain $D_i$ and a rigid rotation $R_i$ of $\rr^n$ such that
+\item if $x \in \partial \Omega,$ then $B_\varepsilon(x) \subset U_i,$ for some $i$, where $B_\varepsilon(x)$ is the open ball centered in $x$ of radius $\varepsilon.$
+\item No point of $\rr^n$ is contained in more than $N$ elements of the family $\{U_i\}_{i=1}^s.$
+\item For every $i=1,...,s$ there exist a special Lipschitz domain $D_i$ and a rotation $R_i$ of $\rr^n$ such that
 \[ U_i\cap \Omega = U_i \cap R_i(D_i).\]
 \item The Lipschitz bound of $D_i$ does not exceed $M$ for every $i$. 
 \end{enumerate}
 \end{definition}
 
-We now give the outline of the construction of the Stein extension operator for a set with minimally smooth boundary. The details of this construction can also be found in \cite{stein}. 
+We now give the outline of the construction of the Stein extension operator for a set with minimally smooth boundary. The details of this construction and the proof of Theorem \ref{Eteor} can be found in \cite{stein}. 
 
-First we introduce the following notation: given a set $U$ in $\rr^n$ and an $\varepsilon >0$ we denote by $U_\varepsilon=\{ x 	\in U \ | \ B_\varepsilon(x) \subset U\}$. Now let $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary $\partial \Omega$. Consider also the constants $\varepsilon,N,M$ and the sequence of open sets  $\{U_i\}_{i=1}^s$ relative to $\Omega$ as given in Definition \ref{minsmooth}. We can construct a sequence of real-valued functions $\{\lambda_i\}_{i=1}^s$ defined in $\rr^n$, such that
+First we introduce the following notation: given a set $U$ in $\rr^n$ and  $\varepsilon >0$ we set $U_\varepsilon=\{ x 	\in U \ | \ B_\varepsilon(x) \subset U\}$. Now let $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary $\partial \Omega$. Consider also the constants $\varepsilon,N,M$ and the sequence of open sets  $\{U_i\}_{i=1}^s$ relative to $\Omega$ as given in Definition \ref{minsmooth}. We can construct a sequence of real-valued functions $\{\lambda_i\}_{i=1}^s$ defined in $\rr^n$, such that
 \begin{itemize}
 	\item $\supp \lambda_i \subset U_i$ for every $i=1,...,s$,
+	\item $-1\le \lambda_i\le 1$,
 	\item $\lambda_i(x)=1$ for every $x \in U_{\varepsilon/2},$
 	\item every $\lambda_i$ is of class $C^\infty$, has bounded derivatives of all orders and the bounds of the derivatives of $\lambda_i$ can be taken to be independent of $i.$
 \end{itemize}
 We can also construct two real-valued functions $\Lambda_+,\Lambda_-$ defined in $\rr^n$, that satisfy the following conditions
 \begin{itemize}
-	\item $\supp \Lambda_+ \subset \Omega_\varepsilon \cup \{ x \in \rr^n \ | \ d(x,\partial \Omega)\le \varepsilon /2\},$
+	\item $\supp \Lambda_+ \subset   \{ x \in \Omega \ | \ d(x,\partial \Omega)\le \varepsilon \}\cup \{ x \in \rr^n \ | \ d(x,\partial \Omega)\le \varepsilon /2\},$
 	\item $\supp \Lambda_- \subset \Omega,$
+	\item $|\Lambda_+|,|\Lambda_-|\le 1$
 	\item $\Lambda_++\Lambda_- =1 $ in $\overline \Omega,$
 	\item $\Lambda_+,\Lambda_-$ are of class $C^\infty(\rr^n)$ with bounded derivatives of all orders.
 \end{itemize}
-Consider now the extension operators $S_i$ for $W^{l,p}(R_i(D_i))$, that is well defined by Remark \ref{rotlip} and Theorem \ref{Sdef}. We define the extension operator $E$ for $\Omega$ as follows
+Consider now the extension operators $S_i$ for $W^{l,p}(R_i(D_i))$, defined as in Remark \ref{rotlip}. We define the extension operator $E$ for $\Omega$ as follows
 \begin{equation} 
-Ef(x):= \Lambda_+(x)\frac{\sum_{i=1}^\infty \lambda_i(x)S_i(\lambda_if)(x)}{\sum_{i=1}^\infty \lambda^2_i(x)}+\Lambda_-(x)f(x). \label{defEE}
+Ef(x):= \Lambda_+(x)\frac{\sum_{i=1}^s\lambda_i(x)S_i(\lambda_if)(x)}{\sum_{i=1}^s \lambda^2_i(x)}+\Lambda_-(x)f(x). \label{defEE}
 \end{equation}
 
-\begin{theorem}
+\begin{theorem}\label{Eteor}
 Let $1\le p\le \infty, l,n \in \nn$. Let $\Omega$ be an open set in $\rr^n$ having minimally smooth boundary. Then $E$ is an extension operator which maps $W^{l,p}(\Omega)$ continuously into $W^{l,p}(\rr^n).$
 \end{theorem}
 \subsection{Stein operator in Sobolev-Morrey spaces}
@@ -592,21 +607,21 @@ where $x=(x_1,...,x_n).$
 
 
 \begin{definition}
-Let $1\le p< \infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ we define the norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ as
-\[ \|f\|_{M_{p,Q}^\phi(\Omega)}:=\sup_{\substack{Q_{2r}(x) \\ x \in \Omega \\r>0}} \left(  \frac{1}{\phi(r)}\int_{Q_{2r}(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
+Let $1\le p< \infty$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. For a function $f \in L^p_{loc}(\Omega)$ and $\delta>0$ we define the norm $\| .\|_{M_{p,Q}^{\phi,\delta}(\Omega)}$ as
+\[ \|f\|_{M_{p,Q}^{\phi,\delta}(\Omega)}:=\sup_{\substack{Q_{2r}(x) \\ x \in \Omega \\\delta>r>0}} \left(  \frac{1}{\phi(r)}\int_{Q_{2r}(x)\cap \Omega} |f(y)|^p dy \right )^{\frac{1}{p}}\]
 where $Q_{2r}(x)$ is the open cube centered in $x$ of side $2r$.
 \end{definition}
 \begin{lemma}\label{cubicmorrey}
 Let $1\le p\le \infty$ , $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a domain in $\mathbb{R}^n$. Then then norm $\| .\|_{M_{p,Q}^\phi(\Omega)}$ is equivalent to the classical Morrey norm $\|.\|_{M_{p}^\phi(\Omega)}$. In particular 
-\[ \| .\|_{M_{p}^\phi(\Omega)} \le \| .\|_{M_{p,Q}^\phi(\Omega)}\le C_{n}\| .\|_{M_{p}^\phi(\Omega)}\]
+\[ \| .\|_{M_{p}^{\phi,\delta}(\Omega)} \le \| .\|_{M_{p,Q}^{\phi,\delta}(\Omega)}\le C_{n}\| .\|_{M_{p}^{\phi,\delta}(\Omega)}\]
 where $C_n$ is a constant depending only on $n.$
 \end{lemma}
 
 \begin{proof}
-We prove first the second inequality of the statement. Let $x \in \Omega$, $r>0$, $Q_{2r}(x)$ be the cube centered in $x$ of side $2r$ and $f \in L^p_{loc}(\Omega)$. Since the set $Q_{2r}(x) \cap \Omega$ has diameter less than $2r\sqrt n$ by Lemma \ref{covering} there exists a collection of balls $B_1,...,B_k$ centered in $Q_{2r}(x) \cap \Omega$ of radius $r$, with $k\le C_n$ where $C_n$ depends only on $n.$ Hence 
+We prove first the second inequality of the statement. Let $x \in \Omega$, $\delta>r>0$, $Q_{2r}(x)$ be the cube centered in $x$ of side $2r$ and $f \in L^p_{loc}(\Omega)$. Since the set $Q_{2r}(x) \cap \Omega$ has diameter less than $2r\sqrt n$ by Lemma \ref{covering} there exists a collection of balls $B_1,...,B_k$ centered in $Q_{2r}(x) \cap \Omega$ of radius $r$, with $k\le C_n$ where $C_n$ depends only on $n.$ Hence 
 \[ 	\int_{Q_{2r}(x)\cap\Omega} |f(y)|^p dy \le \sum_{i=1}^k \int_{B_i\cap\Omega} |f(y)|^p dy\]
 and
-\[ \| f\|_{M_{p,Q}^\phi(\Omega)}=\sup_{Q_{2r}(x) ,x \in \Omega,r>0} \left( \frac{1}{\phi(r)}\int_{Q_{2r}(x)\cap\Omega} |f(y)|^p dy \right)^{\frac{1}{p}} \le C_n \| f\|_{M_p^\phi(\Omega)}.\]
+\[ \| f\|_{M_{p,Q}^{\phi,\delta}(\Omega)}=\sup_{Q_{2r}(x) ,x \in \Omega,r>0} \left( \frac{1}{\phi(r)}\int_{Q_{2r}(x)\cap\Omega} |f(y)|^p dy \right)^{\frac{1}{p}} \le C_n \| f\|_{M_p^{\phi,\delta}(\Omega)}.\]
 To prove the first inequality we observe that for every $x \in \Omega$ and $r>0$, $(B_r(x)\cap\Omega)\subset (Q_{2r}(x)\cap\Omega)$, where $Q_{2r}(x)$ is the cube centered in $x$ with side $2r$ and $B_r(x)$ is the ball of radius $r$ centered in $x$. Therefore for every $f \in L^p_{loc}(\Omega)$
 \[ \int_{B_r(x)\cap\Omega} |f(y)|^p dy \le \int_{Q_{2r}(x)\cap\Omega} |f(y)|^p dy\]
 and this concludes the proof.
@@ -667,21 +682,21 @@ where $c$ is some constant depending only on $n.$ The second inequality follows 
 
 \end{proof}
 \begin{lemma}\label{Tlemma}
-Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$
+Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $T$ be the operator defined in Theorem \ref{defT} and $f \in C^\infty(\overline \Omega)$ be a function bounded in $\overline \Omega$ together with all its partial derivatives. Then  for every $\alpha \in \nn_0^n$ and $\delta>0$
 \begin{equation}
- \| D^\alpha Tf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Tbound2}
+ \| D^\alpha Tf\|_{M_p^{\phi,\delta}(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^{\phi,\delta}(\Omega)} \label{Tbound2}
  \end{equation}
 where $l=|\alpha|$ and $C_{l,n}(M)$ is a constant depending only on $l,n$ and $M.$
 \end{lemma}
 \begin{proof}
-Let's start by proving the case $l=0$. By Lemma \ref{cubicmorrey} it's enough to prove that for an arbitrary open cube $Q$ of side $r$ in $\rr^n$ with sides parallel to the axis we have
+Let's start by proving the case $l=0$. By Lemma \ref{cubicmorrey} it's enough to prove that for an arbitrary open cube $Q$ of side $0<r<\delta$ in $\rr^n$ with sides parallel to the axis we have
 \begin{equation}
-\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C_n(M) \| f\|_{M_{p,Q}^\phi(\Omega)} \label{cubestimate}
+\left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}} \le C_n(M) \| f\|_{M_{p,Q}^{\phi,\delta/2}(\Omega)} \label{cubestimate}
 \end{equation}
 for a constant $C_n(M)$ depending only on $n,M$. Let's define  $\Omega^- = \{ (\overline x , y) \in \rr^n \ | \ \overline x \in \rr^{n-1}, \ y<\psi(\overline x) \}$. There are three cases: 1. $Q \subset \Omega$ 2. $Q \subset \Omega^-$ 3. $Q\cap \{y=\psi(\overline x)\} \neq \emptyset.$ 
 
 Case 1. Since $Tf=f$ in $\Omega$
-\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^\phi(\Omega)}\]
+\[ \left(\frac{1}{\phi(r/2)}\int_Q |Tf(x)|^pdx \right)^{\frac{1}{p}}=\left(\frac{1}{\phi(r/2)}\int_Q |f(x)|^pdx \right)^{\frac{1}{p}} \le  \| f\|_{M_{p,Q}^{\phi,\delta/2}(\Omega)}\]
 and we are done.
 
 Case 2. Let's write $Q$ as $Q=\{ (\overline x,y) \in \rr^n \ | \ \overline x \in F, y \in (a-r,a) \}$ where $F$ is an open cube of $\rr^{n-1}$ of side $r$ and $a<\psi(\overline x)$ for every $\overline x \in F$. Fix now $(\overline x, y) \in Q$. By Lemma \ref{lemma2} there exists a constant $A_3$ such that $|\tau(\lambda)|\le A_3/\lambda^3$  for every $\lambda \ge 1.$ From the definition of $Tf$ we have
@@ -749,7 +764,7 @@ Property a) together with Lemma \ref{covering} implies that there exists a colle
 and property b) assures that every cube $Q_i$ is centered in $\Omega.$ Therefore by \eqref{finalsum} 
 \[ \| Tf\|_{L^P(Q)} \le \frac{A_3c^2}{2}\sum_{k=0}^\infty s_k(\alpha) (\|f\|_{L^p(Q_1\cap \Omega)}+...+\|f\|_{L^p(Q_m\cap \Omega)}),\]
  then dividing in both sides by $\phi(r/2)^{\frac{1}{p}}$ we obtain
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{A_3c^2m}{2} \sum_{k=0}^\infty s_k(\alpha) \| f\|_{M_{p,Q}(\Omega)} \]
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{A_3c^2m}{2} \sum_{k=0}^\infty s_k(\alpha) \| f\|_{M^{\phi,\delta/2}_{p,Q}(\Omega)} \]
 We want now to estimate the series $\sum_{k=0}^\infty s_k(\alpha)$. First we rewrite it in the following way
 \begin{align*}
 \sum_{k=0}^\infty s_k(\alpha)&=\sum_{k=0}^\infty \frac{1}{(2+k\alpha/(\alpha+1))^2} -\frac{1}{(2+(k+2)\alpha)^2}=\\
@@ -764,7 +779,7 @@ To bound this series we distinguish two cases, when $\alpha\le 1$ and when $\alp
 In the second case
 \[  \sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{(k\alpha+2)^2}  \le \sum_{k=2}^\infty \frac{\alpha(\alpha+2)}{k^2\alpha^2}=\sum_{k=2}^\infty \frac{1+\frac{2}{\alpha}}{k^2} \le 3 \bigl(\frac{\pi^2}{6}-1\bigr)<2.\]
 Hence we get 
-\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{3mA_3c^2}{2} \| f\|_{M_{p,Q}^\phi(\Omega)} \]
+\[\left(\frac{1}{\phi(r/2)}\int_Q|Tf(x)|^p dx\right)^{\frac{1}{p}} \le \frac{3mA_3c^2}{2} \| f\|_{M_{p,Q}^{\phi,\delta/2}(\Omega)} \]
 that shows \eqref{cubestimate}. 
 
 Case 3. We write $Q$ as $F \times (a-r,a)$ and and we define $Q^+=Q\cap\Omega$ and $Q^-=Q\cap\Omega^-.$ Then 
@@ -779,7 +794,7 @@ for two suitable measurable sets $S_1$ and $S_2$ with $S_1 \cup S_2 = F.$ From \
 \end{align*}
 Hence taking the $L^p$ norm over $S_1$ and reasoning as in Case 2 we obtain
 \begin{equation}
-\frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-_1)} \le c_1 \| f\|_{M_p^\phi(\Omega)} \label{q1}
+\frac{1}{\phi(r/2)^{\frac{1}{p}}} \| Tf\|_{L^p(Q^-_1)} \le c_1 \| f\|_{M_p^{\phi,\delta/2}(\Omega)} \label{q1}
 \end{equation}
 for some constant $c_1$ depending only on $n$ and $M$. If instead $\overline x \in S_2$, since $\psi(\overline x)\le a$, we have
 \begin{equation}
@@ -795,7 +810,7 @@ Taking this time the $L^p$ norm in $S_2$
 &=A_3 \frac{c^2}{2} \sum_{k=0}^\infty s_k(\alpha) \|f\|_{L^p(S'_k)}. \\
 \end{align*}
 One can observe that the sets $S'_k$ have the properties a) and b) like the sets $S_k$ in Case 2, therefore
-\[  \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{\psi(\overline x)-\delta-r}^{\psi(\overline x)-\delta}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^\phi(\Omega)} \]
+\[  \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{\psi(\overline x)-\delta-r}^{\psi(\overline x)-\delta}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^{\phi,\delta/2}(\Omega)} \]
 for some constant $c_2$ depending only on $n$ and $M$. We now let $\delta$ go to 0 
 \begin{equation}
   \left(\frac{1}{\phi(r/2)}\int_{S_2} \int_{\psi(\overline x)-r}^{\psi(\overline x)}|Tf(\overline x,y)|^p dy d\overline x\right)^{\frac{1}{p}}\le c_2 \| f\|_{M_p^\phi(\Omega)} . \label{q2}
@@ -866,10 +881,10 @@ for every $Q$ in case 2  and
 for every $Q$ in case 3, where $c_7,c_8$ depend only on $n,l$ and $M$. This concludes also the proof of the case $l>0.$
 \end{proof} 
 
-\begin{theorem}
+\begin{theorem}\label{speciallip}
 Let $1\le p<\infty,n\ge2$, $\phi$ a function from $\rr^+$ to $\rr^+$ and $\Omega$ be a special Lipschitz domain of $\rr^n$ with Lipschitz bound $M.$ Moreover let $S$ be the Stein extension operator. Then for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ 
 \begin{equation}
- \| D^\alpha Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{Sbound}
+ \| D^\alpha_w Sf\|_{M_p^\phi(\rr^n)}\le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta_w f \|_{M_p^\phi(\Omega)} \label{Sbound}
  \end{equation}
  where $C_{l,n}(\Omega)$ depends only on $n,l$ and $M.$
 
@@ -891,14 +906,91 @@ for every $\varepsilon>0$ and every $|\alpha|\le l$, with $C_{l,n}(M)$ independe
 \begin{equation}
 \left( \frac{1}{\phi(r)}\int_B |D^\alpha Tf_\varepsilon(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \label{balleps}
 \end{equation}
-Since $ Tf_\varepsilon$ converges to $Sf$ in $W^{l,p}(\rr^n)$, then  $D^\alpha Tf_\varepsilon$ converges to $D^\alpha Sf$ in $L^p(\rr^n)$ for every $|\alpha|\le l$ and as a consequence also in $L^p(B)$ for every ball $B$. Hence we can pass to the limit as $\varepsilon \to 0$ in \eqref{balleps} and obtain
-\[\left( \frac{1}{\phi(r)}\int_B |D^\alpha S(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta f \|_{M_p^\phi(\Omega)} \]
+Since $ Tf_\varepsilon$ converges to $Sf$ in $W^{l,p}(\rr^n)$, then  $D^\alpha Tf_\varepsilon$ converges to $D^\alpha_w Sf$ in $L^p(\rr^n)$ for every $|\alpha|\le l$ and as a consequence also in $L^p(B)$ for every ball $B$. Hence we can pass to the limit as $\varepsilon \to 0$ in \eqref{balleps} and obtain
+\[\left( \frac{1}{\phi(r)}\int_B |D^\alpha_w S(x)|^p dx \right)^\frac{1}{p} \le C_{l,n}(M)\sum_{|\beta|\le |\alpha|}\|D^\beta_w f \|_{M_p^\phi(\Omega)} \]
 for every ball $B$ of radius $r.$ This concludes the proof.
  \end{proof} 
 \end{theorem}
 
+\begin{remark}
+Theorem \ref{speciallip} holds also if $\Omega$ is a rotation of some Lipschitz domain. This can be shown using Remark \ref{rotlip} and similar computations.
+\end{remark}
+In Theorem \ref{speciallip} we proved that the Stein operator $S$ preserves the Sobolev-Morrey spaces, in the case of a special Lipschitz domains. Our next goal is to extend this property to the more general Stein operator $E$, defined in \eqref{defEE}, which acts on open set with a minimally smooth boundary. We start with a simple construction.
 
 
+ Let $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary with parameters $\varepsilon,M,N$ and a covering $\{ U_i\}_{i=1}^s.$ Let's define
+\[V_i:=\bigcup_{\substack{x \in \partial\Omega, \\ B_\varepsilon(x) \subset U_i}}B_\varepsilon(x). \]
+We consider the family $\{ V_i\}_{i=1}^{\widetilde s}$ containing the sets $V_i$ that are non-empty. We observe that the sequence $\{ V_i\}_{i=1}^{\widetilde s}$ satisfies conditions i),ii),iii) and iv) of Definition \ref{minsmooth} for $\Omega$, with the same constants $\varepsilon,M,N$. Hence we can substitute the covering $\{ U_i\}_{i=1}^s$ with the covering $\{ V_i\}_{i=1}^{\widetilde s}$. We will call the sequence $\{ V_i\}_{i=1}^{\widetilde s}$ a \textit{special covering} of $\Omega$. We remark now a crucial property of this covering.
+
+
+\begin{definition}
+Let $V$ be an open set in $\rr^n$ and $\varepsilon >0$. We say that $V$  has the $\varepsilon$-ball property if for every $ x\in V $ exists an open ball $B$ of radius $\varepsilon$ contained in $V$ such that $x \in B.$
+\end{definition}
+
+Let $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary with parameters $\varepsilon,M,N$ and let $\{ U_i\}_{i=1}^s$ be a special covering for $\Omega.$ Then it's immediate to verify that $U_i$ has the $\varepsilon$-ball property for every $i=1,...,s.$ 
+\begin{theorem}
+
+Let $1\le p<\infty,n\ge2$ and $\Omega$ be an open set in $\rr^n$ with minimally smooth boundary. Let $\{ U_i\}_{i=1}^s$ be a special covering for $\Omega.$ Moreover let $E$ be the operator defined in \eqref{defEE} using the sequence $\{ U_i\}_{i=1}^s$. Then if $\Omega$ is bounded, for every $f \in W^{l,p}(\Omega)$ and every $\alpha \in \nn_0^n$ with $|\alpha|\le l$ 
+\begin{equation}
+ \| D^\alpha_w Ef\|_{M_p^\phi(\rr^n)}\le C\sum_{|\beta|\le |\alpha|}\|D^\beta_w f \|_{M_p^\phi(\Omega)} \label{Ebound1}
+ \end{equation}
+ where $C$ doesn't depend on $f.$ If instead $\Omega$ is unbounded, for every $f \in W^{l,p}(\Omega)$ and $\delta>0$
+\begin{equation}
+ \| D^\alpha_w Ef\|_{M_p^{\phi,\delta}(\rr^n)}\le C_\delta\sum_{|\beta|\le |\alpha|}\|D^\beta_w f \|_{M_p^\phi(\Omega)} \label{Ebound2}
+ \end{equation}
+ where $C_\delta$ depends on $\delta$ but not on $f.$
+\end{theorem}
+\begin{proof}
+Let  $\varepsilon,N,M$ be the parameters relative to the covering $\{ U_i\}_{i=1}^s$ for $\Omega$. Let $B$ an open ball of radius $\delta$ in $\rr^n$ and consider the set $J=\{i \in \{1,...,s\} \ | \ B\cap U_i \neq \emptyset\}$. We will prove that $\#J\le c$, where $c$ is a constant that depends only on $\varepsilon,N,\delta,n.$ We consider first the case when $\Omega$ is bounded. Then also its $\varepsilon$-neighborhood $\Omega^\varepsilon $ is bounded. Moreover, by definition $U_i\cap \Omega^\varepsilon$ contains a ball of radius $\varepsilon$, hence $|U_i\cap \Omega^\varepsilon|>\varepsilon^2\omega_n,$ where $\omega_n$ is the volume of the n-dimensional unit ball. Since the covering $\{U_i\}_{i=1}^s$ has multiplicity less than $N$ and $U_i\subset\Omega^\varepsilon$, we have that $\sum_{i=1}^s|U_i\cap \Omega^\varepsilon|\le N |\Omega^\varepsilon|$. This implies that $s\le N |\Omega^\varepsilon|/(\varepsilon^2\omega_n)$ and so $\#J\le N |\Omega^\varepsilon|/(\varepsilon^2\omega_n)=c.$ We observe that in this case $c$ doesn't depend on $\delta.$ Suppose now that $\Omega$ is unbounded. Since the diameter of $B$ is $2\delta$, by Lemma \ref{covering} there exists a family of $m$ balls of radius $\varepsilon$ that covers $B$, where $m$ depends only on $\delta,\varepsilon$ and $n$. Suppose now that $\#J>mp$, for some integer $p\in \nn$, then at least one of these balls intersects at least $p+1$  $U_i$'s. Let's call this ball $B_\varepsilon.$ We know that there exists points $x_i$, $i=1,...,p+1$, with $x_i \in B_\varepsilon \cap U_i.$ Since each $U_i$ has the $\varepsilon$-ball property, there are $B_i$, $i=1,...,p+1$, open balls of radius $\varepsilon$ with $B_i \subset U_i$ and $x_i \in B_i.$ We now label $c_i$ the center of the ball $B_i$ and we notice that the set $\{c_1,...,c_{p+1}\}$ is contained in a ball of radius $2\varepsilon.$ Indeed $|x_i-c_i|\le \varepsilon$ and $x_i \in B_\varepsilon,$ for every $i.$ Therefore by Lemma \ref{covering} we can cover the set $\{c_1,...,c_{p+1}\}$ with $q$ open balls of radius $\varepsilon/2$, where $q$ depends only on $n.$ Now suppose that $p>qN$, then at least one of these balls, that we label $B_{\varepsilon/2}$, contains at least $N+1$ points of $\{c_1,...,c_{p+1}\}.$ Without loss of generality we can suppose that they are $c_1,...,c_{N+1}$, but then we must have that $B_1\cap B_2 \cap ... \cap B_{N+1}\neq \emptyset$. Indeed each of these balls contains the center of $B_{\varepsilon/2}.$ However, since $B_i \subset U_i$ this is in contrast with property ii) of Definition \ref{minsmooth}. Hence we proved that if $\#J\ge mp$ then $p\le qN,$ hence $\#J<m(Np+1) $. This is what we wanted to prove. Now that we proved this estimate we can proceed with the proof of the theorem in the case $|\alpha|=0.$ Let $f \in W^{l,p}(\Omega)$, by applying the definition of $Ef$ we get
+
+\begin{align*}
+&\left( \frac{1}{\phi(r)} \int_B |Ef(x)|^pdx \right)^\frac{1}{p} \\
+&\le\left( \frac{1}{\phi(r)} \int_B \left|\Lambda_+(x) \frac{\sum_{i=1}^s \lambda_i(x)S_i(f\lambda_i)(x)}{\sum_{i=1}^s \lambda_i^2(x)}\right|^pdx \right)^\frac{1}{p}+\left( \frac{1}{\phi(r)} \int_B |\Lambda_-(x)f(x) |^pdx \right)^\frac{1}{p}.
+\end{align*}
+The second integral can be bound as follows
+\begin{align*}
+\left( \frac{1}{\phi(r)} \int_B |\Lambda_-(x)f(x) |^pdx \right)^\frac{1}{p}&\le\left( \frac{1}{\phi(r)} \int_{B\cap\Omega} |f(x) |^pdx \right)^\frac{1}{p} \\
+& \le \sum_{j=1}^m \left( \frac{1}{\phi(r)} \int_{B_j\cap\Omega} |f(x) |^pdx \right)^\frac{1}{p}\le m\|f\|_{M_p^\phi(\Omega)} \addtag \label{ezbound}
+\end{align*}
+where $B_1,...,B_m$ is a collection of balls of radius $\delta$ centered in $\Omega$ with $m$ depending only on $n.$ To bound the first integral we will use that $\sum_{i=1}^s \lambda_i^2(x)\ge 1$ whenever $x \in \supp \Lambda_+$ and that $\supp \lambda_i \subset U_i$. Moreover we recall that exist rigid rotations $R_i$ and special Lipschitz domains $D_i$ such that $U_i\cap \Omega=U_i\cap R_i(D_i)$. We have
+
+\begin{align*}
+&\left( \frac{1}{\phi(r)} \int_B \left|\Lambda_+(x) \frac{\sum_{i=1}^s \lambda_i(x)S_i(f\lambda_i)(x)}{\sum_{i=1}^s \lambda_i^2(x)}\right|^pdx \right)^\frac{1}{p}\le   \left( \frac{1}{\phi(r)} \int_{B}|\sum_{i=1}^s \lambda_i(x)S_i(f\lambda_i)(x)|^pdx \right)^\frac{1}{p} \\
+& \le  \sum_{i\in J}  \left( \frac{1}{\phi(r)} \int_{B} |S_i(f\lambda_i)(x)|^pdx \right)^\frac{1}{p} \le \sum_{i\in J} \| S_i(f\lambda_i)\|_{M_p^\phi(\rr^n)} \\
+& \le C_n(M) \sum_{i\in J} \| f\lambda_i\|_{M_p^\phi(R_i(D_i))} \le C_n(M) \sum_{i\in J} \| f\|_{M_p^\phi(R_i(D_i)\cap U_i)}=\\
+&= C_n(M)\sum_{i\in J} \| f\|_{M_p^\phi(\Omega \cap U_i)} \le C_n(M) c\| f\|_{M_p^\phi(\Omega )}.
+\end{align*}
+Here we have used inequality \eqref{Sbound} for $S_i$ and $C_n(M)$ is a constant depending only on $n$ and $M$. This combined with \eqref{ezbound} proves \eqref{Ebound2} when $|\alpha|=0.$ We prove now \eqref{Ebound2} when $|\alpha|>0.$ Let's first define the functions
+\[ \mu_i=\frac{\Lambda_+\lambda_i}{\sum_{j=1}^s\lambda^2_j}\]
+for every $i=1,...,s.$ Then we can rewrite $Ef$ as
+\[ Ef(x)=\sum_{i=1}^s \mu_i(x)S_i(f\lambda_i)(x)+\Lambda_-(x)f(x).\]
+We recall that every $\lambda_i$ has all bounded derivatives with a bound independent of $i$ and that $\sum_{j=1}^s\lambda^2_j(x)\ge 1$ when $x \in \supp \Lambda_+.$ Moreover for every $x\in \rr^n$ the sum $\sum_{i=1}^s\lambda_i(x)$ has at most $N$ terms different from $0$. Using these facts and the Leibeniz rule it can be proved that also every $\mu_i$ has all bounded derivatives with a bound independent of $i$. Let's consider again an open ball $B$ in $\rr^n$ of radius $\delta$ and the set $J=\{i \in \{1,...,s\} \ | \ B\cap U_i \neq \emptyset\}$. For every $x \in B$ we have
+\[ Ef(x)=\sum_{i \in J} \mu_i(x)S_i(f\lambda_i)(x)+\Lambda_-(x)f(x).\]
+and since the set $J$ is finite we deduce
+\[ D^\alpha_wEf(x)=\sum_{i \in J} D^\alpha_w(\mu_i(x)S_i(f\lambda_i)(x))+D^\alpha_w(\Lambda_-(x)f(x)).\]
+Now using the Leibeniz rule we get
+\[ |D^\alpha_wEf(x)|\le C_\alpha\sum_{i \in J} \sum_{\beta\le \alpha} |D^\beta_wS_i(f\lambda_i)(x)|+C_\alpha\sum_{\beta\le \alpha} |D^\beta_w f(x)|\mathbbm{1}_\Omega(x)\]
+where $C_\alpha$ is a constant depending only on $\alpha,n$ and on the bound of the derivatives of $\mu_i$ from order 0 up to order $|\alpha|$, but independent of $i.$ Hence 
+\begin{align*}
+&\left( \frac{1}{\phi(r)} \int_B |D^\alpha_w Ef(x)|^pdx \right)^\frac{1}{p} \\
+&\le C_\alpha\sum_{i\in J}\sum_{\beta\le \alpha}  \left( \frac{1}{\phi(r)} \int_B |D^\beta_wS_i(f\lambda_i)(x)|^pdx \right)^\frac{1}{p} +C_\alpha \sum_{\beta\le \alpha}  \left( \frac{1}{\phi(r)} \int_{B\cap\Omega} |D^\beta_w f(x)|^pdx \right)^\frac{1}{p}.
+\end{align*}
+Arguing as before we can estimate the second integral as follows
+\begin{equation}
+C_\alpha \sum_{\beta\le \alpha}  \left( \frac{1}{\phi(r)} \int_{B\cap\Omega} |D^\beta_w f(x)|^pdx \right)^\frac{1}{p}\le  C_\alpha m\sum_{\beta\le \alpha}  \| D^\beta wf\|_{M_p^\phi(\Omega)}. \label{ezbound2}
+\end{equation}
+We can estimate the first integral using inequality \eqref{Sbound} for $S_i$. In particular we get
+\begin{align*}
+&C_\alpha\sum_{i\in J}\sum_{\beta\le \alpha}  \left( \frac{1}{\phi(r)} \int_B |D^\beta_wS_i(f\lambda_i)(x)|^pdx \right)^\frac{1}{p} \\
+& \le C_{l,n}(M) C_\alpha\sum_{i\in J}\sum_{\beta\le \alpha}\sum_{|\gamma|\le |\beta|} \| D^\gamma_w(\lambda_if)\|_{M_p^\phi(R_i(D_i))} \\
+&\le C_\alpha C_{l,n}(M) D\sum_{i\in J}\sum_{\beta\le \alpha}\sum_{|\gamma|\le |\beta|} \| D^\gamma_wf\|_{M_p^\phi(R_i(D_i)\cap U_i)}= \\
+&= C_{l,n}(M)C_\alpha D\sum_{i\in J}\sum_{\beta\le \alpha}\sum_{|\gamma|\le |\beta|} \| D^\gamma_wf\|_{M_p^\phi(\Omega\cap U_i)} \\
+&\le C_{l,n}(M)C_\alpha m \widetilde D\sum_{i\in J} \sum_{\beta\le \alpha}\| D^\beta_wf\|_{M_p^\phi(\Omega)} \\
+&\le C_{l,n}(M) C_\alpha m \widetilde Dc\sum_{\beta\le \alpha}\| D^\beta_wf\|_{M_p^\phi(\Omega)}, \addtag \label{hardbound}
+\end{align*}
+where $D,\widetilde D$ are constants depending only on $n$ and the bound on the derivatives of $\lambda_i.$ Inequality \eqref{hardbound} together with \eqref{ezbound2} gives \eqref{Ebound2} for $|\alpha|>0.$ We finally observe that in the proof of \eqref{Ebound2} the only constant depending on $\delta$ is $c$, but we know that if $\Omega$ is bounded, $c$ doesn't actually depend on $\delta$. This proves \eqref{Ebound1}.
+
+\end{proof}
 \bibliographystyle{plain}
 \bibliography{biblio}
 
